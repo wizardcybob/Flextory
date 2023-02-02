@@ -14,12 +14,16 @@ Modifier le fichier d'environnement :
 
 ### Commandes
 
-`composer install`
-`npm ci`
-`php artisan migrate`
+- `composer install`
+
+- `npm ci`
+
+- `php artisan migrate`
 
 ## Utilisation
 
 Pour lancer le serveur Laravel : `php artisan serve`
+
 Pour lancer la compilation une fois : `npm run build`
+
 Pour lancer la compilation à chaque modification : `npm run watch`
