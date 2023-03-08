@@ -34,6 +34,35 @@ module.exports = {
             '2xl': '1600px',
         },
         extend: {
+            colors: { // ex : bg-primary / bg-primary-dark
+                primary: { // blue
+                    DEFAULT: '#2E46C9', // btn / title / text...
+                    dark: '#003686', // hover
+                },
+                secondary: { // grey
+                    light: '#E7EEF3', // input / row of a table
+                    DEFAULT: '#C1C4CF', // row of a table
+                    dark: '#80818D', // texte
+                },
+                edit: { // btn edit
+                    DEFAULT: '#FF9900',
+                    dark: '#E58A00', // hover
+                },
+                delete: { // btn delete
+                    DEFAULT: '#C63434',
+                    dark: '#930303', // hover
+                },
+                status: { // status
+                    in_progress: '#549FE4', // status 'en cours'
+                    to_do: '#C63434', // status 'à faire'
+                    done: '#FF9900', // status 'terminé'
+                    archive: '#7C7C7C' // status 'archivé'
+                },
+                role: { // role
+                    student: '#2EB6C9', // student
+                    professor: '#C62EC9', // professor
+                },
+            },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
