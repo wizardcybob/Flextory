@@ -14,9 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('projet_student', function (Blueprint $table) {
-            $table->foreignId('student_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('projet_id')->constrained()->cascadeOnDelete();
-            $table->primary('student_id', 'projet_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('projet_id');
+            $table->unsignedBigInteger('student_id');
+            $table->timestamps();
+            $table->foreign('projet_id')->references('id')->on('projets')->onDelete('cascade');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
         });
     }
 

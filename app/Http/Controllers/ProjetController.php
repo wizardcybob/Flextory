@@ -26,7 +26,6 @@ class ProjetController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', Projet::class);
         $students = Student::orderBy('name', 'asc')->orderBy('name', 'asc')->get();
         return view('projet.create', ['students' => $students]);
     }
@@ -43,6 +42,7 @@ class ProjetController extends Controller
         $projet = new Projet();
         $projet->fill($data);
         $projet->save();
+        $projet->students()->attach($data['student']);
         return redirect()->route('projet.show', $projet);
     }
 
@@ -54,7 +54,7 @@ class ProjetController extends Controller
      */
     public function show(Projet $projet)
     {
-        $this->authorize('view', $projet);
+        return view('projet.show', ['projet' => $projet]);
     }
 
     /**
@@ -80,12 +80,18 @@ class ProjetController extends Controller
      */
     public function update(ProjetRequest $request, Projet $projet)
     {
-        $this->authorize('update', Projet::class);
-        $data = $request->validated();
+        $data = $request->validate();
+        // $data = $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'description' => 'required',
+        //     'link' => 'required',
+        //     'students' => 'required'
+        // ]);
+        dd($data);
         $projet->fill($data);
         $projet->save();
         $projet->students()->sync($data['student']);
-        return redirect()->route('projet.show', ['projet' => $projet]);
+        return view('projet.show', ['projet' => $projet]);
     }
 
     /**

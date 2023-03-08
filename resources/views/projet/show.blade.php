@@ -12,7 +12,7 @@
             <p>Lien Seafile : {{ $projet->link }}</p>
 
             <h2>étudiant(s) assigné :</h2>
-            @foreach ($projet->student as $student)
+            @foreach ($projet->students as $student)
             <ul>
                 <li><a href="{{route('student.show', ['student' => $student])}}">{{$student->name}}</a></li>
             </ul>

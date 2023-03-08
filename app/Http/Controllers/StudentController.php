@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
+use App\Models\Projet;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\Builder\Stub;
@@ -26,7 +27,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('student.create');
+        $projets = Projet::orderBy('title', 'asc')->orderBy('title', 'asc')->get();
+        return view('student.create', ['projets' => $projets]);
     }
 
     /**
@@ -38,10 +40,12 @@ class StudentController extends Controller
     public function store(StudentRequest $request)
     {
         $data = $request->validated();
+        // dd($data);
         $student = new Student();
         $student->fill($data);
         $student->save();
-        return redirect()->route('student.index', ['student', $student]);
+        $student->projets()->attach($data['projet']);
+        return redirect()->route('student.show', $student);
     }
 
     /**
@@ -64,8 +68,9 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::where('id', $id)->firstOrFail();
+        $projets = Projet::orderBy('title', 'asc')->get();
 
-        return view('student.edit', compact('student'));
+        return view('student.edit', compact('student', 'projets'));
     }
 
     /**
@@ -77,9 +82,15 @@ class StudentController extends Controller
      */
     public function update(StudentRequest $request, Student $student)
     {
-        $data = $request->validated();
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'actif' => 'required',
+            'projet' => 'required'
+        ]);
+        // dd($request);
         $student->fill($data);
         $student->save();
+        $student->projets()->sync($data['projet']);
         return redirect()->route('student.show', ['student' => $student]);
     }
 

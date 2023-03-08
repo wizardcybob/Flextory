@@ -12,12 +12,24 @@
                     @csrf
                     <p><input type="text" placeholder="name" name="name" value="{{ old('name') }}"></p>
                     <p><input type="text" placeholder="permanent" name="permanent" value="{{ old('permanent') }}"></p>
-                    @foreach ($departments as $department)
-                        <p><input type="checkbox" name="department[]" id="department{{ $department->id }}" value="{{ $department->id }}"><label for="teacher_{{ $department->id }}">{{ $department->name }}</label></p>
-                    @endforeach
-                    @foreach ($status as $status)
-                        <p><input type="checkbox" name="status[]" id="status{{ $status->id }}" value="{{ $status->id }}"><label for="teacher_{{ $status->id }}">{{ $status->name }}</label></p>
-                    @endforeach
+                    <p>
+                        <select name="department">
+                            <option value=""></option>
+                            @foreach ($departments as $department)
+                                <option value="{{ $department->id }}" @if (old('department') == $department->id) selected @endif>
+                                    {{ $department->name }}</option>
+                            @endforeach
+                        </select>
+                    </p>
+                    <p>
+                        <select name="status">
+                            <option value=""></option>
+                            @foreach ($statuses as $status)
+                                <option value="{{ $status->id }}" @if (old('status') == $status->id) selected @endif>
+                                    {{ $status->name }}</option>
+                            @endforeach
+                        </select>
+                    </p>
                     <p><button type="submit">Save</button></p>
                 </form>
             </div>
