@@ -37,6 +37,7 @@ module.exports = {
                 primary: { // blue
                     DEFAULT: '#2E46C9', // btn / title / text...
                     dark: '#003686', // hover
+                    darker: '#1E293B' // footer
                 },
                 secondary: { // grey
                     light: '#E7EEF3', // input / row of a table
