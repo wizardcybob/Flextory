@@ -26,6 +26,7 @@ class ProjetController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Projet::class);
         $students = Student::orderBy('name', 'asc')->orderBy('name', 'asc')->get();
         return view('projet.create', ['students' => $students]);
     }
@@ -80,6 +81,7 @@ class ProjetController extends Controller
      */
     public function update(ProjetRequest $request, Projet $projet)
     {
+        $this->authorize('update', $projet);
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
