@@ -27,3 +27,5 @@ Pour lancer le serveur Laravel : `php artisan serve`
 Pour lancer la compilation une fois : `npm run build`
 
 Pour lancer la compilation à chaque modification : `npm run watch`
+
+Pour avoir le reload automatique : `npm run dev`
