@@ -26,7 +26,6 @@ module.exports = {
             },
         },
         screens: {
-            'xs': '320px',
             'sm': '640px',
             'md': '768px',
             'lg': '1024px',
@@ -44,6 +43,8 @@ module.exports = {
                     DEFAULT: '#C1C4CF', // row of a table
                     dark: '#80818D', // texte
                 },
+                valid: '#51BB1E', // valid
+                error: '#C63434', // error
                 edit: { // btn edit
                     DEFAULT: '#FF9900',
                     dark: '#E58A00', // hover
@@ -55,7 +56,7 @@ module.exports = {
                 status: { // status
                     in_progress: '#549FE4', // status 'en cours'
                     to_do: '#C63434', // status 'à faire'
-                    done: '#FF9900', // status 'terminé'
+                    done: '#51BB1E', // status 'terminé'
                     archive: '#7C7C7C' // status 'archivé'
                 },
                 role: { // role
