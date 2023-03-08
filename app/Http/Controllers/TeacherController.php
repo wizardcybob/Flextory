@@ -73,9 +73,11 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
+        $departments = Department::orderBy('name', 'asc')->get();
+        $statuses = Status::orderBy('name', 'asc')->get();
         $teacher = Teacher::where('id', $id)->firstOrFail();
 
-        return view('teacher.edit', compact('teacher'));
+        return view('teacher.edit', compact('teacher', 'departments', 'statuses'));
     }
 
     /**
@@ -87,11 +89,16 @@ class TeacherController extends Controller
      */
     public function update(TeacherRequest $request, Teacher $teacher)
     {
-        $data = $request->validated();
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'permanent' => 'required',
+            'department_id' => 'required|exists:departments,id',
+            'status_id' => 'required|exists:statuses,id'
+        ]);
         $teacher->fill($data);
         $teacher->save();
-        $teacher->departments()->sync($data['department']);
-        $teacher->status()->sync($data['status']);
+        $teacher->department()->associate($data['department_id'])->save();
+        $teacher->status()->associate($data['status_id'])->save();
         return redirect()->route('teacher.show', ['teacher' => $teacher]);
     }
 

@@ -80,18 +80,16 @@ class ProjetController extends Controller
      */
     public function update(ProjetRequest $request, Projet $projet)
     {
-        $data = $request->validate();
-        // $data = $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'description' => 'required',
-        //     'link' => 'required',
-        //     'students' => 'required'
-        // ]);
-        dd($data);
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required',
+            'link' => 'required',
+            'student' => 'required'
+        ]);
         $projet->fill($data);
         $projet->save();
         $projet->students()->sync($data['student']);
-        return view('projet.show', ['projet' => $projet]);
+        return redirect()->route('projet.show', ['projet' => $projet]);
     }
 
     /**

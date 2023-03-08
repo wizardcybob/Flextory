@@ -18,6 +18,14 @@
             </ul>
             @endforeach
 
+            <p><a href="{{ route('projet.edit', ['projet' => $projet])}}">Edit</a></p>
+
+            <form action="{{ route('projet.destroy', ['projet' => $projet]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Delete</button>
+            </form>
+
         </div>
     </div>
 </x-app-layout>

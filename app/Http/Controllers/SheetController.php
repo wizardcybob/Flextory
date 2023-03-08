@@ -77,7 +77,12 @@ class SheetController extends Controller
      */
     public function update(SheetRequest $request, Sheet $sheet)
     {
-        $data = $request->validated();
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable',
+            'idea' => 'nullable',
+            'state' => 'required'
+        ]);
         $sheet->fill($data);
         $sheet->save();
         return redirect()->route('sheet.show', ['sheet' => $sheet]);
