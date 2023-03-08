@@ -63,6 +63,6 @@ class User extends Authenticatable
 
     public function groupe()
     {
-        return $this->belongsTo(Groupe::class);
+        return $this->belongsTo(Groupe::class, 'role');
     }
 }

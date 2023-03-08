@@ -26,6 +26,7 @@ class SheetController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Sheet::class);
         return view('sheet.create');
     }
 
@@ -63,6 +64,7 @@ class SheetController extends Controller
      */
     public function edit($id)
     {
+
         $sheet = Sheet::where('id', $id)->firstOrFail();
 
         return view('sheet.edit', compact('sheet'));
@@ -77,6 +79,7 @@ class SheetController extends Controller
      */
     public function update(SheetRequest $request, Sheet $sheet)
     {
+        $this->authorize('update', $sheet);
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable',
