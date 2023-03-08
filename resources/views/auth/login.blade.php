@@ -13,24 +13,24 @@
             @csrf
 
             <div>
-                <x-jet-label for="email" value="{{ __('Adresse mail') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                {{-- <x-jet-label for="email" value="{{ __('Adresse mail') }}" /> --}}
+                <x-jet-input id="email" class="block w-full" type="email" name="email" placeholder="Adresse mail" :value="old('email')" required autofocus />
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Mot de passe') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                {{-- <x-jet-label for="password" value="{{ __('Mot de passe') }}" /> --}}
+                <x-jet-input id="password" class="block w-full" type="password" name="password" placeholder="Mot de passe" required autocomplete="current-password" />
             </div>
 
-            <div class="block mt-4">
+            <div class="block mt-2 md:mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-jet-checkbox id="remember_me" name="remember" />
                     <span class="ml-2 text-sm text-secondary-light">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
-            <div class="flex flex-col items-center mt-4 gap-4">
-                <x-jet-button class="w-full flex justify-center bg-primary hover:bg-primary-dark normal-case tracking-wide">
+            <div class="flex flex-col items-center mt-4 gap-2 md:gap-4">
+                <x-jet-button class="text-base md:text-xl w-full flex justify-center bg-primary hover:bg-primary-dark normal-case tracking-wide">
                     {{ __('Se connecter') }}
                 </x-jet-button>
 
