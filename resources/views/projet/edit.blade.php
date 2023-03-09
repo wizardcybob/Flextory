@@ -22,6 +22,13 @@
                             <label for="student_{{ $student->id }}">{{ $student->name }}</label>
                         </p>
                     @endforeach
+                    @foreach ($areas as $area)
+                        <p>
+                            <input type="checkbox" name="area[]" id="area_{{ $area->id }}" value="{{ $area->id }}"
+                                {{ in_array($area->id, $projet->areas->pluck('id')->toArray()) ? 'checked' : '' }}>
+                            <label for="area_{{ $area->id }}">{{ $area->name }}</label>
+                        </p>
+                    @endforeach
                     <p><button type="submit">Save</button></p>
                 </form>
             </div>

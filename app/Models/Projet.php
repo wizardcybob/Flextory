@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Student;
+use App\Models\Area;
 
 class Projet extends Model
 {
@@ -15,5 +16,10 @@ class Projet extends Model
     public function students()
     {
         return $this->belongsToMany(Student::class);
+    }
+
+    public function areas()
+    {
+        return $this->belongsToMany(Area::class);
     }
 }

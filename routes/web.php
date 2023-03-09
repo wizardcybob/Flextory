@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AreaController;
 use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\SheetController;
 use App\Http\Controllers\StudentController;
@@ -32,6 +33,14 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/area/create', [AreaController::class, 'create'])->name('area.create');
+Route::get('/area', [AreaController::class, 'index'])->name('area.index');
+Route::post('/area/store', [AreaController::class, 'store'])->name('area.store');
+Route::get('/area/{area}', [AreaController::class, 'show'])->name('area.show');
+Route::get('/area/{area}/edit', [AreaController::class, 'edit'])->name('area.edit');
+Route::put('/area/{area}/edit', [AreaController::class, 'update'])->name('area.update');
+Route::delete('area/{area}', [AreaController::class, 'destroy'])->name('area.destroy');
 
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
