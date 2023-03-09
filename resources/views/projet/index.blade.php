@@ -13,7 +13,13 @@
                 @if ($projets->isNotEmpty())
                     <ul>
                         @foreach ($projets as $projet)
-                                <li><a href="{{ route('projet.show', $projet) }}">{{ $projet->name }} {{ $projet->description }}</a></li>
+                                <li><a href="{{ route('projet.show', $projet) }}">{{ $projet->title }}</a></li>
+                                <p><a href="{{ route('projet.edit', ['projet' => $projet->id])}}">Edit</a></p>
+                                <form action="{{ route('projet.destroy', ['projet' => $projet->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Delete</button>
+                                </form>
                         @endforeach
                     </ul>
                 @endif

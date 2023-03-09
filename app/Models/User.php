@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Groupe;
+use App\Events\UserCreated;
 
 
 class User extends Authenticatable
@@ -60,6 +61,17 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+            $groupe = Groupe::where('name','4')->first(); // Trouver le groupe "4"
+            if ($groupe) { // Vérifier si le groupe existe
+                $user->groupe()->associate($groupe->id); // Associer l'utilisateur au groupe
+                $user->role = $groupe->id; // Assigner l'id du groupe à la colonne "role"
+            }
+        });
+    }
 
     public function groupe()
     {
