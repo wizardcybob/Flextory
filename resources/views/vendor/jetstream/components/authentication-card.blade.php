@@ -1,5 +1,5 @@
 <div>
-    <div class="relative min-h-screen flex flex-col justify-center items-center bg-gradient-to-tl from-violet-700 via-violet-800 to-blue-900 overflow-hidden">
+    <div class="relative min-h-screen flex flex-col justify-center items-center bg-gradient-to-tl from-orange-400 {{-- via-teal-600 --}} to-cyan-700 overflow-hidden">
         <div class="absolute opacity-40 h-full">
             <img class="w-full h-full object-cover" src="{{ asset('storage/images/flextory_login.jpg') }}" alt="Image d'arrière plan de la Flextorye">
         </div>
