@@ -4,6 +4,7 @@ use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\SheetController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,14 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
+Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
+Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::put('/user/{user}/edit', [UserController::class, 'update'])->name('user.update');
+Route::delete('user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
 Route::get('/student/create', [StudentController::class, 'create'])->name('student.create');
 Route::get('/student', [StudentController::class, 'index'])->name('student.index');
