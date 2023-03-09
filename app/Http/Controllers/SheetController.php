@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SheetRequest;
+use App\Models\Area;
 use Illuminate\Http\Request;
 use App\Models\Sheet;
 
@@ -27,7 +28,8 @@ class SheetController extends Controller
     public function create()
     {
         $this->authorize('create', Sheet::class);
-        return view('sheet.create');
+        $areas = Area::orderBy('name', 'asc')->get();
+        return view('sheet.create', ['areas' => $areas]);
     }
 
     /**
@@ -38,9 +40,16 @@ class SheetController extends Controller
      */
     public function store(SheetRequest $request)
     {
-        $data = $request->validated();
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable',
+            'idea' => 'nullable',
+            'state' => 'required',
+            'area' => 'nullable'
+        ]);
         $sheet = new Sheet();
         $sheet->fill($data);
+        $sheet->area()->associate($data['area']);
         $sheet->save();
         return redirect()->route('sheet.index', ['sheet', $sheet]);
     }
@@ -64,10 +73,10 @@ class SheetController extends Controller
      */
     public function edit($id)
     {
-
+        $areas = Area::orderBy('name', 'asc')->get();
         $sheet = Sheet::where('id', $id)->firstOrFail();
 
-        return view('sheet.edit', compact('sheet'));
+        return view('sheet.edit', compact('sheet', 'area'));
     }
 
     /**
@@ -84,10 +93,12 @@ class SheetController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable',
             'idea' => 'nullable',
-            'state' => 'required'
+            'state' => 'required',
+            'area' => 'nullable'
         ]);
         $sheet->fill($data);
         $sheet->save();
+        $sheet->area()->associate($data['area_id'])->save();
         return redirect()->route('sheet.show', ['sheet' => $sheet]);
     }
 

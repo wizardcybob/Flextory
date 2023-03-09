@@ -9,6 +9,7 @@
             <p><a href="{{ route('sheet.index') }}">Back</a></p>
             <h1>{{ $sheet->title }}</h1>
             <p>Description : {{ $sheet->description }}</p>
+            <h2>Zone : {{ $sheet->area->name }}</h2>
             <p>Idée : {{ $sheet->idea }}</p>
             <p>État : {{ $sheet->state }}</p>
 

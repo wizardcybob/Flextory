@@ -14,6 +14,6 @@ class Adearea extends Model
 
      public function area()
      {
-         return $this->hasMany(Area::class);
+         return $this->hasOne(Area::class);
      }
 }

@@ -18,6 +18,15 @@
                         <textarea rows="5" placeholder="idea" name="idea">{{ $sheet->idea }}</textarea>
                     </p>
                     <p><input type="text" placeholder="state" name="state" value="{{ $sheet->state }}"></p>
+                    <p>
+                        <select name="area_id">
+                            <option value=""></option>
+                            @foreach ($areas as $area)
+                                <option value="{{ $area->id }}" @if ($sheet->area_id == $area->id) selected @endif>
+                                    {{ $area->name }}</option>
+                            @endforeach
+                        </select>
+                    </p>
                     <p><button type="submit">Save</button></p>
                 </form>
             </div>
