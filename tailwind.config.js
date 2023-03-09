@@ -38,20 +38,24 @@ module.exports = {
         extend: {
             colors: { // ex : bg-primary / bg-primary-dark
                 primary: { // blue
-                    DEFAULT: '#2E46C9', // btn / title / text...
-                    dark: '#003686', // hover
-                    darker: '#1E293B' // footer
+                    DEFAULT: '#0A6E88', // btn / title / text...
+                    dark: '#005B73', // hover
+                    darker: '#1E293B' // footer / texte
                 },
                 secondary: { // grey
                     light: '#E7EEF3', // input / row of a table
                     DEFAULT: '#C1C4CF', // row of a table
                     dark: '#80818D', // texte
                 },
+                tertiary: { // orange
+                    DEFAULT: '#F1892B', // row of a table
+                    dark: '#DB7214', // texte
+                },
                 valid: '#51BB1E', // valid
                 error: '#C63434', // error
                 edit: { // btn edit
-                    DEFAULT: '#FF9900',
-                    dark: '#E58A00', // hover
+                    DEFAULT: '#F1892B',
+                    dark: '#DB7214', // hover
                 },
                 delete: { // btn delete
                     DEFAULT: '#C63434',
@@ -64,8 +68,10 @@ module.exports = {
                     archive: '#7C7C7C' // status 'archivé'
                 },
                 role: { // role
-                    student: '#2EB6C9', // student
-                    professor: '#C62EC9', // professor
+                    student: '#2EB6C9', // student -> bleu
+                    professor: '#C62EC9', // professor -> rose
+                    admin: '#8E00C0', // admin -> violet
+                    superadmin: '#ccac00', // superadmin -> or
                 },
             },
             fontFamily: {
