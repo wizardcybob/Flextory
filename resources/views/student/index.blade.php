@@ -14,6 +14,13 @@
                     <ul>
                         @foreach ($students as $student)
                                 <li><a href="{{ route('student.show', $student) }}">{{ $student->name }} </a></li>
+                                <p><a href="{{ route('student.edit', ['student' => $student->id])}}">Edit</a></p>
+
+                            <form action="{{ route('student.destroy', ['student' => $student->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Delete</button>
+                            </form>
                         @endforeach
                     </ul>
                 @endif
