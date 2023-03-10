@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Modifier user') }}
+            {{ __('Modifier utilisateur') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -10,7 +10,7 @@
                 <form action="{{ route('user.update', ['user' => $user]) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <p><input type="text" placeholder="name" name="name" value="{{ $user->name }}"></p>
+                    <p><input type="text" placeholder="Nom" name="name" value="{{ $user->name }}"></p>
                     <p>
                         <select name="role">
                             <option value=""></option>
@@ -23,7 +23,7 @@
                         </select>
                     </p>
 
-                    <p><button type="submit">Save</button></p>
+                    <p><button aria-labelledby="Modifier" type="submit">Modifier</button></p>
                 </form>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Zone') }}
+            {{ __('Zones') }}
         </h2>
     </x-slot>
 
@@ -19,7 +19,7 @@
                             <form action="{{ route('area.destroy', ['area' => $area->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">Supprimer</button>
+                                <button aria-labelledby="Supprimer" type="submit">Supprimer</button>
                             </form>
                         @endforeach
                     </ul>

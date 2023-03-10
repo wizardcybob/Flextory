@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create a projet') }}
+            {{ __('Créer un projet') }}
         </h2>
     </x-slot>
 
@@ -22,7 +22,7 @@
                     @foreach ($areas as $area)
                         <p><input aria-labelledby="Zone" type="checkbox" name="area[]" id="area{{ $area->id }}" value="{{ $area->id }}"><label for="projet{{ $area->id }}">{{ $area->name }}</label></p>
                     @endforeach
-                    <p><button aria-labelledby="Valider" type="submit">Save</button></p>
+                    <p><button aria-labelledby="Valider" type="submit">Valider</button></p>
                 </form>
             </div>
         </div>
