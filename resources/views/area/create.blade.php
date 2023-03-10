@@ -15,6 +15,15 @@
                         <textarea rows="5" placeholder="description" name="description">{{ old('description') }}</textarea>
                     </p>
                     <p><input type="text" placeholder="image" name="image" value="{{ old('image') }}"></p>
+                    <p>
+                        <select name="adearea">
+                            <option value=""></option>
+                            @foreach ($adeareas as $adearea)
+                                <option value="{{ $adearea->id }}" @if (old('adearea') == $adearea->id) selected @endif>
+                                    {{ $adearea->name }}</option>
+                            @endforeach
+                        </select>
+                    </p>
                     @foreach ($projets as $projet)
                         <p><input type="checkbox" name="projet[]" id="projet{{ $projet->id }}" value="{{ $projet->id }}"><label for="student{{ $projet->id }}">{{ $projet->title }}</label></p>
                     @endforeach

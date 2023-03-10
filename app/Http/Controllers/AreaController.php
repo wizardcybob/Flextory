@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AreaRequest;
+use App\Models\Adearea;
 use App\Models\Area;
 use App\Models\Projet;
 use Illuminate\Http\Request;
@@ -27,8 +28,9 @@ class AreaController extends Controller
     public function create()
     {
         $this->authorize('create', Area::class);
+        $adeareas = Adearea::orderBy('name', 'asc')->get();
         $projets = Projet::orderBy('title', 'asc')->orderBy('title', 'asc')->get();
-        return view('area.create', ['projets' => $projets]);
+        return view('area.create', ['projets' => $projets, 'adeareas' => $adeareas]);
     }
 
     /**
@@ -43,13 +45,17 @@ class AreaController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable',
             'image' => 'nullable',
-            'projet' => 'required'
+            'projet' => 'nullable',
+            'adearea' => 'nullable'
         ]);
         // dd($data);
         $area = new Area();
         $area->fill($data);
+        $area->adearea()->associate($data['adearea']);
         $area->save();
-        $area->projets()->attach($data['projet']);
+        if (isset($data['projet'])) {
+            $area->projets()->attach($data['projet']);
+        }
         return redirect()->route('area.show', $area);
     }
 
@@ -72,10 +78,10 @@ class AreaController extends Controller
      */
     public function edit($id)
     {
+        $adeareas = Adearea::orderBy('name', 'asc')->get();
         $area = Area::where('id', $id)->firstOrFail();
         $projets = Projet::orderBy('title', 'asc')->get();
-
-        return view('area.edit', compact('area', 'projets'));
+        return view('area.edit', compact('area', 'projets', 'adeareas'));
     }
 
     /**
@@ -92,11 +98,13 @@ class AreaController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable',
             'image' => 'nullable',
-            'projet' => 'required'
+            'projet' => 'nullable',
+            'adearea' => 'nullable'
         ]);
         // dd($request);
         $area->fill($data);
         $area->save();
+        $area->adearea()->associate($data['adearea_id'])->save();
         $area->projets()->sync($data['projet']);
         return redirect()->route('area.show', ['area' => $area]);
     }

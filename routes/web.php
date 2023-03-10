@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdeareaController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\SheetController;
@@ -33,6 +34,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/adearea', [AdeareaController::class, 'index'])->name('adearea.index');
+Route::get('/adearea/{adearea}', [AdeareaController::class, 'show'])->name('adearea.show');
 
 Route::get('/area/create', [AreaController::class, 'create'])->name('area.create');
 Route::get('/area', [AreaController::class, 'index'])->name('area.index');

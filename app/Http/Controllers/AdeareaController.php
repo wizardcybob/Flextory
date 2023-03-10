@@ -56,7 +56,8 @@ class AdeareaController extends Controller
      */
     public function show(Adearea $adearea)
     {
-        return view('adearea.show', ['adearea' => $adearea]);
+        $areas = $adearea->areas()->orderBy('name', 'asc')->get();
+        return view('area.index', ['areas' => $areas]);
     }
 
     /**

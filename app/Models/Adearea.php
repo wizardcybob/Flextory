@@ -12,8 +12,8 @@ class Adearea extends Model
 
      protected $fillable = ['name', 'description', 'image'];
 
-     public function area()
+     public function areas()
      {
-         return $this->hasOne(Area::class);
+         return $this->hasMany(Area::class);
      }
 }

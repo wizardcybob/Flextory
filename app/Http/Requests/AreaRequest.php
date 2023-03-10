@@ -27,7 +27,8 @@ class AreaRequest extends FormRequest
             'name' => 'required|max:191',
             'description' => 'nullable',
             'link' => 'nullable',
-            'projet.*' => 'required|exists:projets,id',
+            'projet.*' => 'nullable|exists:projets,id',
+            'adearea.*' => 'nullable|exists:adeareas,id',
         ];
     }
 }
