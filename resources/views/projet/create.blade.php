@@ -18,6 +18,10 @@
                     @foreach ($students as $student)
                         <p><input type="checkbox" name="student[]" id="student{{ $student->id }}" value="{{ $student->id }}"><label for="projet{{ $student->id }}">{{ $student->name }}</label></p>
                     @endforeach
+                    <p>Zone :</p>
+                    @foreach ($areas as $area)
+                        <p><input type="checkbox" name="area[]" id="area{{ $area->id }}" value="{{ $area->id }}"><label for="projet{{ $area->id }}">{{ $area->name }}</label></p>
+                    @endforeach
                     <p><button type="submit">Save</button></p>
                 </form>
             </div>

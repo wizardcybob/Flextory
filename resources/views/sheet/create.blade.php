@@ -16,6 +16,15 @@
                     </p>
                     <p><input type="text" placeholder="idea" name="idea" value="{{ old('idea') }}"></p>
                     <p><input type="int" placeholder="state" name="state" value="{{ old('state') }}"></p>
+                    <p>
+                        <select name="area">
+                            <option value=""></option>
+                            @foreach ($areas as $area)
+                                <option value="{{ $area->id }}" @if (old('area') == $area->id) selected @endif>
+                                    {{ $area->name }}</option>
+                            @endforeach
+                        </select>
+                    </p>
                     <p><button type="submit">Save</button></p>
                 </form>
             </div>

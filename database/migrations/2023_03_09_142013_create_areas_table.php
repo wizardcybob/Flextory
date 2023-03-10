@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger('role');
-            $table->foreign('role')->references('id')->on('groupes')->onDelete('cascade')->default('null');
+        Schema::create('areas', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->text('link')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -26,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('role')->references('id')->on('groupes')->onDelete('cascade');
-        });
+        Schema::dropIfExists('areas');
     }
 };

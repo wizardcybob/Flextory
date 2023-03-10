@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjetRequest;
+use App\Models\Area;
 use App\Models\Projet;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class ProjetController extends Controller
     {
         $this->authorize('create', Projet::class);
         $students = Student::orderBy('name', 'asc')->orderBy('name', 'asc')->get();
-        return view('projet.create', ['students' => $students]);
+        $areas = Area::orderBy('name', 'asc')->orderBy('name', 'asc')->get();
+        return view('projet.create', ['students' => $students, 'areas' => $areas]);
     }
 
     /**
@@ -44,6 +46,7 @@ class ProjetController extends Controller
         $projet->fill($data);
         $projet->save();
         $projet->students()->attach($data['student']);
+        $projet->areas()->attach($data['area']);
         return redirect()->route('projet.show', $projet);
     }
 
@@ -68,8 +71,9 @@ class ProjetController extends Controller
     {
         $projet = Projet::where('id', $id)->firstOrFail();
         $students = Student::orderBy('name', 'asc')->get();
+        $areas = Area::orderBy('name', 'asc')->get();
 
-        return view('projet.edit', compact('projet', 'students'));
+        return view('projet.edit', compact('projet', 'students', 'areas'));
     }
 
     /**
@@ -86,11 +90,13 @@ class ProjetController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required',
             'link' => 'required',
-            'student' => 'required'
+            'student' => 'required',
+            'area' => 'required'
         ]);
         $projet->fill($data);
         $projet->save();
         $projet->students()->sync($data['student']);
+        $projet->areas()->sync($data['area']);
         return redirect()->route('projet.show', ['projet' => $projet]);
     }
 

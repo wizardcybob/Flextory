@@ -13,7 +13,7 @@ class Department extends Model
     protected $fillable = ['name'];
 
     public function teachers()
-{
-    return $this->hasMany(Teacher::class);
-}
+    {
+        return $this->hasMany(Teacher::class);
+    }
 }
