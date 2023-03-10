@@ -10,19 +10,19 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <form action="{{ route('projet.store') }}" method="POST">
                     @csrf
-                    <p><input type="text" placeholder="title" name="title" value="{{ old('title') }}"></p>
+                    <p><input type="text" aria-labelledby="Titre"  placeholder="Titre" name="title" value="{{ old('title') }}"></p>
                     <p>
-                        <textarea rows="5" placeholder="description" name="description">{{ old('description') }}</textarea>
+                        <textarea rows="5" aria-labelledby="Description"  placeholder="Description" name="description">{{ old('description') }}</textarea>
                     </p>
-                    <p><input type="text" placeholder="link" name="link" value="{{ old('link') }}"></p>
+                    <p><input type="text" aria-labelledby="Lien" placeholder="Lien" name="link" value="{{ old('link') }}"></p>
                     @foreach ($students as $student)
-                        <p><input type="checkbox" name="student[]" id="student{{ $student->id }}" value="{{ $student->id }}"><label for="projet{{ $student->id }}">{{ $student->name }}</label></p>
+                        <p><input aria-labelledby="Etudiant" type="checkbox" name="student[]" id="student{{ $student->id }}" value="{{ $student->id }}"><label for="projet{{ $student->id }}">{{ $student->name }}</label></p>
                     @endforeach
                     <p>Zone :</p>
                     @foreach ($areas as $area)
-                        <p><input type="checkbox" name="area[]" id="area{{ $area->id }}" value="{{ $area->id }}"><label for="projet{{ $area->id }}">{{ $area->name }}</label></p>
+                        <p><input aria-labelledby="Zone" type="checkbox" name="area[]" id="area{{ $area->id }}" value="{{ $area->id }}"><label for="projet{{ $area->id }}">{{ $area->name }}</label></p>
                     @endforeach
-                    <p><button type="submit">Save</button></p>
+                    <p><button aria-labelledby="Valider" type="submit">Save</button></p>
                 </form>
             </div>
         </div>

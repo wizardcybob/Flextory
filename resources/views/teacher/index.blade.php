@@ -8,18 +8,18 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <p><a href="{{ route('teacher.create') }}">Create new teacher</a></p>
+                    <p><a aria-labelledby="Créer un nouvel enseignant" href="{{ route('teacher.create') }}">Créer un nouvel enseignant</a></p>
 
                 @if ($teachers->isNotEmpty())
                     <ul>
                         @foreach ($teachers as $teacher)
                                 <li><a href="{{ route('teacher.show', $teacher) }}">{{ $teacher->name }}</a></li>
-                                <p><a href="{{ route('teacher.edit', ['teacher' => $teacher->id])}}">Edit</a></p>
+                                <p><a aria-labelledby="Modifier" href="{{ route('teacher.edit', ['teacher' => $teacher->id])}}">Modifier</a></p>
 
                                 <form action="{{ route('teacher.destroy', ['teacher' => $teacher->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">Delete</button>
+                                    <button aria-labelledby="Supprimer" type="submit">Supprimer</button>
                                 </form>
                         @endforeach
                     </ul>
