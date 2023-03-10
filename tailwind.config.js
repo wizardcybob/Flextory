@@ -32,9 +32,6 @@ module.exports = {
             'xl': '1200px',
             '2xl': '1600px',
         },
-        fontFamily: {
-            cursive: ['Kalam', 'cursive'],
-        },
         extend: {
             colors: { // ex : bg-primary / bg-primary-dark
                 primary: { // blue
@@ -75,7 +72,8 @@ module.exports = {
                 },
             },
             fontFamily: {
-                sans: ['Work Sans', 'Nunito', ...defaultTheme.fontFamily.sans],
+                work: ['Work Sans'],
+                kalam: ['Kalam'],
             },
         },
     },
