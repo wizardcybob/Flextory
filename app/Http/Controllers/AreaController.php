@@ -70,6 +70,12 @@ class AreaController extends Controller
         return view('area.show', ['area' => $area]);
     }
 
+    public function sheets(Area $area)
+    {
+        $sheets = $area->sheets()->orderBy('title', 'asc')->get();
+        return view('sheet.index', ['sheets' => $sheets]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -14,6 +14,17 @@
                     <ul>
                         @foreach ($users as $user)
                                 <li><a href="{{ route('user.show', $user) }}">{{ $user->name }}</a></li>
+                                @if ($user->role == 1)
+                                <li>SuperAdmin</li>
+                                @elseif ($user->role == 2)
+                                <li>Admin</li>
+                                @elseif ($user->role == 3)
+                                <li>Éditeur</li>
+                                @elseif ($user->role == 4)
+                                <li>Étudiant</li>
+                                @endif
+                                <p><a href="{{ route('user.edit', ['user' => $user->id])}}">Edit</a></p>
+
                         @endforeach
                     </ul>
                 @endif
