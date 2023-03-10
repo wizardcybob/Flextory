@@ -46,7 +46,9 @@ class StudentController extends Controller
         $student = new Student();
         $student->fill($data);
         $student->save();
+        if (isset($data['projet'])) {
         $student->projets()->attach($data['projet']);
+        };
         return redirect()->route('student.show', $student);
     }
 
@@ -90,12 +92,14 @@ class StudentController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'actif' => 'required',
-            'projet' => 'required'
+            'projet' => 'nullable'
         ]);
         // dd($request);
         $student->fill($data);
         $student->save();
+        if (isset($data['projet'])) {
         $student->projets()->sync($data['projet']);
+        };
         return redirect()->route('student.show', ['student' => $student]);
     }
 

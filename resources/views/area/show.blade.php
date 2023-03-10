@@ -18,6 +18,13 @@
             </ul>
             @endforeach
 
+            <h2>fiche(s) d'amélioration :</h2>
+            @foreach ($area->sheets as $sheet)
+            <ul>
+                <li><a href="{{route('sheet.show', ['sheet' => $sheet])}}">{{$sheet->title}}</a></li>
+            </ul>
+            @endforeach
+
             <p><a href="{{ route('area.edit', ['area' => $area])}}">Edit</a></p>
 
             <form action="{{ route('area.destroy', ['area' => $area]) }}" method="POST">

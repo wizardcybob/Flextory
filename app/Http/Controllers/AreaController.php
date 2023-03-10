@@ -55,7 +55,7 @@ class AreaController extends Controller
         $area->save();
         if (isset($data['projet'])) {
             $area->projets()->attach($data['projet']);
-        }
+        };
         return redirect()->route('area.show', $area);
     }
 
@@ -104,8 +104,12 @@ class AreaController extends Controller
         // dd($request);
         $area->fill($data);
         $area->save();
+        if (isset($data['adearea_id'])) {
         $area->adearea()->associate($data['adearea_id'])->save();
-        $area->projets()->sync($data['projet']);
+        };
+        if (isset($data['projet'])) {
+            $area->projets()->sync($data['projet']);
+        };
         return redirect()->route('area.show', ['area' => $area]);
     }
 

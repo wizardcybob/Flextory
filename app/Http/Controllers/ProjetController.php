@@ -45,8 +45,12 @@ class ProjetController extends Controller
         $projet = new Projet();
         $projet->fill($data);
         $projet->save();
+        if (isset($data['student'])) {
         $projet->students()->attach($data['student']);
+        };
+        if (isset($data['area'])) {
         $projet->areas()->attach($data['area']);
+        };
         return redirect()->route('projet.show', $projet);
     }
 
@@ -95,8 +99,12 @@ class ProjetController extends Controller
         ]);
         $projet->fill($data);
         $projet->save();
+        if (isset($data['student'])) {
         $projet->students()->sync($data['student']);
+        };
+        if (isset($data['area'])) {
         $projet->areas()->sync($data['area']);
+        };
         return redirect()->route('projet.show', ['projet' => $projet]);
     }
 

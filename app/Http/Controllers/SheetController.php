@@ -76,7 +76,7 @@ class SheetController extends Controller
         $areas = Area::orderBy('name', 'asc')->get();
         $sheet = Sheet::where('id', $id)->firstOrFail();
 
-        return view('sheet.edit', compact('sheet', 'area'));
+        return view('sheet.edit', compact('sheet', 'areas'));
     }
 
     /**
@@ -94,7 +94,7 @@ class SheetController extends Controller
             'description' => 'nullable',
             'idea' => 'nullable',
             'state' => 'required',
-            'area' => 'nullable'
+            'area_id' => 'nullable'
         ]);
         $sheet->fill($data);
         $sheet->save();
