@@ -16,7 +16,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://kit.fontawesome.com/fe255bcd91.js" crossorigin="anonymous"></script>
     </head>
-    <body x-data="{showMenu: false, showProfileMenu: false}" class="font-sans antialiased flex flex-col min-h-screen">
+    <body x-data="{showMenu: false, showProfileMenu: false}" class="font-sans font-work antialiased flex flex-col min-h-screen">
         <a href="#content" class="sr-only focus:not-sr-only">
             Accéder au contenu
         </a>

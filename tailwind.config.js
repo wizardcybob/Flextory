@@ -9,74 +9,82 @@ module.exports = {
 		'./resources/views/**/*.blade.php',
 	],
 
-    theme: {
-        fontSize: {
-            sm: ['14px', '20px'],
-            base: ['16px', '24px'],
-            lg: ['20px', '28px'],
-            xl: ['24px', '32px'],
-        },
-        container: {
-            padding: {
-              DEFAULT: '1rem',
-              sm: '2rem',
-              lg: '4rem',
-              xl: '5rem',
-              '2xl': '6rem',
-            },
-        },
-        screens: {
-            'sm': '640px',
-            'md': '768px',
-            'lg': '1024px',
-            'xl': '1200px',
-            '2xl': '1600px',
-        },
-        extend: {
-            colors: { // ex : bg-primary / bg-primary-dark
-                primary: { // blue
-                    DEFAULT: '#0A6E88', // btn / title / text...
-                    dark: '#005B73', // hover
-                    darker: '#1E293B' // footer / texte
-                },
-                secondary: { // grey
-                    light: '#E7EEF3', // input / row of a table
-                    DEFAULT: '#C1C4CF', // row of a table
-                    dark: '#80818D', // texte
-                },
-                tertiary: { // orange
-                    DEFAULT: '#F1892B', // row of a table
-                    dark: '#DB7214', // texte
-                },
-                valid: '#51BB1E', // valid
-                error: '#C63434', // error
-                edit: { // btn edit
-                    DEFAULT: '#F1892B',
-                    dark: '#DB7214', // hover
-                },
-                delete: { // btn delete
-                    DEFAULT: '#C63434',
-                    dark: '#930303', // hover
-                },
-                status: { // status
-                    in_progress: '#549FE4', // status 'en cours'
-                    to_do: '#C63434', // status 'à faire'
-                    done: '#51BB1E', // status 'terminé'
-                    archive: '#7C7C7C' // status 'archivé'
-                },
-                role: { // role
-                    student: '#2EB6C9', // student -> bleu
-                    professor: '#C62EC9', // professor -> rose
-                    admin: '#8E00C0', // admin -> violet
-                    superadmin: '#ccac00', // superadmin -> or
-                },
-            },
-            fontFamily: {
-                work: ['Work Sans'],
-                kalam: ['Kalam'],
-            },
-        },
-    },
+	theme: {
+		fontSize: {
+			sm: ['14px', '20px'],
+			base: ['16px', '24px'],
+			lg: ['20px', '28px'],
+			xl: ['24px', '32px'],
+		},
+		container: {
+			padding: {
+				'DEFAULT': '1rem',
+				'sm': '2rem',
+				'lg': '4rem',
+				'xl': '5rem',
+				'2xl': '6rem',
+			},
+		},
+		screens: {
+			'sm': '640px',
+			'md': '768px',
+			'lg': '1024px',
+			'xl': '1200px',
+			'2xl': '1600px',
+		},
+		extend: {
+			colors: {
+				// ex : bg-primary / bg-primary-dark
+				primary: {
+					// blue
+					DEFAULT: '#0A6E88', // btn / title / text...
+					dark: '#005B73', // hover
+					darker: '#1E293B', // footer / texte
+				},
+				secondary: {
+					// grey
+					light: '#E7EEF3', // input / row of a table
+					DEFAULT: '#C1C4CF', // row of a table
+					dark: '#80818D', // texte
+				},
+				tertiary: {
+					// orange
+					DEFAULT: '#F1892B', // row of a table
+					dark: '#DB7214', // texte
+				},
+				valid: '#51BB1E', // valid
+				error: '#C63434', // error
+				edit: {
+					// btn edit
+					DEFAULT: '#F1892B',
+					dark: '#DB7214', // hover
+				},
+				delete: {
+					// btn delete
+					DEFAULT: '#C63434',
+					dark: '#930303', // hover
+				},
+				status: {
+					// status
+					in_progress: '#549FE4', // status 'en cours'
+					to_do: '#C63434', // status 'à faire'
+					done: '#51BB1E', // status 'terminé'
+					archive: '#7C7C7C', // status 'archivé'
+				},
+				role: {
+					// role
+					student: '#2EB6C9', // student -> bleu
+					professor: '#C62EC9', // professor -> rose
+					admin: '#8E00C0', // admin -> violet
+					superadmin: '#ccac00', // superadmin -> or
+				},
+			},
+			fontFamily: {
+				work: ['Work Sans'],
+				kalam: ['Kalam'],
+			},
+		},
+	},
 
 	plugins: [
 		require('@tailwindcss/forms'),
