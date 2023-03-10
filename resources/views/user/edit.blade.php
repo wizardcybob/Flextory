@@ -14,12 +14,10 @@
                     <p>
                         <select name="role">
                             <option value=""></option>
-                            @if (!empty($roles))
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}" @if ($user->role == $role->id) selected @endif>
-                                        {{ $role->name }}</option>
-                                @endforeach
-                            @endif
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}" @if ($user->role == $role->id) selected @endif>
+                                    {{ $role->name }}</option>
+                            @endforeach
                         </select>
                     </p>
 
