@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->text('image')->nullable();
+            $table->foreign('adearea_id')->references('id')->on('adeareas')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('idea')->nullable();
             $table->integer('state')->nullable();
+            $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
             $table->timestamps();
         });
     }
