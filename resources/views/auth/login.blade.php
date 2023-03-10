@@ -34,10 +34,10 @@
                     {{ __('Se connecter') }}
                 </x-jet-button>
 
-                <p class="text-sm font-bold">*Champs obligatoires.</p>
+                <p class="text-sm font-semibold">*Champs obligatoires.</p>
 
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-secondary-light hover:text-primary font-bold" href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-secondary-light hover:text-primary font-semibold" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
