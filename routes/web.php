@@ -38,6 +38,7 @@ Route::middleware([
 Route::get('/adearea', [AdeareaController::class, 'index'])->name('adearea.index');
 Route::get('/adearea/{adearea}', [AdeareaController::class, 'show'])->name('adearea.show');
 
+Route::get('/area/{area}/sheets', [AreaController::class, 'sheets'])->name('area.sheets');
 Route::get('/area/create', [AreaController::class, 'create'])->name('area.create');
 Route::get('/area', [AreaController::class, 'index'])->name('area.index');
 Route::post('/area/store', [AreaController::class, 'store'])->name('area.store');
