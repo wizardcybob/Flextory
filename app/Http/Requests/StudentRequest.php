@@ -26,6 +26,7 @@ class StudentRequest extends FormRequest
         return [
             'name' => 'required|max:191',
             'actif' => 'required|bool',
+            'projet.*' => 'required|exists:projets,id',
         ];
     }
 }

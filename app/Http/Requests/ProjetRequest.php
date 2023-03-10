@@ -28,6 +28,7 @@ class ProjetRequest extends FormRequest
             'description' => 'nullable',
             'link' => 'nullable',
             'student.*' => 'required|exists:students,id',
+            'area.*' => 'required|exists:areas,id',
         ];
     }
 }

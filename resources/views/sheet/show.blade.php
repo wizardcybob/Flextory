@@ -9,10 +9,17 @@
             <p><a href="{{ route('sheet.index') }}">Back</a></p>
             <h1>{{ $sheet->title }}</h1>
             <p>Description : {{ $sheet->description }}</p>
-            <p>Idée : {{ $sheet->link }}</p>
+            <h2>Zone : {{ $sheet->area->name }}</h2>
+            <p>Idée : {{ $sheet->idea }}</p>
             <p>État : {{ $sheet->state }}</p>
 
-            @endforeach
+            <p><a href="{{ route('sheet.edit', ['sheet' => $sheet])}}">Edit</a></p>
+
+            <form action="{{ route('sheet.destroy', ['sheet' => $sheet]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Delete</button>
+            </form>
 
         </div>
     </div>

@@ -8,16 +8,18 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                @can('create', \App\Models\Sheet::class)
                     <p><a href="{{ route('sheet.create') }}">Create new sheet</a></p>
-                @endcan
-
                 @if ($sheets->isNotEmpty())
                     <ul>
                         @foreach ($sheets as $sheet)
-                            @can('view', $sheet)
                                 <li><a href="{{ route('sheet.show', $sheet) }}">{{ $sheet->title }} </a></li>
-                            @endcan
+                                <p><a href="{{ route('sheet.edit', ['sheet' => $sheet->id])}}">Edit</a></p>
+
+                                <form action="{{ route('sheet.destroy', ['sheet' => $sheet->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Delete</button>
+                                </form>
                         @endforeach
                     </ul>
                 @endif

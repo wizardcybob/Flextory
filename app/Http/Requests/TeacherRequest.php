@@ -26,8 +26,8 @@ class TeacherRequest extends FormRequest
         return [
             'name' => 'required|max:191',
             'permanent' => 'required|bool',
-            'deparmtent.*' => 'required|exists:departments,id',
-            'status.*' => 'required|exists:status,id',
+            'department.*' => 'required|exists:departments,id',
+            'status.*' => 'required|exists:statuses,id',
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjetRequest;
+use App\Models\Area;
 use App\Models\Projet;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class ProjetController extends Controller
     {
         $this->authorize('create', Projet::class);
         $students = Student::orderBy('name', 'asc')->orderBy('name', 'asc')->get();
-        return view('projet.create', ['students' => $students]);
+        $areas = Area::orderBy('name', 'asc')->orderBy('name', 'asc')->get();
+        return view('projet.create', ['students' => $students, 'areas' => $areas]);
     }
 
     /**
@@ -43,6 +45,12 @@ class ProjetController extends Controller
         $projet = new Projet();
         $projet->fill($data);
         $projet->save();
+        if (isset($data['student'])) {
+        $projet->students()->attach($data['student']);
+        };
+        if (isset($data['area'])) {
+        $projet->areas()->attach($data['area']);
+        };
         return redirect()->route('projet.show', $projet);
     }
 
@@ -54,7 +62,7 @@ class ProjetController extends Controller
      */
     public function show(Projet $projet)
     {
-        $this->authorize('view', $projet);
+        return view('projet.show', ['projet' => $projet]);
     }
 
     /**
@@ -67,8 +75,9 @@ class ProjetController extends Controller
     {
         $projet = Projet::where('id', $id)->firstOrFail();
         $students = Student::orderBy('name', 'asc')->get();
+        $areas = Area::orderBy('name', 'asc')->get();
 
-        return view('projet.edit', compact('projet', 'students'));
+        return view('projet.edit', compact('projet', 'students', 'areas'));
     }
 
     /**
@@ -80,11 +89,22 @@ class ProjetController extends Controller
      */
     public function update(ProjetRequest $request, Projet $projet)
     {
-        $this->authorize('update', Projet::class);
-        $data = $request->validated();
+        $this->authorize('update', $projet);
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required',
+            'link' => 'required',
+            'student' => 'required',
+            'area' => 'required'
+        ]);
         $projet->fill($data);
         $projet->save();
+        if (isset($data['student'])) {
         $projet->students()->sync($data['student']);
+        };
+        if (isset($data['area'])) {
+        $projet->areas()->sync($data['area']);
+        };
         return redirect()->route('projet.show', ['projet' => $projet]);
     }
 

@@ -10,9 +10,17 @@
             <h1>{{ $teacher->name }}</h1>
             <p>Permanent : {{ $teacher->permanent }}</p>
 
-            <h2>Département : {{ $teacher->department }}</h2>
-            <h2>Statut : {{ $teacher->status }}</h2>
+            <h2>Département : {{ $teacher->department->name }}</h2>
+            <h2>Statut : {{ $teacher->status->name }}</h2>
 
+            <p><a href="{{ route('teacher.edit', ['teacher' => $teacher])}}">Edit</a></p>
+
+                <form action="{{ route('teacher.destroy', ['teacher' => $teacher]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete</button>
+                </form>
         </div>
+
     </div>
 </x-app-layout>

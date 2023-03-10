@@ -17,6 +17,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Teacher::class);
         return view('teacher.index', ['teachers' => Teacher::orderBy('name', 'asc')->get()]);
     }
 
@@ -27,9 +28,10 @@ class TeacherController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Teacher::class);
         $departments = Department::orderBy('name', 'asc')->get();
-        $status = Status::orderBy('name', 'asc')->get();
-        return view('teacher.create', ['departments' => $departments, 'status' => $status]);
+        $statuses = Status::orderBy('name', 'asc')->get();
+        return view('teacher.create', ['departments' => $departments, 'statuses' => $statuses]);
     }
 
     /**
@@ -40,13 +42,18 @@ class TeacherController extends Controller
      */
     public function store(TeacherRequest $request)
     {
-        $data = $request->validated();
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'permanent' => 'required',
+            'department' => 'required', // Ajout du paramètre "department"
+            'status' => 'required' // Ajout du paramètre "status"
+        ]);
         $teacher = new Teacher();
         $teacher->fill($data);
+        $teacher->department()->associate($data['department']);
+        $teacher->status()->associate($data['status']);
         $teacher->save();
-        $teacher->departments()->attach($data['department']);
-        $teacher->status()->attach($data['status']);
-        return redirect()->route('teacher.index', ['teacher', $teacher]);
+        return redirect()->route('teacher.index', ['teacher' => $teacher]);
     }
 
     /**
@@ -57,6 +64,7 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
+        $this->authorize('view', $teacher);
         return view('teacher.show', ['teacher' => $teacher]);
     }
 
@@ -68,9 +76,12 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
+
+        $departments = Department::orderBy('name', 'asc')->get();
+        $statuses = Status::orderBy('name', 'asc')->get();
         $teacher = Teacher::where('id', $id)->firstOrFail();
 
-        return view('teacher.edit', compact('teacher'));
+        return view('teacher.edit', compact('teacher', 'departments', 'statuses'));
     }
 
     /**
@@ -82,11 +93,17 @@ class TeacherController extends Controller
      */
     public function update(TeacherRequest $request, Teacher $teacher)
     {
-        $data = $request->validated();
+        $this->authorize('update', $teacher);
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'permanent' => 'required',
+            'department_id' => 'required|exists:departments,id',
+            'status_id' => 'required|exists:statuses,id'
+        ]);
         $teacher->fill($data);
         $teacher->save();
-        $teacher->departments()->sync($data['department']);
-        $teacher->status()->sync($data['status']);
+        $teacher->department()->associate($data['department_id'])->save();
+        $teacher->status()->associate($data['status_id'])->save();
         return redirect()->route('teacher.show', ['teacher' => $teacher]);
     }
 

@@ -11,12 +11,28 @@
             <p>Description : {{ $projet->description }}</p>
             <p>Lien Seafile : {{ $projet->link }}</p>
 
+            <h2>zone(s) assignée(s) :</h2>
+            @foreach ($projet->areas as $area)
+            <ul>
+                <li><a href="{{route('area.show', ['area' => $area])}}">{{$area->name}}</a></li>
+            </ul>
+            @endforeach
+
             <h2>étudiant(s) assigné :</h2>
-            @foreach ($projet->student as $student)
+            @foreach ($projet->students as $student)
             <ul>
                 <li><a href="{{route('student.show', ['student' => $student])}}">{{$student->name}}</a></li>
             </ul>
             @endforeach
+
+
+            <p><a href="{{ route('projet.edit', ['projet' => $projet])}}">Edit</a></p>
+
+            <form action="{{ route('projet.destroy', ['projet' => $projet]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Delete</button>
+            </form>
 
         </div>
     </div>

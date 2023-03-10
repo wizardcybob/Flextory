@@ -8,25 +8,28 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Groupe;
+use App\Events\UserCreated;
+
 
 class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
+    use HasTeams;
     use Notifiable;
     use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var string<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -58,4 +61,20 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+            $groupe = Groupe::where('name','4')->first(); // Trouver le groupe "4"
+            if ($groupe) { // Vérifier si le groupe existe
+                $user->groupe()->associate($groupe->id); // Associer l'utilisateur au groupe
+                $user->role = $groupe->id; // Assigner l'id du groupe à la colonne "role"
+            }
+        });
+    }
+
+    public function groupe()
+    {
+        return $this->belongsTo(Groupe::class, 'role');
+    }
 }
