@@ -40,7 +40,7 @@ module.exports = {
 				primary: {
 					// blue
 					DEFAULT: '#0A6E88', // btn / title / text...
-					dark: '#005B73', // hover
+					dark: '#004E63', // hover
 					darker: '#1E293B', // footer / texte
 				},
 				secondary: {
@@ -52,7 +52,7 @@ module.exports = {
 				tertiary: {
 					// orange
 					DEFAULT: '#F1892B', // row of a table
-					dark: '#DB7214', // texte
+					dark: '#D16A0E', // texte
 				},
 				valid: '#51BB1E', // valid
 				error: '#C63434', // error
