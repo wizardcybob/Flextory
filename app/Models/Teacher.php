@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Department;
+use App\Models\Projet;
 use App\Models\Status;
 
 class Teacher extends Model
@@ -21,5 +22,15 @@ class Teacher extends Model
     public function status()
     {
         return $this->belongsTo(Status::class);
+    }
+
+    public function projets()
+    {
+        return $this->belongsToMany(Projet::class);
+    }
+
+    public function sheets()
+    {
+        return $this->hasMany(Sheet::class);
     }
 }

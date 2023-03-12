@@ -14,7 +14,17 @@
                     <p>
                         <textarea rows="5" aria-labelledby="Description" placeholder="Description" name="description">{{ $projet->description }}</textarea>
                     </p>
-                    <p><input type="text" aria-labelledby="Lien" placeholder="Lien" name="link" value="{{ $projet->link }}"></p>
+                    <p><input type="text" placeholder="Ressources" name="ressource" value="{{ $projet->ressource }}"></p>
+                    <p><input type="text" placeholder="Matériels" name="pistar" value="{{ $projet->pistar }}"></p>
+                    <p><input type="text" placeholder="image" name="image" value="{{ $projet->image }}"></p>
+                    <p><input type="text" placeholder="Année" name="year" value="{{ $projet->year }}"></p>
+                    @foreach ($teachers as $teacher)
+                        <p>
+                            <input type="checkbox" name="teacher[]" id="teacher_{{ $teacher->id }}" value="{{ $teacher->id }}"
+                                {{ in_array($teacher->id, $projet->teachers->pluck('id')->toArray()) ? 'checked' : '' }}>
+                            <label for="teacher_{{ $teacher->id }}">{{ $teacher->name }}</label>
+                        </p>
+                    @endforeach
                     @foreach ($students as $student)
                         <p>
                             <input aria-labelledby="Etudiant" type="checkbox" name="student[]" id="student_{{ $student->id }}" value="{{ $student->id }}"

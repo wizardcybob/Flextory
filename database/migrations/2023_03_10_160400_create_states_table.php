@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('sheets', function (Blueprint $table) {
-            $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
+        Schema::create('states', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('sheets', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('states');
     }
 };

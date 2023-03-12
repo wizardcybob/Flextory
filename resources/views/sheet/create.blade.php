@@ -14,8 +14,7 @@
                     <p>
                         <textarea rows="5" aria-labelledby="Description" placeholder="Description" name="description">{{ old('description') }}</textarea>
                     </p>
-                    <p><input type="text" aria-labelledby="Idée" placeholder="Idée" name="idea" value="{{ old('idea') }}"></p>
-                    <p><input type="int" aria-labelledby="État" placeholder="Etat" name="state" value="{{ old('state') }}"></p>
+                    <p><input type="text" placeholder="idea" name="idea" value="{{ old('idea') }}"></p>
                     <p>
                         <select name="area">
                             <option value=""></option>
@@ -25,7 +24,29 @@
                             @endforeach
                         </select>
                     </p>
-                    <p><button aria-labelledby="Valider" type="submit">Valider</button></p>
+                    <p>
+                        <select name="category">
+                            <option value=""></option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" @if (old('category') == $category->id) selected @endif>
+                                    {{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </p>
+                    Enseignants :
+                    @foreach ($teachers as $teacher)
+                        <p><input type="checkbox" name="teacher[]" id="teacher{{ $teacher->id }}" value="{{ $teacher->id }}"><label for="sheet{{ $teacher->id }}">{{ $teacher->name }}</label></p>
+                    @endforeach
+                    <p>
+                        <select name="state">
+                            <option value=""></option>
+                            @foreach ($states as $state)
+                                <option value="{{ $state->id }}" @if (old('state') == $state->id) selected @endif>
+                                    {{ $state->name }}</option>
+                            @endforeach
+                        </select>
+                    </p>
+                    <p><button type="submit">Save</button></p>
                 </form>
             </div>
         </div>

@@ -11,7 +11,14 @@
             <p>Description : {{ $sheet->description }}</p>
             <h2>Zone : {{ $sheet->area->name }}</h2>
             <p>Idée : {{ $sheet->idea }}</p>
-            <p>État : {{ $sheet->state }}</p>
+            <p>État : {{ $sheet->state->name }}</p>
+
+            <h2>enseignant(s) assigné :</h2>
+            @foreach ($sheet->teachers as $teacher)
+            <ul>
+                <li><a href="{{route('teacher.show', ['teacher' => $teacher])}}">{{$teacher->name}}</a></li>
+            </ul>
+            @endforeach
 
             <p><a aria-labelledby="Modifier" href="{{ route('sheet.edit', ['sheet' => $sheet])}}">Modifier</a></p>
 
