@@ -10,11 +10,11 @@
                 <form action="{{ route('area.update', ['area' => $area]) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <p><input type="text" placeholder="name" name="name" value="{{ $area->name }}"></p>
+                    <p><input type="text" placeholder="Nom" name="name" value="{{ $area->name }}" aria-labelledby="Nom"></p>
                     <p>
-                        <textarea rows="5" placeholder="description" name="description">{{ $area->description }}</textarea>
+                        <textarea rows="5" placeholder="Description" name="description" aria-labelledby="Description">{{ $area->description }}</textarea>
                     </p>
-                    <p><input type="text" placeholder="image" name="image" value="{{ $area->image }}"></p>
+                    <p><input type="text" placeholder="Image" name="image" value="{{ $area->image }}" aria-labelledby="Image"></p>
                     <p>
                         <select name="adearea_id">
                             <option value=""></option>
@@ -27,7 +27,7 @@
                     @foreach ($projets as $projet)
                         <p><input type="checkbox" name="area[]" id="area_{{ $area->id }}" value="{{ $area->id }}" @if(in_array($area->id, $area->projets->pluck('id')->toArray())) checked @endif><label for="area_{{ $projet->id }}">{{ $projet->title }}</label></p>
                     @endforeach
-                    <p><button type="submit">Save</button></p>
+                    <p><button aria-labelledby="Valider" type="submit">Valider</button></p>
                 </form>
             </div>
         </div>

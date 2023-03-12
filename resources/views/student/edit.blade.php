@@ -10,12 +10,12 @@
                 <form action="{{ route('student.update', ['student' => $student]) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <p><input type="text" placeholder="name" name="name" value="{{ $student->name }}"></p>
-                    <p><input type="text" placeholder="actif" name="actif" value="{{ $student->actif }}"></p>
+                    <p><input aria-labelledby="Nom" type="text" placeholder="Nom" name="name" value="{{ $student->name }}"></p>
+                    <p><input aria-labelledby="Actif" type="text" placeholder="Actif" name="actif" value="{{ $student->actif }}"></p>
                     @foreach ($projets as $projet)
                         <p><input type="checkbox" name="projet[]" id="projet_{{ $projet->id }}" value="{{ $projet->id }}" @if(in_array($projet->id, $student->projets->pluck('id')->toArray())) checked @endif><label for="projet_{{ $projet->id }}">{{ $projet->title }}</label></p>
                     @endforeach
-                    <p><button type="submit">Save</button></p>
+                    <p><button aria-labelledby="Valider" type="submit">Valider</button></p>
                 </form>
             </div>
         </div>

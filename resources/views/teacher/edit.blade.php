@@ -10,8 +10,8 @@
                 <form action="{{ route('teacher.update', ['teacher' => $teacher]) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <p><input type="text" placeholder="name" name="name" value="{{ $teacher->name }}"></p>
-                    <p><input type="text" placeholder="permanent" name="permanent" value="{{ $teacher->permanent }}"></p>
+                    <p><input aria-labelledby="Nom" type="text" placeholder="Nom" name="name" value="{{ $teacher->name }}"></p>
+                    <p><input aria-labelledby="Permanent" type="text" placeholder="Permanent" name="permanent" value="{{ $teacher->permanent }}"></p>
                     <p>
                         <select name="department_id">
                             <option value=""></option>
@@ -31,7 +31,7 @@
                         </select>
                     </p>
 
-                    <p><button type="submit">Save</button></p>
+                    <p><button aria-labelledby="Valider" type="submit">Valider</button></p>
                 </form>
             </div>
         </div>

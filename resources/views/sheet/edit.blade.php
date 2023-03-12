@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Modifier le sheet') }}
+            {{ __('Modifier la fiche') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -10,14 +10,14 @@
                 <form action="{{ route('sheet.update', ['sheet' => $sheet]) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <p><input type="text" placeholder="title" name="title" value="{{ $sheet->title }}"></p>
+                    <p><input type="text" aria-labelledby="Titre" placeholder="Titre" name="title" value="{{ $sheet->title }}"></p>
                     <p>
-                        <textarea rows="5" placeholder="description" name="description">{{ $sheet->description }}</textarea>
+                        <textarea rows="5" aria-labelledby="Description" placeholder="Description" name="description">{{ $sheet->description }}</textarea>
                     </p>
                     <p>
-                        <textarea rows="5" placeholder="idea" name="idea">{{ $sheet->idea }}</textarea>
+                        <textarea rows="5" aria-labelledby="Idée" placeholder="Idée" name="idea">{{ $sheet->idea }}</textarea>
                     </p>
-                    <p><input type="text" placeholder="state" name="state" value="{{ $sheet->state }}"></p>
+                    <p><input type="text" aria-labelledby="État" placeholder="État" name="state" value="{{ $sheet->state }}"></p>
                     <p>
                         <select name="area_id">
                             <option value=""></option>
@@ -27,7 +27,7 @@
                             @endforeach
                         </select>
                     </p>
-                    <p><button type="submit">Save</button></p>
+                    <p><button aria-labelledby="Valider" type="submit">Valider</button></p>
                 </form>
             </div>
         </div>
