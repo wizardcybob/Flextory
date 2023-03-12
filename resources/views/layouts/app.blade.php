@@ -67,13 +67,13 @@
             </header>
         </div>
         <!-- Page Content -->
-        <div class="container mx-auto flex-1 flex flex-col pt-10 pb-20">
+        <div class="container mx-auto flex-1 flex flex-col pt-5 pb-10 md:pt-10 md:pb-20">
             <main id="content" class="flex-1 flex flex-col">
                 {{ $slot }}
             </main>
 
         </div>
-        <div class="bg-primary-darker">
+        <div class="bg-primary-darker px-4">
             <footer class="container mx-auto text-center text-xs text-secondary-light font-medium py-2 md:py-5">Créé par Chloé, Noa, Raphaël, Romain - PROJET TUTORE 2023</footer>
         </div>
         <!-- Menu Burger Mobile -->
