@@ -9,7 +9,6 @@
             <p><a aria-labelledby="Retour" href="{{ route('area.index') }}">Retour</a></p>
             <h1>{{ $area->name }}</h1>
             <p>Description : {{ $area->description }}</p>
-            <p>Image : {{ $area->image }}</p>
 
             <h2>projet(s) assigné :</h2>
             @foreach ($area->projets as $projet)
@@ -18,12 +17,7 @@
             </ul>
             @endforeach
 
-            <h2>fiche(s) d'amélioration :</h2>
-            @foreach ($area->sheets as $sheet)
-            <ul>
-                <li><a href="{{route('sheet.show', ['sheet' => $sheet])}}">{{$sheet->title}}</a></li>
-            </ul>
-            @endforeach
+            <a href="{{ route('area.sheets', ['area' => $area])}}">Fiches d'amélioration</a>
 
             <p><a aria-labelledby="Modifier" href="{{ route('area.edit', ['area' => $area])}}">Modifier</a></p>
 

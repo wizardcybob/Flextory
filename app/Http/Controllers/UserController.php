@@ -59,7 +59,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $roles = Groupe::where('id', $id)->firstOrFail();
+        $roles = Groupe::orderBy('name', 'asc')->get();
         $user = User::where('id', $id)->firstOrFail();
         return view('user.edit', compact('user', 'roles'));
     }
