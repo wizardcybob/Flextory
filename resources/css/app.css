@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.btn_primary {
+    @apply transition ease-in-out delay-100 hover:bg-secondary-light hover:text-tertiary duration-200 flex items-center cursor-pointer gap-4 bg-tertiary text-secondary-light py-2 rounded px-4 font-medium;
+}

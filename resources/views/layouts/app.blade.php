@@ -20,24 +20,26 @@
         <a href="#content" class="sr-only focus:not-sr-only">
             Accéder au contenu
         </a>
-        <div class="bg-gradient-to-tl from-violet-700 via-violet-800 to-blue-900">
-            <header class="container mx-auto py-2 md:py-8 flex justify-between items-center text-lg text-secondary-light ">
-                <h1 class="font-semibold text-lg md:text-xl">Flextory</h1>
-                <p tabindex="0" @click.prevent="showMenu = !showMenu" @keyup.enter="showMenu = !showMenu" class="visible md:invisible"><i class="fa-solid fa-bars"></i></p>
+        <div class="bg-primary">
+            <header class="container mx-auto py-2 md:py-7 flex justify-between items-center text-lg text-secondary-light ">
+                <div class="w-40">
+                    <img src=".{{ asset('../../../storage/images/logo_flextory_slogan.png') }}" alt="Logo flextory" aria-labelledby="Logo de la Flextory et son slogan 'L'homme au coeur de l'usine-école du futur'">
+                </div>
+                <p tabindex="0" @click.prevent="showMenu = !showMenu" @keyup.enter="showMenu = !showMenu" class="cursor-pointer p-2 text-[1.7rem] visible md:invisible"><i class="fa-solid fa-bars"></i></p>
                 <nav class="hidden md:flex items-center gap-8 text-lg font-medium">
                     <p class="cursor-pointer"><a href="#" class="group transition duration-300">
                         Plan
-                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-secondary-light"></span>
+                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light"></span>
                         </a></p>
                     <p class="cursor-pointer"><a href="#" class="group transition duration-300">
                         Pistard
-                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-secondary-light"></span>
+                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light"></span>
                         </a></p>
-                    <div tabindex="0" @click.prevent="showProfileMenu = !showProfileMenu" @keyup.enter="showProfileMenu = !showProfileMenu" class="transition ease-in-out delay-150 hover:scale-110 duration-300 flex items-center cursor-pointer gap-4 bg-secondary-light text-primary py-2 rounded px-4 relative">
+                    <div tabindex="0" @click.prevent="showProfileMenu = !showProfileMenu" @keyup.enter="showProfileMenu = !showProfileMenu" class="btn_primary relative">
                         <p>{{ Auth::user()->name }}</p>
                         <p class="text-xl"><i class="fa-solid fa-circle-user"></i></p>
-                        <div x-show="showProfileMenu" class="absolute bg-secondary-light w-64 rounded top-12 right-0 divide-y-2 shadow-inner">
-                            <div tabindex="0" @click.prevent="window.location.href='/user/profile'" @keyup.enter="window.location.href='/user/profile'" class=" px-4 py-2 flex justify-between items-center gap-3">
+                        <div x-show="showProfileMenu" class="mt-2 absolute w-64 rounded-sm top-12 right-0 divide-y-2 divide-tertiary shadow-inner overflow-hidden border-tertiary border-2">
+                            <div tabindex="0" @click.prevent="window.location.href='/user/profile'" @keyup.enter="window.location.href='/user/profile'" class="bg-secondary-light text-tertiary hover:bg-tertiary hover:text-secondary-light px-4 py-2 flex justify-between items-center gap-3">
                                 <p>Modifier le profil</p>
                                 <p class="text-xl"><i class="fa-solid fa-pen-to-square"></i></p>
                             </div>
@@ -46,7 +48,7 @@
 
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
                                          @click.prevent="$root.submit();">
-                                         <div tabindex="0" class=" px-4 py-2 flex justify-between items-center gap-3">
+                                         <div tabindex="0" class="bg-secondary-light text-tertiary hover:bg-tertiary hover:text-secondary-light px-4 py-2 flex justify-between items-center gap-3">
                                             <p>Déconnexion</p>
                                             <p class="text-xl"><i class="fa-solid fa-right-from-bracket"></i></p>
                                         </div>
@@ -65,24 +67,27 @@
 
         </div>
         <div class="bg-primary-darker">
-            <footer class="container mx-auto text-center text-xs text-secondary-light font-medium py-2 md:py-5">Crée par Chloé, Noa, Raphaël, Romain - 2023</footer>
+            <footer class="container mx-auto text-center text-xs text-secondary-light font-medium py-2 md:py-5">Créé par Chloé, Noa, Raphaël, Romain - PROJET TUTORE 2023</footer>
         </div>
         <!-- Menu Burger Mobile -->
-        <div x-show="showMenu" class="fixed w-screen h-screen p-8 flex flex-col gap-16 items-center bg-secondary-light  top-0 left-0 z-50 visible md:invisible">
-            <p @click.prevent="showMenu = !showMenu" @keyup.enter="showMenu = !showMenu" tabindex="0" class="text-lg"><i class="fa-solid fa-xmark"></i></p>
-            <nav class="flex flex-col text-center underline gap-4">
-                <p><a href="#">Plan</a></p>
-                <p><a href="#">Pistard</a></p>
+        <div x-show="showMenu" class="fixed w-screen h-screen overflow-hidden p-8 flex flex-col justify-center gap-16 text-lg items-center bg-primary text-secondary-light inset-0 z-50 visible md:invisible">
+            <p @click.prevent="showMenu = !showMenu" @keyup.enter="showMenu = !showMenu" tabindex="0" class="text-[1.7rem] p-2 cursor-pointer"><i class="fa-solid fa-xmark"></i></p>
+            <nav class="flex flex-col text-center gap-10">
+                <p class="transition-all duration-500 h-[2.3px]"><a href="#">Plan</a></p>
+                <p class="transition-all duration-500 h-[2.3px]"><a href="#">Pistard</a></p>
             </nav>
             <div class="w-fit flex flex-col items-center">
-                <p class="border-b p-4 w-full  border-black text-center font-medium">{{ Auth::user()->name }}</p>
-                <p class="underline text-center p-4"><a href="/user/profile" class="p-4 w-full">Profil</a></p>
+                <div class="flex justify-center border-b-2 p-4 w-full gap-3 border-secondary-light font-medium">
+                    <p>{{ Auth::user()->name }}</p>
+                    <p class="text-xl"><i class="fa-solid fa-circle-user"></i></p>
+                </div>
+                <p class="text-center p-4"><a href="/user/profile" class="p-4 w-full">Mon profil</a></p>
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
 
                     <x-jet-dropdown-link href="{{ route('logout') }}"
                              @click.prevent="$root.submit();">
-                        <p class="p-4 underline text-center text-base">Déconnexion</p>
+                        <p class="p-4 text-center text-base btn_primary">Déconnexion</p>
                     </x-jet-dropdown-link>
                 </form>
             </div>
