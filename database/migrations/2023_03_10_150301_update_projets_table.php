@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('areas', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
+        Schema::table('projets', function (Blueprint $table) {
             $table->text('image')->nullable();
-            $table->unsignedBigInteger('adearea_id');
-            $table->foreign('adearea_id')->references('id')->on('adeareas')->onDelete('cascade');
-            $table->timestamps();
+            $table->string('year')->nullable();
+            $table->text('pistar')->nullable();
+            $table->dropColumn('link');
+            $table->text('ressource')->nullable();
         });
     }
 
@@ -31,6 +29,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('areas');
+        Schema::table('projets', function (Blueprint $table) {
+            //
+        });
     }
 };

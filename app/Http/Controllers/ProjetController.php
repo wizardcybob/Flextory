@@ -6,6 +6,7 @@ use App\Http\Requests\ProjetRequest;
 use App\Models\Area;
 use App\Models\Projet;
 use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class ProjetController extends Controller
@@ -29,8 +30,9 @@ class ProjetController extends Controller
     {
         $this->authorize('create', Projet::class);
         $students = Student::orderBy('name', 'asc')->orderBy('name', 'asc')->get();
+        $teachers = Teacher::orderBy('name', 'asc')->orderBy('name', 'asc')->get();
         $areas = Area::orderBy('name', 'asc')->orderBy('name', 'asc')->get();
-        return view('projet.create', ['students' => $students, 'areas' => $areas]);
+        return view('projet.create', ['students' => $students, 'areas' => $areas, 'teachers' => $teachers]);
     }
 
     /**
@@ -41,12 +43,25 @@ class ProjetController extends Controller
      */
     public function store(ProjetRequest $request)
     {
-        $data = $request->validated();
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required',
+            'ressource' => 'nullable',
+            'pistar' => 'nullable',
+            'image' => 'nullable',
+            'year' => 'nullable',
+            'teacher' => 'nullable',
+            'student' => 'nullable',
+            'area' => 'nullable'
+        ]);
         $projet = new Projet();
         $projet->fill($data);
         $projet->save();
         if (isset($data['student'])) {
         $projet->students()->attach($data['student']);
+        };
+        if (isset($data['teacher'])) {
+            $projet->teachers()->attach($data['teacher']);
         };
         if (isset($data['area'])) {
         $projet->areas()->attach($data['area']);
@@ -75,9 +90,10 @@ class ProjetController extends Controller
     {
         $projet = Projet::where('id', $id)->firstOrFail();
         $students = Student::orderBy('name', 'asc')->get();
+        $teachers = Teacher::orderBy('name', 'asc')->get();
         $areas = Area::orderBy('name', 'asc')->get();
 
-        return view('projet.edit', compact('projet', 'students', 'areas'));
+        return view('projet.edit', compact('projet', 'students', 'areas', 'teachers'));
     }
 
     /**
@@ -93,14 +109,21 @@ class ProjetController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
-            'link' => 'required',
-            'student' => 'required',
-            'area' => 'required'
+            'ressource' => 'nullable',
+            'pistar' => 'nullable',
+            'image' => 'nullable',
+            'year' => 'nullable',
+            'teacher' => 'nullable',
+            'student' => 'nullable',
+            'area' => 'nullable'
         ]);
         $projet->fill($data);
         $projet->save();
         if (isset($data['student'])) {
         $projet->students()->sync($data['student']);
+        };
+        if (isset($data['teacher'])) {
+            $projet->teachers()->sync($data['teacher']);
         };
         if (isset($data['area'])) {
         $projet->areas()->sync($data['area']);

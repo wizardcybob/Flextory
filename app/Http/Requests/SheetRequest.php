@@ -28,7 +28,9 @@ class SheetRequest extends FormRequest
             'description' => 'nullable',
             'idea' => 'nullable',
             'state' => 'required|integer',
+            'category.*' => 'nullable|exists:categories,id',
             'area.*' => 'required|exists:areas,id',
+            'teacher.*' => 'nullable|exists:teachers,id',
         ];
     }
 }

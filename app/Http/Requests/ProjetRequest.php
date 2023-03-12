@@ -26,9 +26,13 @@ class ProjetRequest extends FormRequest
         return [
             'title' => 'required|max:191',
             'description' => 'nullable',
-            'link' => 'nullable',
-            'student.*' => 'required|exists:students,id',
-            'area.*' => 'required|exists:areas,id',
+            'ressource' => 'nullable',
+            'pistar' => 'nullable',
+            'image' => 'nullable',
+            'year' => 'nullable',
+            'student.*' => 'nullable|exists:students,id',
+            'area.*' => 'nullable|exists:areas,id',
+            'teacher.*' => 'nullable|exists:teachers,id',
         ];
     }
 }

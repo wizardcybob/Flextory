@@ -10,20 +10,44 @@
                 <form action="{{ route('sheet.update', ['sheet' => $sheet]) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <p><input type="text" placeholder="title" name="title" value="{{ $sheet->title }}"></p>
+                    <p><input type="text" placeholder="title" name="title" value="{{ old('title', $sheet->title) }}"></p>
                     <p>
-                        <textarea rows="5" placeholder="description" name="description">{{ $sheet->description }}</textarea>
+                        <textarea rows="5" placeholder="description" name="description">{{ old('description', $sheet->description) }}</textarea>
                     </p>
                     <p>
-                        <textarea rows="5" placeholder="idea" name="idea">{{ $sheet->idea }}</textarea>
+                        <textarea rows="5" placeholder="idea" name="idea">{{ old('idea', $sheet->idea) }}</textarea>
                     </p>
-                    <p><input type="text" placeholder="state" name="state" value="{{ $sheet->state }}"></p>
                     <p>
-                        <select name="area_id">
+                        <select name="area">
                             <option value=""></option>
                             @foreach ($areas as $area)
                                 <option value="{{ $area->id }}" @if ($sheet->area_id == $area->id) selected @endif>
                                     {{ $area->name }}</option>
+                            @endforeach
+                        </select>
+                    </p>
+                    <p>
+                        <select name="category">
+                            <option value=""></option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" @if ($sheet->category_id == $category->id) selected @endif>
+                                    {{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </p>
+                    @foreach ($teachers as $teacher)
+                        <p>
+                            <input type="checkbox" name="teacher[]" id="teacher_{{ $teacher->id }}" value="{{ $teacher->id }}"
+                                {{ in_array($teacher->id, old('teacher', $sheet->teachers->pluck('id')->toArray())) ? 'checked' : '' }}>
+                            <label for="teacher_{{ $teacher->id }}">{{ $teacher->name }}</label>
+                        </p>
+                    @endforeach
+                    <p>
+                        <select name="state">
+                            <option value=""></option>
+                            @foreach ($states as $state)
+                                <option value="{{ $state->id }}" @if ($sheet->state_id == $state->id) selected @endif>
+                                    {{ $state->name }}</option>
                             @endforeach
                         </select>
                     </p>
