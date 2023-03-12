@@ -83,7 +83,6 @@ module.exports = {
 			},
 			fontFamily: {
 				work: ['Work Sans'],
-				kalam: ['Kalam'],
 			},
 		},
 	},

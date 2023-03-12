@@ -10,13 +10,13 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://kit.fontawesome.com/fe255bcd91.js" crossorigin="anonymous"></script>
     </head>
-    <body x-data="{showMenu: false, showProfileMenu: false}" class="font-sans font-work antialiased flex flex-col min-h-screen">
+    <body x-data="{showMenu: false, showProfileMenu: false}" class="font-work antialiased flex flex-col min-h-screen">
         <a href="#content" class="sr-only focus:not-sr-only">
             Accéder au contenu
         </a>
