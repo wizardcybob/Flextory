@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create a teacher') }}
+            {{ __('Créer un enseignant') }}
         </h2>
     </x-slot>
 
@@ -10,8 +10,8 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <form action="{{ route('teacher.store') }}" method="POST">
                     @csrf
-                    <p><input type="text" placeholder="name" name="name" value="{{ old('name') }}"></p>
-                    <p><input type="text" placeholder="permanent" name="permanent" value="{{ old('permanent') }}"></p>
+                    <p><input type="text" aria-labelledby="Nom" placeholder="Nom" name="name" value="{{ old('name') }}"></p>
+                    <p><input type="text" aria-labelledby="Permanent" placeholder="Permanent" name="permanent" value="{{ old('permanent') }}"></p>
                     <p>
                         <select name="department">
                             <option value=""></option>
@@ -30,7 +30,7 @@
                             @endforeach
                         </select>
                     </p>
-                    <p><button type="submit">Save</button></p>
+                    <p><button aria-labelledby="Valider" type="submit">Valider</button></p>
                 </form>
             </div>
         </div>

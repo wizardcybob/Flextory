@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create a sheet') }}
+            {{ __('Créer une fiche') }}
         </h2>
     </x-slot>
 
@@ -10,9 +10,9 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <form action="{{ route('sheet.store') }}" method="POST">
                     @csrf
-                    <p><input type="text" placeholder="title" name="title" value="{{ old('title') }}"></p>
+                    <p><input type="text" aria-labelledby="Titre" placeholder="Titre" name="title" value="{{ old('title') }}"></p>
                     <p>
-                        <textarea rows="5" placeholder="description" name="description">{{ old('description') }}</textarea>
+                        <textarea rows="5" aria-labelledby="Description" placeholder="Description" name="description">{{ old('description') }}</textarea>
                     </p>
                     <p><input type="text" placeholder="idea" name="idea" value="{{ old('idea') }}"></p>
                     <p>

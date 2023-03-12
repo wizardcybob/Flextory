@@ -6,7 +6,7 @@
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <p><a href="{{ route('area.index') }}">Back</a></p>
+            <p><a aria-labelledby="Retour" href="{{ route('area.index') }}">Retour</a></p>
             <h1>{{ $area->name }}</h1>
             <p>Description : {{ $area->description }}</p>
 
@@ -19,12 +19,12 @@
 
             <a href="{{ route('area.sheets', ['area' => $area])}}">Fiches d'amélioration</a>
 
-            <p><a href="{{ route('area.edit', ['area' => $area])}}">Edit</a></p>
+            <p><a aria-labelledby="Modifier" href="{{ route('area.edit', ['area' => $area])}}">Modifier</a></p>
 
             <form action="{{ route('area.destroy', ['area' => $area]) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Delete</button>
+                <button aria-labelledby="Supprimer" type="submit">Supprimer</button>
             </form>
 
         </div>

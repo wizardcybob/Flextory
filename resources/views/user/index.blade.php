@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('User') }}
+            {{ __('Utilisateur') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <p><a href="{{ route('user.create') }}">Create new user</a></p>
+                    <p><a aria-labelledby="Nouvel utilisateur" href="{{ route('user.create') }}">Créer un nouvel utilisateur</a></p>
 
                 @if ($users->isNotEmpty())
                     <ul>
@@ -23,7 +23,7 @@
                                 @elseif ($user->role == 4)
                                 <li>Étudiant</li>
                                 @endif
-                                <p><a href="{{ route('user.edit', ['user' => $user->id])}}">Edit</a></p>
+                                <p><a aria-labelledby="Modifier" href="{{ route('user.edit', ['user' => $user->id])}}">Modifier</a></p>
 
                         @endforeach
                     </ul>
