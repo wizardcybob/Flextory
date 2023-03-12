@@ -22,18 +22,25 @@
         </a>
         <div class="bg-primary">
             <header class="container mx-auto py-2 md:py-7 flex justify-between items-center text-lg text-secondary-light ">
-                <div class="w-40">
-                    <img src=".{{ asset('../../../storage/images/logo_flextory_slogan.png') }}" alt="Logo flextory" aria-labelledby="Logo de la Flextory et son slogan 'L'homme au coeur de l'usine-école du futur'">
+                <div>
+                    <a href="/dashboard">
+                        <img class="max-w-[100px] md:max-w-[150px] w-full" src="{{ asset('../../../storage/images/logo_flextory_slogan.png') }}" alt="Logo flextory" aria-labelledby="Logo de la Flextory et son slogan 'L'homme au coeur de l'usine-école du futur'">
+                    </a>
                 </div>
                 <p tabindex="0" @click.prevent="showMenu = !showMenu" @keyup.enter="showMenu = !showMenu" class="cursor-pointer p-2 text-[1.7rem] visible md:invisible"><i class="fa-solid fa-bars"></i></p>
                 <nav class="hidden md:flex items-center gap-8 text-lg font-medium">
+                    <p class="cursor-pointer"><a href="/dashboard" class="group transition duration-300">
+                        Accueil
+                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('dashboard') ? 'max-w-full' : '' }}"></span>
+                        </a></p>
+
                     <p class="cursor-pointer"><a href="#" class="group transition duration-300">
                         Plan
-                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light"></span>
+                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('') ? 'max-w-full' : '' }}"></span>
                         </a></p>
                     <p class="cursor-pointer"><a href="#" class="group transition duration-300">
-                        Pistard
-                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light"></span>
+                        Pistar
+                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('') ? 'max-w-full' : '' }}"></span>
                         </a></p>
                     <div tabindex="0" @click.prevent="showProfileMenu = !showProfileMenu" @keyup.enter="showProfileMenu = !showProfileMenu" class="btn_primary relative">
                         <p>{{ Auth::user()->name }}</p>
@@ -71,17 +78,35 @@
         </div>
         <!-- Menu Burger Mobile -->
         <div x-show="showMenu" class="fixed w-screen h-screen overflow-hidden p-8 flex flex-col justify-center gap-16 text-lg items-center bg-primary text-secondary-light inset-0 z-50 visible md:invisible">
-            <p @click.prevent="showMenu = !showMenu" @keyup.enter="showMenu = !showMenu" tabindex="0" class="text-[1.7rem] p-2 cursor-pointer"><i class="fa-solid fa-xmark"></i></p>
-            <nav class="flex flex-col text-center gap-10">
-                <p class="transition-all duration-500 h-[2.3px]"><a href="#">Plan</a></p>
-                <p class="transition-all duration-500 h-[2.3px]"><a href="#">Pistard</a></p>
+            <p @click.prevent="showMenu = !showMenu" @keyup.enter="showMenu = !showMenu" tabindex="0" class="text-[1.7rem] p-2 cursor-pointer hover:text-tertiary"><i class="fa-solid fa-xmark"></i></p>
+            {{-- <div class="w-40">
+                <a href="/dashboard">
+                    <img class="max-w-[100px]" src=".{{ asset('../../../storage/images/logo_flextory_slogan.png') }}" alt="Logo flextory" aria-labelledby="Logo de la Flextory et son slogan 'L'homme au coeur de l'usine-école du futur'">
+                </a>
+            </div> --}}
+            <nav class="flex flex-col text-center gap-4">
+                <p class="cursor-pointer"><a href="/dashboard" class="group transition duration-300">
+                    Accueil
+                    <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('dashboard') ? 'max-w-full' : '' }}"></span>
+                    </a></p>
+                <p class="cursor-pointer"><a href="#" class="group transition duration-300">
+                    Plan
+                    <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('') ? 'max-w-full' : '' }}"></span>
+                    </a></p>
+                <p class="cursor-pointer"><a href="#" class="group transition duration-300">
+                    Pistar
+                    <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('') ? 'max-w-full' : '' }}"></span>
+                    </a></p>
             </nav>
             <div class="w-fit flex flex-col items-center">
-                <div class="flex justify-center border-b-2 p-4 w-full gap-3 border-secondary-light font-medium">
+                <div class="flex justify-center border-b-2 p-4 w-full gap-3 border-tertiary font-medium">
                     <p>{{ Auth::user()->name }}</p>
                     <p class="text-xl"><i class="fa-solid fa-circle-user"></i></p>
                 </div>
-                <p class="text-center p-4"><a href="/user/profile" class="p-4 w-full">Mon profil</a></p>
+                <p class="cursor-pointer my-4"><a href="/user/profile" class="group transition duration-300">
+                    Mon profil
+                    <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('user/profile') ? 'max-w-full' : '' }}"></span>
+                    </a></p>
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
 
