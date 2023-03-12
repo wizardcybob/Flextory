@@ -42,7 +42,7 @@
                         Pistar
                         <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('') ? 'max-w-full' : '' }}"></span>
                         </a></p>
-                    <div tabindex="0" @click.prevent="showProfileMenu = !showProfileMenu" @keyup.enter="showProfileMenu = !showProfileMenu" class="btn_primary relative">
+                    <div tabindex="0" @click.prevent="showProfileMenu = !showProfileMenu" @keyup.enter="showProfileMenu = !showProfileMenu" class="btn_tertiary relative">
                         <p>{{ Auth::user()->name }}</p>
                         <p class="text-xl"><i class="fa-solid fa-circle-user"></i></p>
                         <div x-show="showProfileMenu" class="mt-2 absolute w-64 rounded-sm top-12 right-0 divide-y-2 divide-tertiary shadow-inner overflow-hidden border-tertiary border-2">
@@ -112,7 +112,7 @@
 
                     <x-jet-dropdown-link href="{{ route('logout') }}"
                              @click.prevent="$root.submit();">
-                        <p class="p-4 text-center text-base btn_primary">Déconnexion</p>
+                        <p class="p-4 text-center text-base btn_tertiary">Déconnexion</p>
                     </x-jet-dropdown-link>
                 </form>
             </div>
