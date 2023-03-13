@@ -47,6 +47,7 @@ Route::get('/area/{area}/edit', [AreaController::class, 'edit'])->name('area.edi
 Route::put('/area/{area}/edit', [AreaController::class, 'update'])->name('area.update');
 Route::delete('area/{area}', [AreaController::class, 'destroy'])->name('area.destroy');
 
+Route::get('/user/search', [UserController::class, 'search'])->name('user.search');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
