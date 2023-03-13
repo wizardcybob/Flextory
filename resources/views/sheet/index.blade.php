@@ -9,25 +9,36 @@
         <h1 class="titre_page">Fiches d'améliorations</h1>
         <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
 
-        {{-- Tableau des fiches --}}
+        {{-- VIEW --}}
         <div class="flex flex-col gap-4">
             @if ($sheets->isNotEmpty())
-            <form method="GET" action="{{ route('sheet.search') }}">
-                <input type="text" name="query" placeholder="Search...">
-                <select name="category">
-                    <option value="">Catégories</option>
-                    @foreach($categories as $category)
+            {{-- Barre de recherche + filtres --}}
+            <form class="flex flex-col md:flex-row gap-2" method="GET" action="{{ route('sheet.search') }}">
+                <div class="relative w-full">
+                    <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
+                    <input type="text" id="query" name="query"  class="input_textarea_recherche" placeholder="Faire une recherche..." aria-labelledby="query-label">
+                </div>
+                <div class="relative w-full">
+                    <label for="category" id="category-label" class="absolute label_form">Catégorie :</label>
+                    <select class="select_recherche" id="category" name="category" aria-labelledby="category-label">
+                        <option value="" selected disabled hidden>Sélectionner une catégorie</option>
+                        @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-                <select name="state">
-                    <option value="">États</option>
-                    @foreach($states as $state)
-                        <option value="{{ $state->id }}">{{ $state->name }}</option>
-                    @endforeach
-                </select>
-                <button type="submit">Rechercher</button>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="relative w-full">
+                    <label for="state" id="state-label" class="absolute label_form">États d'avancement :</label>
+                    <select class="select_recherche" id="state" name="state" aria-labelledby="state-label">
+                        <option value="" selected disabled hidden>Sélectionner un état</option>
+                        @foreach($states as $state)
+                            <option value="{{ $state->id }}">{{ $state->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button class="btn_tertiary" type="submit" aria-label="Faire une recherche">Rechercher</button>
             </form>
+            {{-- Tableau des fiches --}}
             <ul class="border-2 border-primary rounded overflow-hidden max-h-[500px] overflow-y-scroll">
                 @php
                     $bgClass = 'bg-secondary';
