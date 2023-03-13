@@ -11,6 +11,7 @@
                 <form action="{{ route('sheet.store') }}" method="POST">
                     @csrf
                     <p><input type="text" placeholder="title" name="title" value="{{ old('title') }}"></p>
+                    <p><input type="text" placeholder="creator" name="creator" class="hidden" value="{{ $creator }}"></p>
                     <p>
                         <textarea rows="5" placeholder="description" name="description">{{ old('description') }}</textarea>
                     </p>

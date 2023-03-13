@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Sheet;
 use App\Models\State;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\Auth;
 
 class SheetController extends Controller
 {
@@ -62,7 +63,9 @@ class SheetController extends Controller
         $states = State::orderBy('name', 'asc')->get();
         $teachers = Teacher::orderBy('name', 'asc')->get();
         $categories = Category::orderBy('name', 'asc')->get();
-        return view('sheet.create', ['areas' => $areas, 'teachers' => $teachers, 'categories' => $categories, 'states' => $states]);
+
+        $creator = Auth::user()->name;
+        return view('sheet.create', ['areas' => $areas, 'teachers' => $teachers, 'categories' => $categories, 'states' => $states, 'creator' => $creator]);
     }
 
     /**
@@ -81,9 +84,12 @@ class SheetController extends Controller
         'area' => 'nullable',
         'category' => 'nullable',
         'teacher' => 'nullable',
+        'creator' => 'nullable'
+
     ]);
-    // dd($data);
+    $data['creator'] = auth()->user()->name;
     $sheet = new Sheet();
+    // dd($data['creator']);
     $sheet->fill($data);
     if (isset($data['area'])) {
         $sheet->area()->associate($data['area']);
@@ -124,7 +130,9 @@ class SheetController extends Controller
         $categories = Category::orderBy('name', 'asc')->get();
         $sheet = Sheet::where('id', $id)->firstOrFail();
 
-        return view('sheet.edit', compact('sheet', 'areas', 'teachers', 'categories', 'states'));
+        $creator = Auth::user()->name;
+
+        return view('sheet.edit', compact('sheet', 'areas', 'teachers', 'categories', 'states', 'creator'));
     }
 
     /**
@@ -145,7 +153,9 @@ class SheetController extends Controller
             'area' => 'nullable',
             'category' => 'nullable',
             'teacher' => 'nullable',
+            'creator' => 'nullable'
         ]);
+        $data['creator'] = auth()->user()->name;
         // dd($data);
         $sheet->fill($data);
         $sheet->save();
