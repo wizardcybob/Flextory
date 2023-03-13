@@ -20,15 +20,34 @@ class SheetController extends Controller
     public function index()
     {
         $sheets = Sheet::orderBy('title', 'asc')->get();
+        $categories = Category::all();
+        $states = State::all();
 
-        return view('sheet.index', ['sheets' => $sheets]);
+        return view('sheet.index', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states]);
     }
 
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $sheets = Sheet::where('title', 'LIKE', '%'.$query.'%')->get();
-        return view('sheet.index', ['sheets' => $sheets]);
+        $category = $request->input('category');
+        $state = $request->input('state');
+
+        $sheets = Sheet::when($category, function ($query, $category) {
+                return $query->where('category_id', $category);
+            })
+            ->when($query, function ($query, $searchTerm) {
+                return $query->where('title', 'LIKE', "%{$searchTerm}%");
+            })
+            ->when($state, function ($query, $state) {
+                return $query->where('state_id', $state);
+            })
+            ->get();
+
+        $categories = Category::all();
+        $states = State::all();
+
+
+        return view('sheet.index', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states]);
     }
 
     /**
