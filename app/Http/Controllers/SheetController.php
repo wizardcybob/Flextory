@@ -19,7 +19,16 @@ class SheetController extends Controller
      */
     public function index()
     {
-        return view('sheet.index', ['sheets' => Sheet::orderBy('title', 'asc')->get()]);
+        $sheets = Sheet::orderBy('title', 'asc')->get();
+
+        return view('sheet.index', ['sheets' => $sheets]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $sheets = Sheet::where('title', 'LIKE', '%'.$query.'%')->get();
+        return view('sheet.index', ['sheets' => $sheets]);
     }
 
     /**
