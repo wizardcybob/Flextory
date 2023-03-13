@@ -21,7 +21,7 @@
             Accéder au contenu
         </a>
         <div class="bg-primary">
-            <header class="container mx-auto py-2 md:py-7 flex justify-between items-center text-lg text-secondary-light ">
+            <header class="container mx-auto py-2 md:py-7 flex justify-between items-center text-lg text-white ">
                 <div>
                     <a href="/dashboard">
                         <img class="max-w-[100px] md:max-w-[150px] w-full" src="{{ asset('../../../storage/images/logo_flextory_slogan.png') }}" alt="Logo flextory" aria-labelledby="Logo de la Flextory et son slogan 'L'homme au coeur de l'usine-école du futur'">
@@ -42,11 +42,11 @@
                         Pistar
                         <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('') ? 'max-w-full' : '' }}"></span>
                         </a></p>
-                    <div tabindex="0" @click.prevent="showProfileMenu = !showProfileMenu" @keyup.enter="showProfileMenu = !showProfileMenu" class="btn_tertiary relative">
+                    <div tabindex="0" @click.prevent="showProfileMenu = !showProfileMenu" @keyup.enter="showProfileMenu = !showProfileMenu" class="btn_tertiary_bis relative">
                         <p>{{ Auth::user()->name }}</p>
                         <p class="text-xl"><i class="fa-solid fa-circle-user"></i></p>
                         <div x-show="showProfileMenu" class="mt-2 absolute w-64 rounded-sm top-12 right-0 divide-y-2 divide-tertiary shadow-inner overflow-hidden border-tertiary border-2">
-                            <div tabindex="0" @click.prevent="window.location.href='/user/profile'" @keyup.enter="window.location.href='/user/profile'" class="bg-secondary-light text-tertiary hover:bg-tertiary hover:text-secondary-light px-4 py-2 flex justify-between items-center gap-3">
+                            <div tabindex="0" @click.prevent="window.location.href='/user/profile'" @keyup.enter="window.location.href='/user/profile'" class="bg-secondary-light text-tertiary hover:bg-tertiary hover:text-white px-4 py-2 flex justify-between items-center gap-3">
                                 <p>Modifier le profil</p>
                                 <p class="text-xl"><i class="fa-solid fa-pen-to-square"></i></p>
                             </div>
@@ -55,7 +55,7 @@
 
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
                                          @click.prevent="$root.submit();">
-                                         <div tabindex="0" class="bg-secondary-light text-tertiary hover:bg-tertiary hover:text-secondary-light px-4 py-2 flex justify-between items-center gap-3">
+                                         <div tabindex="0" class="bg-secondary-light text-tertiary hover:bg-tertiary hover:text-white px-4 py-2 flex justify-between items-center gap-3">
                                             <p>Déconnexion</p>
                                             <p class="text-xl"><i class="fa-solid fa-right-from-bracket"></i></p>
                                         </div>
@@ -73,11 +73,11 @@
             </main>
 
         </div>
-        <div class="bg-primary-darker px-4">
-            <footer class="container mx-auto text-center text-xs text-secondary-light font-medium py-2 md:py-5">Créé par Chloé, Noa, Raphaël, Romain - PROJET TUTORE 2023</footer>
+        <div class="bg-primary-darker px-6">
+            <footer class="container mx-auto text-center text-xs text-white font-medium py-2 md:py-5">Créé par Chloé, Noa, Raphaël, Romain - PROJET TUTORE 2023</footer>
         </div>
         <!-- Menu Burger Mobile -->
-        <div x-show="showMenu" class="fixed w-screen h-screen overflow-hidden p-8 flex flex-col justify-center gap-16 text-lg items-center bg-primary text-secondary-light inset-0 z-50 visible md:invisible">
+        <div x-show="showMenu" class="fixed w-screen h-screen overflow-hidden p-8 flex flex-col justify-center gap-16 text-lg items-center bg-primary text-white inset-0 z-50 visible md:invisible">
             <p @click.prevent="showMenu = !showMenu" @keyup.enter="showMenu = !showMenu" tabindex="0" class="text-[1.7rem] p-2 cursor-pointer hover:text-tertiary"><i class="fa-solid fa-xmark"></i></p>
             {{-- <div class="w-40">
                 <a href="/dashboard">
@@ -112,7 +112,7 @@
 
                     <x-jet-dropdown-link href="{{ route('logout') }}"
                              @click.prevent="$root.submit();">
-                        <p class="p-4 text-center text-base btn_tertiary">Déconnexion</p>
+                        <p class="p-4 text-center text-base btn_tertiary_bis">Déconnexion</p>
                     </x-jet-dropdown-link>
                 </form>
             </div>
