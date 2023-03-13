@@ -72,7 +72,7 @@ Route::get('/teacher/{teacher}/edit', [TeacherController::class, 'edit'])->name(
 Route::put('/teacher/{teacher}/edit', [TeacherController::class, 'update'])->name('teacher.update');
 Route::delete('teacher/{teacher}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
 
-Route::get('/projet', [ProjetController::class, 'search'])->name('projet.search');
+Route::get('/projet/search', [ProjetController::class, 'search'])->name('projet.search');
 Route::get('/projet/create', [ProjetController::class, 'create'])->name('projet.create');
 Route::get('/projet', [ProjetController::class, 'index'])->name('projet.index');
 Route::post('/projet/store', [ProjetController::class, 'store'])->name('projet.store');
