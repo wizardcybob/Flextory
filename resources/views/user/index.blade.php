@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('User') }}
+            {{ __('Utilisateur') }}
         </h2>
     </x-slot>
 
@@ -27,7 +27,7 @@
                                 @elseif ($user->role == 4)
                                 <li>Étudiant</li>
                                 @endif
-                                <p><a href="{{ route('user.edit', ['user' => $user->id])}}">Edit</a></p>
+                                <p><a aria-labelledby="Modifier" href="{{ route('user.edit', ['user' => $user->id])}}">Modifier</a></p>
 
                         @endforeach
                     </ul>

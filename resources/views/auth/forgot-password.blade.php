@@ -21,11 +21,11 @@
 
             <div class="block">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-jet-input aria-labelledby="Email" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <x-jet-button>
+                <x-jet-button aria-labelledby="Réinitialiser le mot de passe">
                     {{ __('Email Password Reset Link') }}
                 </x-jet-button>
             </div>

@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* GENERAL */
+.titre_page {
+    @apply text-primary-darker font-semibold italic text-2xl md:text-3xl;
+}
+
+
+/* BUTTONS */
+.btn_primary {
+    @apply transition ease-in-out bg-primary hover:bg-primary-dark duration-200 flex justify-center text-center items-center cursor-pointer gap-4 text-white py-2 rounded px-4 font-medium;
+}
+
+.btn_tertiary {
+    @apply transition ease-in-out hover:bg-tertiary-dark duration-200 flex items-center justify-center cursor-pointer gap-4 bg-tertiary text-white py-2 rounded px-4 font-medium w-fit;
+}
+
+
+.btn_tertiary_bis {
+    @apply transition ease-in-out hover:bg-white hover:text-tertiary duration-200 flex items-center justify-center cursor-pointer gap-4 bg-tertiary text-white py-2 rounded px-4 font-medium w-fit;
+}
+
+
+/* FORMS */
+.label_form {
+    @apply text-primary font-semibold left-4 text-xs -top-2 bg-white rounded px-1;
+}
+
+.input_textarea_form {
+    @apply mt-0 placeholder-gray-400 text-primary-darker border-t-[0px] border-x-[0px] border-b-[4px] border-b-primary focus:border-b-primary-dark rounded-t-md overflow-hidden bg-secondary-light w-full;
+}
+
+.select_form {
+    @apply mt-0 text-primary-darker border-t-[0px] border-x-[0px] border-b-[4px] border-b-primary focus:border-b-primary-dark rounded-t-md overflow-hidden bg-secondary-light w-full;
+}

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create a sheet') }}
+            {{ __('Créer une fiche') }}
         </h2>
     </x-slot>
 
@@ -38,18 +38,14 @@
                     @foreach ($teachers as $teacher)
                         <p><input type="checkbox" name="teacher[]" id="teacher{{ $teacher->id }}" value="{{ $teacher->id }}"><label for="sheet{{ $teacher->id }}">{{ $teacher->name }}</label></p>
                     @endforeach
-                    <p>
-                        <select name="state">
-                            <option value=""></option>
-                            @foreach ($states as $state)
-                                <option value="{{ $state->id }}" @if (old('state') == $state->id) selected @endif>
-                                    {{ $state->name }}</option>
-                            @endforeach
-                        </select>
-                    </p>
-                    <p><button type="submit">Save</button></p>
-                </form>
+                </select>
             </div>
-        </div>
+
+            <p class="text-tertiary text-xs">*Champs obligatoires.</p>
+
+            <div class="flex justify-end w-full">
+                <button class="btn_primary flex justify-center" type="submit" aria-label="Enregistrer les modifications">Enregistrer</button>
+            </div>
+        </form>
     </div>
 </x-app-layout>
