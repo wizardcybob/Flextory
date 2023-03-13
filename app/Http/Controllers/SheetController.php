@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Sheet;
 use App\Models\State;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\Auth;
 
 class SheetController extends Controller
 {
@@ -19,7 +20,35 @@ class SheetController extends Controller
      */
     public function index()
     {
-        return view('sheet.index', ['sheets' => Sheet::orderBy('title', 'asc')->get()]);
+        $sheets = Sheet::orderBy('title', 'asc')->get();
+        $categories = Category::all();
+        $states = State::all();
+
+        return view('sheet.index', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $category = $request->input('category');
+        $state = $request->input('state');
+
+        $sheets = Sheet::when($category, function ($query, $category) {
+                return $query->where('category_id', $category);
+            })
+            ->when($query, function ($query, $searchTerm) {
+                return $query->where('title', 'LIKE', "%{$searchTerm}%");
+            })
+            ->when($state, function ($query, $state) {
+                return $query->where('state_id', $state);
+            })
+            ->get();
+
+        $categories = Category::all();
+        $states = State::all();
+
+
+        return view('sheet.index', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states]);
     }
 
     /**
@@ -34,7 +63,9 @@ class SheetController extends Controller
         $states = State::orderBy('name', 'asc')->get();
         $teachers = Teacher::orderBy('name', 'asc')->get();
         $categories = Category::orderBy('name', 'asc')->get();
-        return view('sheet.create', ['areas' => $areas, 'teachers' => $teachers, 'categories' => $categories, 'states' => $states]);
+
+        $creator = Auth::user()->name;
+        return view('sheet.create', ['areas' => $areas, 'teachers' => $teachers, 'categories' => $categories, 'states' => $states, 'creator' => $creator]);
     }
 
     /**
@@ -53,9 +84,12 @@ class SheetController extends Controller
         'area' => 'nullable',
         'category' => 'nullable',
         'teacher' => 'nullable',
+        'creator' => 'nullable'
+
     ]);
-    // dd($data);
+    $data['creator'] = auth()->user()->name;
     $sheet = new Sheet();
+    // dd($data['creator']);
     $sheet->fill($data);
     if (isset($data['area'])) {
         $sheet->area()->associate($data['area']);
@@ -96,7 +130,9 @@ class SheetController extends Controller
         $categories = Category::orderBy('name', 'asc')->get();
         $sheet = Sheet::where('id', $id)->firstOrFail();
 
-        return view('sheet.edit', compact('sheet', 'areas', 'teachers', 'categories', 'states'));
+        $creator = Auth::user()->name;
+
+        return view('sheet.edit', compact('sheet', 'areas', 'teachers', 'categories', 'states', 'creator'));
     }
 
     /**
@@ -117,7 +153,9 @@ class SheetController extends Controller
             'area' => 'nullable',
             'category' => 'nullable',
             'teacher' => 'nullable',
+            'creator' => 'nullable'
         ]);
+        $data['creator'] = auth()->user()->name;
         // dd($data);
         $sheet->fill($data);
         $sheet->save();

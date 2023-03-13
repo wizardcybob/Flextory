@@ -21,6 +21,13 @@ class ProjetController extends Controller
         return view('projet.index', ['projets' => Projet::orderBy('title', 'asc')->get()]);
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $projets = Projet::where('title', 'LIKE', '%'.$query.'%')->get();
+        return view('projet.index', ['projets' => $projets]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

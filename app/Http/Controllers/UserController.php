@@ -6,6 +6,7 @@ use App\Models\Groupe;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+
 class UserController extends Controller
 {
     /**
@@ -17,6 +18,13 @@ class UserController extends Controller
     {
         $this->authorize('viewAny', Teacher::class);
         return view('user.index', ['users' => user::orderBy('name', 'asc')->get()]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $users = User::where('name', 'LIKE', '%'.$query.'%')->get();
+        return view('user.index', ['users' => $users]);
     }
 
     /**

@@ -47,6 +47,7 @@ Route::get('/area/{area}/edit', [AreaController::class, 'edit'])->name('area.edi
 Route::put('/area/{area}/edit', [AreaController::class, 'update'])->name('area.update');
 Route::delete('area/{area}', [AreaController::class, 'destroy'])->name('area.destroy');
 
+Route::get('/user/search', [UserController::class, 'search'])->name('user.search');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
@@ -71,6 +72,7 @@ Route::get('/teacher/{teacher}/edit', [TeacherController::class, 'edit'])->name(
 Route::put('/teacher/{teacher}/edit', [TeacherController::class, 'update'])->name('teacher.update');
 Route::delete('teacher/{teacher}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
 
+Route::get('/projet/search', [ProjetController::class, 'search'])->name('projet.search');
 Route::get('/projet/create', [ProjetController::class, 'create'])->name('projet.create');
 Route::get('/projet', [ProjetController::class, 'index'])->name('projet.index');
 Route::post('/projet/store', [ProjetController::class, 'store'])->name('projet.store');
@@ -79,6 +81,7 @@ Route::get('/projet/{projet}/edit', [ProjetController::class, 'edit'])->name('pr
 Route::put('/projet/{projet}/edit', [ProjetController::class, 'update'])->name('projet.update');
 Route::delete('projet/{projet}', [ProjetController::class, 'destroy'])->name('projet.destroy');
 
+Route::get('/sheet/search', [SheetController::class, 'search'])->name('sheet.search');
 Route::get('/sheet/create', [SheetController::class, 'create'])->name('sheet.create');
 Route::get('/sheet', [SheetController::class, 'index'])->name('sheet.index');
 Route::post('/sheet/store', [SheetController::class, 'store'])->name('sheet.store');

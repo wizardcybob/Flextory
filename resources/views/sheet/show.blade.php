@@ -11,6 +11,7 @@
             <p>Description : {{ $sheet->description }}</p>
             <h2>Zone : {{ $sheet->area->name }}</h2>
             <p>Idée : {{ $sheet->idea }}</p>
+            <p>Créateur : {{ $sheet->creator }}</p>
             <p>État : {{ $sheet->state->name }}</p>
 
             <h2>enseignant(s) assigné :</h2>

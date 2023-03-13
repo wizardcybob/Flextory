@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AreaRequest;
 use App\Models\Adearea;
 use App\Models\Area;
+use App\Models\Category;
 use App\Models\Projet;
+use App\Models\State;
 use Illuminate\Http\Request;
 
 class AreaController extends Controller
@@ -73,7 +75,9 @@ class AreaController extends Controller
     public function sheets(Area $area)
     {
         $sheets = $area->sheets()->orderBy('title', 'asc')->get();
-        return view('sheet.index', ['sheets' => $sheets]);
+        $categories = Category::all();
+        $states = State::all();
+        return view('sheet.index', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states]);
     }
 
     /**

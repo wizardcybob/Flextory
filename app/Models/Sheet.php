@@ -14,7 +14,7 @@ class Sheet extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'idea'];
+    protected $fillable = ['title', 'description', 'idea', 'creator'];
 
     public function area()
     {
