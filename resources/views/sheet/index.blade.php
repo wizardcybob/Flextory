@@ -94,7 +94,9 @@
                 @endforeach
             </ul>
             @else
-                <p>Aucun résultat</p>
+                <div class="border-2 border-primary rounded overflow-hidden min-h-[200px] flex justify-center items-center">
+                    <p class="text-xl font-semibold text-tertiary">Aucun résultat :(</p>
+                </div>
             @endif
 
 
