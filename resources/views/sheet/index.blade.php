@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="w-full mx-auto flex flex-col gap-6 md:gap-8">
+    <div class="w-full mx-auto flex flex-col gap-8">
         <h1 class="titre_page">Fiches d'améliorations</h1>
         <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
 
@@ -78,7 +78,7 @@
                 @endforeach
             </ul>
             @endif
-            
+
             <a href="{{ route('sheet.create') }}" class="btn_primary w-full" title="Ajouter une fiche d'amélioration"><i class="fa-solid fa-plus" aria-hidden="true"></i>Ajouter une fiche d'amélioration</a>
         </div>
     </div>

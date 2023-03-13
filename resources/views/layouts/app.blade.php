@@ -21,7 +21,7 @@
             Accéder au contenu
         </a>
         <div class="bg-primary">
-            <header class="container mx-auto py-2 md:py-7 flex justify-between items-center text-lg text-white ">
+            <header class="container mx-auto py-2 md:py-5 flex justify-between items-center text-lg text-white ">
                 <div>
                     <a href="/dashboard">
                         <img class="max-w-[100px] md:max-w-[150px] w-full" src="{{ asset('../../../storage/images/logo_flextory_slogan.png') }}" alt="Logo flextory" aria-labelledby="Logo de la Flextory et son slogan 'L'homme au coeur de l'usine-école du futur'">
@@ -42,7 +42,7 @@
                         Pistar
                         <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('') ? 'max-w-full' : '' }}"></span>
                         </a></p>
-                    <div tabindex="0" @click.prevent="showProfileMenu = !showProfileMenu" @keyup.enter="showProfileMenu = !showProfileMenu" class="btn_tertiary_bis relative">
+                    <div tabindex="0" @click.prevent="showProfileMenu = !showProfileMenu" @keyup.enter="showProfileMenu = !showProfileMenu" class="btn_tertiary relative">
                         <p>{{ Auth::user()->name }}</p>
                         <p class="text-xl"><i class="fa-solid fa-circle-user"></i></p>
                         <div x-show="showProfileMenu" class="mt-2 absolute w-64 rounded-sm top-12 right-0 divide-y-2 divide-tertiary shadow-inner overflow-hidden border-tertiary border-2">

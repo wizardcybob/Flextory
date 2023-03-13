@@ -11,7 +11,7 @@
 
 /* BUTTONS */
 .btn_primary {
-    @apply transition ease-in-out bg-primary hover:bg-primary-dark duration-200 flex justify-center items-center cursor-pointer gap-4 text-white py-2 rounded px-4 font-medium;
+    @apply transition ease-in-out bg-primary hover:bg-primary-dark duration-200 flex justify-center text-center items-center cursor-pointer gap-4 text-white py-2 rounded px-4 font-medium;
 }
 
 .btn_tertiary {
