@@ -12,6 +12,22 @@
         {{-- Tableau des fiches --}}
         <div class="flex flex-col gap-4">
             @if ($sheets->isNotEmpty())
+            <form method="GET" action="{{ route('sheet.search') }}">
+                <input type="text" name="query" placeholder="Search...">
+                <select name="category">
+                    <option value="">Catégories</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                <select name="state">
+                    <option value="">États</option>
+                    @foreach($states as $state)
+                        <option value="{{ $state->id }}">{{ $state->name }}</option>
+                    @endforeach
+                </select>
+                <button type="submit">Rechercher</button>
+            </form>
             <ul class="border-2 border-primary rounded overflow-hidden max-h-[500px] overflow-y-scroll">
                 @php
                     $bgClass = 'bg-secondary';
@@ -77,7 +93,11 @@
                     @endphp
                 @endforeach
             </ul>
+            @else
+                <p>Aucun résultat</p>
             @endif
+
+
 
             <a href="{{ route('sheet.create') }}" class="btn_primary w-full" title="Ajouter une fiche d'amélioration"><i class="fa-solid fa-plus" aria-hidden="true"></i>Ajouter une fiche d'amélioration</a>
         </div>
