@@ -57,6 +57,11 @@ module.exports = {
 				},
 				valid: '#51BB1E', // valid
 				error: '#C63434', // error
+				view: {
+					// btn view
+					DEFAULT: '#68649A',
+					dark: '#494577', // hover
+				},
 				edit: {
 					// btn edit
 					DEFAULT: '#F1892B',
@@ -69,8 +74,8 @@ module.exports = {
 				},
 				status: {
 					// status
-					in_progress: '#549FE4', // status 'en cours'
 					to_do: '#C63434', // status 'à faire'
+					in_progress: '#549FE4', // status 'en cours'
 					done: '#51BB1E', // status 'terminé'
 					archive: '#7C7C7C', // status 'archivé'
 				},
