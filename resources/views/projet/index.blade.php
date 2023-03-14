@@ -36,7 +36,7 @@
                     </div>
                     {{-- btns --}}
                     <div class="flex gap-2">
-                        <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('projet.show', $projet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
+                        <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('projet.show', $projet) }}" aria-label="Voir la fiche d'amélioration">Ressources</a>
                         <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded" href="{{ route('projet.edit', ['projet' => $projet->id])}}" aria-label="Modifier le projet"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
                         <form action="{{ route('projet.destroy', ['projet' => $projet->id]) }}" method="POST">
                             @csrf
