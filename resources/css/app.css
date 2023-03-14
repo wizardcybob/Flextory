@@ -37,6 +37,10 @@
     @apply mt-0 text-primary-darker border-t-[0px] border-x-[0px] border-b-[4px] border-b-primary focus:border-b-primary-dark rounded-t-md overflow-hidden bg-secondary-light w-full cursor-pointer;
 }
 
+.checkbox_form {
+    @apply w-5 h-5 rounded border-secondary text-primary shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50;
+}
+
 
 /* SEARCHBAR */
 .label_recherche {
