@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('department_id')->references('id')->on('departments')->onDelete('cascade');
-            $table->foreignId('status_id')->references('id')->on('status')->onDelete('cascade');
+            $table->foreignId('status_id')->references('id')->on('statuses')->onDelete('cascade');
             $table->boolean('permanent');
             $table->timestamps();
         });

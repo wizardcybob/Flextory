@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <form method="GET" action="{{ route('user.search') }}">
-                    <input type="text" name="query" placeholder="Search...">
+                    <input type="text" name="query" placeholder="Recherche...">
                     <button type="submit">Rechercher</button>
                 </form>
                     <p><a href="{{ route('user.create') }}">Create new user</a></p>

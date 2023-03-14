@@ -13,7 +13,7 @@
         <div class="flex flex-col gap-4">
             @if ($sheets->isNotEmpty())
             <form method="GET" action="{{ route('sheet.search') }}">
-                <input type="text" name="query" placeholder="Search...">
+                <input type="text" name="query" placeholder="Recherche...">
                 <select name="category">
                     <option value="">Catégories</option>
                     @foreach($categories as $category)

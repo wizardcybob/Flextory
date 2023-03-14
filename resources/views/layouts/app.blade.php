@@ -29,7 +29,7 @@
                 </div>
                 <p tabindex="0" @click.prevent="showMenu = !showMenu" @keyup.enter="showMenu = !showMenu" class="cursor-pointer p-2 text-[1.7rem] visible md:invisible"><i class="fa-solid fa-bars"></i></p>
                 <nav class="hidden md:flex items-center gap-8 text-lg font-medium">
-                    <p class="cursor-pointer"><a href="/dashboard" class="group transition duration-300">
+                    <p class="cursor-pointer"><a href="{{ route('adearea.index')}}" class="group transition duration-300">
                         Accueil
                         <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('dashboard') ? 'max-w-full' : '' }}"></span>
                         </a></p>
