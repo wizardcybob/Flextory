@@ -77,7 +77,10 @@ module.exports = {
 					to_do: '#C63434', // status 'à faire'
 					in_progress: '#549FE4', // status 'en cours'
 					done: '#51BB1E', // status 'terminé'
-					archive: '#7C7C7C', // status 'archivé'
+					archive: {
+						DEFAULT: '#7C7C7C', // status 'archivé'
+						hover: '#5F5F5F', // hover
+					},
 				},
 				role: {
 					// role

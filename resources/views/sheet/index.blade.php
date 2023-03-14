@@ -7,11 +7,15 @@
 
     {{-- VIEW --}}
     <div class="w-full mx-auto flex flex-col gap-8">
-        <h1 class="titre_page">Fiches d'améliorations</h1>
+        <div class="flex flex-col md:flex-row gap-8 md:gap-0 w-full justify-between items-start md:items-center">
+            <h1 class="titre_page">Fiches d'amélioration</h1>
+            @if (Auth::user()->role === 1 || Auth::user()->role === 2)
+                <a href="{{ route('sheet.archive') }}" class="btn_archive w-fit" title="Archives">Archives<i class="fa-solid fa-box-archive" aria-hidden="true" aria-labelledby="Archives"></i></a>
+            @endif
+        </div>
         <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
 
         <div class="flex flex-col gap-4">
-            <a aria-labelledby="Archives" href="{{ route('sheet.archive') }}">Archives</a>
             @if ($sheets->isNotEmpty())
             {{-- Barre de recherche + filtres --}}
             <form class="flex flex-col md:flex-row gap-4 md:gap-2" method="GET" action="{{ route('sheet.search') }}">
@@ -59,13 +63,13 @@
                         <div class="flex flex-col md:flex-row items-center gap-2">
                             {{-- état de la fiche --}}
                             @if ($sheet->state->id == 1)
-                                <div class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center capitalize border-none" aria-label="Fiche à traiter">à traiter</div>
+                                <div class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center border-none" aria-label="Fiche à traiter">À traiter</div>
                             @elseif ($sheet->state->id == 2)
-                                <div class="bg-status-in_progress text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center capitalize border-none" aria-label="Fiche en cours">en cours</div>
+                                <div class="bg-status-in_progress text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center border-none" aria-label="Fiche en cours">En cours</div>
                             @elseif ($sheet->state->id == 3)
-                                <div class="bg-status-done text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center capitalize border-none" aria-label="Fiche terminée">terminée</div>
+                                <div class="bg-status-done text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center border-none" aria-label="Fiche terminée">Terminée</div>
                             @elseif ($sheet->state->id == 4)
-                                <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center capitalize border-none" aria-label="Fiche archivée">archivée</div>
+                                <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center border-none" aria-label="Fiche archivée">Archivée</div>
                             @endif
                             {{-- select état de la fiche --}}
                             {{-- @if ($sheet->state->id == 1)
@@ -98,11 +102,14 @@
                                 {{-- btn edit --}}
                                 <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded w-fit h-fit" href="{{ route('sheet.edit', ['sheet' => $sheet->id])}}" aria-label="Modifier la fiche d'amélioration"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
                                 {{-- btn delete --}}
-                                <form action="{{ route('sheet.destroy', ['sheet' => $sheet->id]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="bg-delete hover:bg-delete-dark text-white py-1 px-2 rounded w-fit h-fit"  aria-label="Supprimer la fiche d'amélioration" type="submit"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
-                                </form>
+                                @if (Auth::user()->role === 1 || Auth::user()->role === 2)
+                                    <form action="{{ route('sheet.destroy', ['sheet' => $sheet->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="bg-status-archive hover:bg-status-archive-hover text-white py-1 px-2 rounded w-fit h-fit"  aria-label="Supprimer la fiche d'amélioration" type="submit"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></button>
+                                    </form>
+                                @endif
+
                             </div>
                         </div>
                     </li>

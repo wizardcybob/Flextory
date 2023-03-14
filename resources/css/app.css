@@ -2,65 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* GENERAL */
 .titre_page {
-    @apply text-primary-darker font-semibold italic text-2xl md:text-3xl;
+	@apply text-primary-darker font-semibold italic text-2xl md:text-3xl;
 }
-
 
 /* BUTTONS */
 .btn_primary {
-    @apply transition ease-in-out bg-primary hover:bg-primary-dark duration-200 flex justify-center text-center items-center cursor-pointer gap-4 text-white py-2 rounded px-4 font-medium;
+	@apply transition ease-in-out bg-primary hover:bg-primary-dark duration-200 flex justify-center text-center items-center cursor-pointer gap-4 text-white py-2 rounded px-4 font-medium;
 }
 
 .btn_tertiary {
-    @apply transition ease-in-out hover:bg-tertiary-dark duration-200 flex items-center justify-center cursor-pointer gap-4 bg-tertiary text-white py-2 rounded px-4 font-medium w-fit;
+	@apply transition ease-in-out hover:bg-tertiary-dark duration-200 flex items-center justify-center cursor-pointer gap-4 bg-tertiary text-white py-2 rounded px-4 font-medium w-fit;
 }
-
 
 .btn_tertiary_bis {
-    @apply transition ease-in-out hover:bg-white hover:text-tertiary duration-200 flex items-center justify-center cursor-pointer gap-4 bg-tertiary text-white py-2 rounded px-4 font-medium w-fit;
+	@apply transition ease-in-out hover:bg-white hover:text-tertiary duration-200 flex items-center justify-center cursor-pointer gap-4 bg-tertiary text-white py-2 rounded px-4 font-medium w-fit;
 }
 
+.btn_archive {
+	@apply transition ease-in-out  hover:bg-status-archive-hover duration-200 flex items-center justify-center cursor-pointer gap-4 bg-status-archive text-white py-2 rounded px-4 font-medium w-fit;
+}
 
 /* FORMS */
 .label_form {
-    @apply text-primary font-semibold left-4 text-xs -top-2 bg-white rounded px-1;
+	@apply text-primary font-semibold left-4 text-xs -top-2 bg-white rounded px-1;
 }
 
 .input_textarea_form {
-    @apply mt-0 placeholder-gray-400 text-primary-darker border-t-[0px] border-x-[0px] border-b-[4px] border-b-primary focus:border-b-primary-dark rounded-t-md overflow-hidden bg-secondary-light w-full;
+	@apply mt-0 placeholder-gray-400 text-primary-darker border-t-[0px] border-x-[0px] border-b-[4px] border-b-primary focus:border-b-primary-dark rounded-t-md overflow-hidden bg-secondary-light w-full;
 }
 
 .select_form {
-    @apply mt-0 text-primary-darker border-t-[0px] border-x-[0px] border-b-[4px] border-b-primary focus:border-b-primary-dark rounded-t-md overflow-hidden bg-secondary-light w-full cursor-pointer;
+	@apply mt-0 text-primary-darker border-t-[0px] border-x-[0px] border-b-[4px] border-b-primary focus:border-b-primary-dark rounded-t-md overflow-hidden bg-secondary-light w-full cursor-pointer;
 }
 
 .checkbox_form {
-    @apply w-5 h-5 rounded border-secondary text-primary shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50;
+	@apply w-5 h-5 rounded border-secondary text-primary shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50;
 }
-
 
 /* SEARCHBAR */
 .label_recherche {
-    @apply text-primary font-semibold left-4 text-xs -top-2 bg-white rounded px-1;
+	@apply text-primary font-semibold left-4 text-xs -top-2 bg-white rounded px-1;
 }
 
 .input_textarea_recherche {
-    @apply mt-0 placeholder-gray-400 text-primary-darker border-t-[0px] border-x-[0px] border-b-[4px] border-b-tertiary focus:border-b-tertiary-dark rounded-t-md overflow-hidden bg-orange-200/30 w-full;
+	@apply mt-0 placeholder-gray-400 text-primary-darker border-t-[0px] border-x-[0px] border-b-[4px] border-b-tertiary focus:border-b-tertiary-dark rounded-t-md overflow-hidden bg-orange-200/30 w-full;
 }
 
 .select_recherche {
-    @apply mt-0 text-primary-darker border-t-[0px] border-x-[0px] border-b-[4px] border-b-tertiary focus:border-b-tertiary-dark rounded-t-md overflow-hidden bg-orange-200/30 w-full cursor-pointer;
+	@apply mt-0 text-primary-darker border-t-[0px] border-x-[0px] border-b-[4px] border-b-tertiary focus:border-b-tertiary-dark rounded-t-md overflow-hidden bg-orange-200/30 w-full cursor-pointer;
 }
-
 
 /* IMAGES */
 .zoom_image {
-    @apply absolute inset-0 w-1/2;
+	@apply absolute inset-0 w-1/2;
 }
 
 .parent_zoomed_img_show {
-    @apply bg-black/20 justify-center items-center hidden absolute inset-0 w-full h-screen overflow-hidden;
+	@apply bg-black/20 justify-center items-center hidden absolute inset-0 w-full h-screen overflow-hidden;
 }
