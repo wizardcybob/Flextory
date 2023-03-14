@@ -7,10 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Student;
 use App\Models\Area;
 use App\Models\Teacher;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Projet extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     protected $fillable = ['title', 'description', 'ressources', 'pistar', 'image', 'year'];
 
