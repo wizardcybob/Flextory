@@ -19,19 +19,19 @@
             {{-- Titre fiche d'amélioration --}}
             <div class="relative">
                 <label for="title" id="title-label" class="absolute label_form">Intitulé<span class="text-tertiary">*</span> :</label>
-                <input type="text" id="title" name="title" class="input_textarea_form" placeholder="Titre de la fiche d'amélioration" value="{{ old('title') }}" aria-labelledby="title-label" required aria-required="true">
+                <input type="text" id="title" name="title" class="input_textarea_form" placeholder="Titre de la fiche d'amélioration" value="{{ $sheet->title }}" aria-labelledby="title-label" required aria-required="true">
             </div>
 
             {{-- Description --}}
             <div class="relative">
                 <label for="description" class="absolute label_form" id="description-label">Description :</label>
-                <textarea class="input_textarea_form" rows="5" id="description" name="description" placeholder="Votre description" aria-labelledby="description-label">{{ old('description') }}</textarea>
+                <textarea class="input_textarea_form" rows="5" id="description" name="description" placeholder="Votre description" aria-labelledby="description-label">{{ $sheet->description }}</textarea>
             </div>
 
             {{-- Idées de résolution --}}
             <div class="relative">
                 <label for="idea" id="idea-label" class="absolute label_form">Idées de résolution :</label>
-                <input type="text" id="idea" name="idea" class="input_textarea_form" placeholder="Indiquez vos idées de résolution" value="{{ old('idea') }}" aria-labelledby="idea-label">
+                <textarea rows="5" id="idea" name="idea" class="input_textarea_form" placeholder="Indiquez vos idées de résolution" aria-labelledby="idea-label">{{ $sheet->idea }}</textarea>
             </div>
 
             <div class="flex flex-col md:flex-row gap-4">
@@ -41,7 +41,7 @@
                     <select class="select_form" id="area" name="area" aria-labelledby="area-label" required aria-required="true">
                         <option value="" selected disabled hidden>Sélectionner une zone</option>
                         @foreach ($areas as $area)
-                            <option value="{{ $area->id }}" @if (old('area')==$area->id) selected @endif>
+                            <option value="{{ $area->id }}" @if ($sheet->area_id == $area->id) selected @endif>
                                 {{ $area->name }}
                             </option>
                         @endforeach
@@ -54,7 +54,7 @@
                     <select class="select_form" id="category" name="category" aria-labelledby="category-label" required aria-required="true">
                         <option value="" selected disabled hidden>Sélectionner une catégorie</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" @if (old('category')==$category->id) selected @endif>
+                            <option value="{{ $category->id }}" @if ($sheet->category_id == $category->id) selected @endif>
                                 {{ $category->name }}
                             </option>
                         @endforeach
@@ -66,14 +66,14 @@
             {{-- Enseignant(s) assigné(s) --}}
             <div class="relative flex flex-col gap-1">
                 <p class="label_form">Enseignant(s) assigné(s)<span class="text-tertiary">*</span> :</p>
-                <div class="flex gap-6 items-center">
+                <ul class="flex flex-wrap gap-x-6 gap-y-1 items-center">
                     @foreach ($teachers as $teacher)
-                    <div class="flex gap-2 items-center">
+                    <li class="flex gap-2 items-center">
                         <input class="checkbox_form" type="checkbox" name="teacher[]" id="teacher{{ $teacher->id }}"
-                            value="{{ $teacher->id }}"><label class="capitalize" for="sheet{{ $teacher->id }}">{{ $teacher->name }}</label>
-                    </div>
+                            value="{{ $teacher->id }}"><label class="capitalize whitespace-nowrap" for="sheet{{ $teacher->id }}" @if ($sheet->teacher_id == $teacher->id) checked @endif>{{ $teacher->name }}</label>
+                    </li>
                     @endforeach
-                </div>
+                </ul>
             </div>
 
 
@@ -83,12 +83,25 @@
                 <select class="select_form" id="state" name="state" aria-labelledby="state-label" required aria-required="true">
                     <option value="" selected disabled hidden>Sélectionner un état</option>
                     @foreach ($states as $state)
-                        <option value="{{ $state->id }}" @if (old('state')==$state->id) selected @endif>
-                            {{ $state->name }}
-                        </option>
+                    <option value="{{ $state->id }}" @if ($sheet->state_id == $state->id) selected @endif>
+                        {{ $state->name }}</option>
                     @endforeach
                 </select>
             </div>
+
+
+            {{-- Sélectionner une image --}}
+            <div class="relative">
+                <label for="image" id="image-label" class="absolute label_form">Sélectionner une image :</label>
+                <select class="select_form" name="image" id="image" name="image" aria-labelledby="image-label">
+                    <option value="" selected disabled hidden>Sélectionner une image</option>></option>
+                    @foreach ($images as $image)
+                        <option value="{{ $image->id }}" @if ($sheet->image_id == $image->id) selected @endif>
+                            {{ $image->image }}</option>
+                    @endforeach
+                </select>
+            </div>
+
 
             <p class="text-tertiary text-xs">*Champs obligatoires.</p>
 

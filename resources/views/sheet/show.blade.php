@@ -21,13 +21,13 @@
             <div class="flex gap-2">
                 {{-- état de la fiche --}}
                 @if ($sheet->state->id == 1)
-                    <div class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center capitalize border-none" aria-label="Fiche à traiter">{{ $sheet->state->name }}</div>
+                    <div class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche à traiter">{{ $sheet->state->name }}</div>
                 @elseif ($sheet->state->id == 2)
-                    <div class="bg-status-in_progress text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center capitalize border-none" aria-label="Fiche en cours">{{ $sheet->state->name }}</div>
+                    <div class="bg-status-in_progress text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche en cours">{{ $sheet->state->name }}</div>
                 @elseif ($sheet->state->id == 3)
-                    <div class="bg-status-done text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center capitalize border-none" aria-label="Fiche terminée">{{ $sheet->state->name }}</div>
+                    <div class="bg-status-done text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-non whitespace-nowrape" aria-label="Fiche terminée">{{ $sheet->state->name }}</div>
                 @elseif ($sheet->state->id == 4)
-                    <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center capitalize border-none" aria-label="Fiche archivée">{{ $sheet->state->name }}</div>
+                    <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche archivée">{{ $sheet->state->name }}</div>
                 @endif
                 {{-- btn edit --}}
                 <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded w-fit h-fit" href="{{ route('sheet.edit', ['sheet' => $sheet])}}" aria-label="Modifier la fiche d'amélioration"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>

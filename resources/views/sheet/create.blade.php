@@ -32,7 +32,7 @@
             {{-- Idées de résolution --}}
             <div class="relative">
                 <label for="idea" id="idea-label" class="absolute label_form">Idées de résolution :</label>
-                <input type="text" id="idea" name="idea" class="input_textarea_form" placeholder="Indiquez vos idées de résolution" value="{{ old('idea') }}" aria-labelledby="idea-label">
+                <textarea type="text" id="idea" name="idea" class="input_textarea_form" placeholder="Indiquez vos idées de résolution" aria-labelledby="idea-label">{{ old('idea') }}</textarea>
             </div>
 
             <div class="flex flex-col md:flex-row gap-4">

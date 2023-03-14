@@ -21,8 +21,8 @@
             <form class="flex flex-col md:flex-row gap-4 md:gap-2" method="GET" action="{{ route('sheet.search') }}">
                 <div class="relative w-full">
                     <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
-                    <input type="text" id="query" name="query"  class="input_textarea_recherche pl-8" placeholder="Faire une recherche..." aria-labelledby="query-label">
-                    <div class="absolute left-2 inset-y-0 flex items-center text-secondary-dark pb-1">
+                    <input type="text" id="query" name="query"  class="input_textarea_recherche pl-9" placeholder="Faire une recherche..." aria-labelledby="query-label">
+                    <div class="absolute left-3 inset-y-0 flex items-center text-secondary pb-1">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                 </div>
@@ -57,19 +57,19 @@
                         {{-- textes --}}
                         <div class="flex flex-col md:flex-row items-center flex-wrap gap-1 md:gap-2">
                             <p class="font-semibold text-center md:text-left">N°{{ $sheet->id }} - {{ $sheet->title }}</p>
-                            <p>&#40;{{ $sheet->area->name }} / {{ $sheet->category->name }}&#41;</p>
+                            <p class="text-center">&#40;{{ $sheet->area->name }} / {{ $sheet->category->name }}&#41;</p>
                         </div>
                         {{-- all btns --}}
-                        <div class="flex flex-col md:flex-row items-center gap-2">
+                        <div class="flex flex-row items-center gap-2">
                             {{-- état de la fiche --}}
                             @if ($sheet->state->id == 1)
-                                <div class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center border-none" aria-label="Fiche à traiter">À traiter</div>
+                                <div class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center border-none whitespace-nowrap" aria-label="Fiche à traiter">À traiter</div>
                             @elseif ($sheet->state->id == 2)
-                                <div class="bg-status-in_progress text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center border-none" aria-label="Fiche en cours">En cours</div>
+                                <div class="bg-status-in_progress text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center border-none whitespace-nowrap" aria-label="Fiche en cours">En cours</div>
                             @elseif ($sheet->state->id == 3)
-                                <div class="bg-status-done text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center border-none" aria-label="Fiche terminée">Terminée</div>
+                                <div class="bg-status-done text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center border-none whitespace-nowrap" aria-label="Fiche terminée">Terminée</div>
                             @elseif ($sheet->state->id == 4)
-                                <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center border-none" aria-label="Fiche archivée">Archivée</div>
+                                <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center border-none whitespace-nowrap" aria-label="Fiche archivée">Archivée</div>
                             @endif
                             {{-- select état de la fiche --}}
                             {{-- @if ($sheet->state->id == 1)

@@ -54,13 +54,13 @@
                         <div class="flex flex-col md:flex-row items-center gap-2">
                             {{-- état de la fiche --}}
                             @if ($sheet->state->id == 1)
-                                <div class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center capitalize border-none" aria-label="Fiche à traiter">à traiter</div>
+                                <div class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche à traiter">à traiter</div>
                             @elseif ($sheet->state->id == 2)
-                                <div class="bg-status-in_progress text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center capitalize border-none" aria-label="Fiche en cours">en cours</div>
+                                <div class="bg-status-in_progress text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche en cours">en cours</div>
                             @elseif ($sheet->state->id == 3)
-                                <div class="bg-status-done text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center capitalize border-none" aria-label="Fiche terminée">terminée</div>
+                                <div class="bg-status-done text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche terminée">terminée</div>
                             @elseif ($sheet->state->id == 4)
-                                <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 {{-- cursor-pointer --}} justify-center capitalize border-none" aria-label="Fiche archivée">archivée</div>
+                                <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche archivée">archivée</div>
                             @endif
                             {{-- select état de la fiche --}}
                             {{-- @if ($sheet->state->id == 1)
