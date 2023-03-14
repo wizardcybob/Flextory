@@ -43,9 +43,13 @@ Route::get('/plans', function () {
     return view('plans.index');
 })->name('plans.index');
 
+
+// ZONES
 Route::get('/adearea', [AdeareaController::class, 'index'])->name('adearea.index');
 Route::get('/adearea/{adearea}', [AdeareaController::class, 'show'])->name('adearea.show');
 
+
+// SOUS-ZONES
 Route::get('/area/{area}/sheets', [AreaController::class, 'sheets'])->name('area.sheets');
 Route::get('/area/create', [AreaController::class, 'create'])->name('area.create');
 Route::get('/area', [AreaController::class, 'index'])->name('area.index');
@@ -55,6 +59,8 @@ Route::get('/area/{area}/edit', [AreaController::class, 'edit'])->name('area.edi
 Route::put('/area/{area}/edit', [AreaController::class, 'update'])->name('area.update');
 Route::delete('area/{area}', [AreaController::class, 'destroy'])->name('area.destroy');
 
+
+// UTILISATEURS
 Route::get('/user/search', [UserController::class, 'search'])->name('user.search');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
@@ -64,6 +70,8 @@ Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edi
 Route::put('/user/{user}/edit', [UserController::class, 'update'])->name('user.update');
 Route::delete('user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
+
+// ETUDIANTS
 Route::get('/student/create', [StudentController::class, 'create'])->name('student.create');
 Route::get('/student', [StudentController::class, 'index'])->name('student.index');
 Route::post('/student/store', [StudentController::class, 'store'])->name('student.store');
@@ -72,6 +80,8 @@ Route::get('/student/{student}/edit', [StudentController::class, 'edit'])->name(
 Route::put('/student/{student}/edit', [StudentController::class, 'update'])->name('student.update');
 Route::delete('student/{student}', [StudentController::class, 'destroy'])->name('student.destroy');
 
+
+// PROFESSEURS
 Route::get('/teacher/create', [TeacherController::class, 'create'])->name('teacher.create');
 Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.index');
 Route::post('/teacher/store', [TeacherController::class, 'store'])->name('teacher.store');
@@ -80,6 +90,8 @@ Route::get('/teacher/{teacher}/edit', [TeacherController::class, 'edit'])->name(
 Route::put('/teacher/{teacher}/edit', [TeacherController::class, 'update'])->name('teacher.update');
 Route::delete('teacher/{teacher}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
 
+
+// PROJETS
 Route::get('/projet/search', [ProjetController::class, 'search'])->name('projet.search');
 Route::get('/projet/archive/search', [ProjetController::class, 'searchArchive'])->name('projet.searchArchive');
 Route::get('/projet/archive', [ProjetController::class, 'archive'])->name('projet.archive');
@@ -94,6 +106,8 @@ Route::get('projet/restore/{projet}', [ProjetController::class, 'restore'])->nam
 Route::delete('projet/archive/{projet}', [ProjetController::class, 'forcedelete'])->name('projet.forcedelete');
 Route::delete('projet/{projet}', [ProjetController::class, 'destroy'])->name('projet.destroy');
 
+
+// FICHES D'AMELIORATION
 Route::get('/sheet/search', [SheetController::class, 'search'])->name('sheet.search');
 Route::get('/sheet/archive/search', [SheetController::class, 'searchArchive'])->name('sheet.searchArchive');
 Route::get('/sheet/archive', [SheetController::class, 'archive'])->name('sheet.archive');
