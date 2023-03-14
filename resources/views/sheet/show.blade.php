@@ -83,7 +83,7 @@
                 <li><img src="{{$image->url}}" /></li>
             </ul>
             @endforeach --}}
-            <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+            <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
                 <li class="relative bg-tertiary cursor-pointer group flex justify-center items-center">
                     <img class="clickable-image group-hover:opacity-40" src="{{ asset('storage/images/flextory_login.jpg') }}" alt="" />
                     <div class="text-primary hidden group-hover:block absolute"><i class="fa-solid fa-magnifying-glass-plus w-14 h-14"></i></div>
