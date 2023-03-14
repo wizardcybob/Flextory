@@ -51,6 +51,15 @@
                             @endforeach
                         </select>
                     </p>
+                    <p>
+                        <select name="image">
+                            <option value=""></option>
+                            @foreach ($images as $image)
+                                <option value="{{ $image->id }}" @if ($sheet->image_id == $image->id) selected @endif>
+                                    {{ $image->image }}</option>
+                            @endforeach
+                        </select>
+                    </p>
                     <p><button type="submit">Save</button></p>
                 </form>
             </div>

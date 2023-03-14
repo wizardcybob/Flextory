@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Projet;
 use App\Models\Adearea;
 use App\Models\Sheet;
+use App\Models\Image;
 
 class Area extends Model
 {
@@ -27,5 +28,10 @@ class Area extends Model
     public function adearea()
     {
         return $this->belongsTo(Adearea::class);
+    }
+
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
     }
 }

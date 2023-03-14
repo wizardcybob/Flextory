@@ -34,6 +34,15 @@
                     @foreach ($areas as $area)
                         <p><input aria-labelledby="Zone" type="checkbox" name="area[]" id="area{{ $area->id }}" value="{{ $area->id }}"><label for="projet{{ $area->id }}">{{ $area->name }}</label></p>
                     @endforeach
+                    <p>
+                        <select name="image">
+                            <option value=""></option>
+                            @foreach ($images as $image)
+                                <option value="{{ $image->id }}" @if (old('image') == $image->id) selected @endif>
+                                    {{ $image->image }}</option>
+                            @endforeach
+                        </select>
+                    </p>
                     <p><button aria-labelledby="Valider" type="submit">Valider</button></p>
                 </form>
             </div>

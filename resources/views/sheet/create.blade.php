@@ -60,6 +60,15 @@
                         @endforeach
                     </select>
                 </div>
+                <p>
+                    <select name="image">
+                        <option value=""></option>
+                        @foreach ($images as $image)
+                            <option value="{{ $image->id }}" @if (old('image') == $image->id) selected @endif>
+                                {{ $image->image }}</option>
+                        @endforeach
+                    </select>
+                </p>
             </div>
 
 

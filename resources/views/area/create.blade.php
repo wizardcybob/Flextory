@@ -27,6 +27,15 @@
                     @foreach ($projets as $projet)
                         <p><input  type="checkbox" name="projet[]" id="projet{{ $projet->id }}" value="{{ $projet->id }}"><label for="student{{ $projet->id }}">{{ $projet->title }}</label></p>
                     @endforeach
+                    <p>
+                        <select name="image">
+                            <option value=""></option>
+                            @foreach ($images as $image)
+                                <option value="{{ $image->id }}" @if (old('image') == $image->id) selected @endif>
+                                    {{ $image->image }}</option>
+                            @endforeach
+                        </select>
+                    </p>
                     <p><button type="submit" aria-labelledby="Valider">Valider</button></p>
                 </form>
             </div>
