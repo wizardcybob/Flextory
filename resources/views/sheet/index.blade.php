@@ -19,7 +19,7 @@
                     <input type="text" id="query" name="query"  class="input_textarea_recherche" placeholder="Faire une recherche..." aria-labelledby="query-label">
                 </div>
                 <div class="relative w-full">
-                    <label for="category" id="category-label" class="absolute label_form">Catégorie :</label>
+                    <label for="category" id="category-label" class="absolute label_form">Filtrer par catégorie :</label>
                     <select class="select_recherche" id="category" name="category" aria-labelledby="category-label">
                         <option value="" selected disabled hidden>Sélectionner une catégorie</option>
                         @foreach($categories as $category)
@@ -28,7 +28,7 @@
                     </select>
                 </div>
                 <div class="relative w-full">
-                    <label for="state" id="state-label" class="absolute label_form">États d'avancement :</label>
+                    <label for="state" id="state-label" class="absolute label_form">Filtrer par état d'avancement :</label>
                     <select class="select_recherche" id="state" name="state" aria-labelledby="state-label">
                         <option value="" selected disabled hidden>Sélectionner un état</option>
                         @foreach($states as $state)
