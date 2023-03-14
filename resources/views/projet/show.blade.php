@@ -4,36 +4,70 @@
             {{ __('Projet') }}
         </h2>
     </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <p><a href="{{ route('projet.index') }}" aria-labelledby="Retour">Retour</a></p>
-            <h1>{{ $projet->title }}</h1>
-            <p>Description : {{ $projet->description }}</p>
-            <p>Lien Seafile : {{ $projet->link }}</p>
 
-            <h2>Zone(s) assignée(s) :</h2>
-            @foreach ($projet->areas as $area)
+
+    {{-- VIEW --}}
+    <div class="w-full mx-auto flex flex-col gap-7 md:gap-8">
+        <button class="btn_primary w-fit" onclick="window.history.back()" role="button" aria-label="Retour à la page précédente" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            Retour</button>
+
+        {{-- HEADER VIEW --}}
+        <div class="flex flex-col gap-2 md:gap-0 md:flex-row md:items-center md:justify-between">
+            {{-- TEXTES --}}
+            <div class="flex flex-col gap-1 md:gap-2">
+                <h1 class="titre_page">{{ $projet->title }}</h1>
+            </div>
+            {{-- btn --}}
+            <a class="bg-tertiary hover:bg-tertiary-dark text-white py-1 px-4 rounded" href="" aria-label="Voir les ressources du projet">Ressources<i class="fa-solid fa-file"></i></a>
+        </div>
+
+        {{-- INFORMATIONS --}}
+        <div class="flex flex-col gap-2">
+            <p><span class="font-semibold">Année : </span>{{ $projet->year }}</p>
+            <p><span class="font-semibold">Emplacement : </span>{{ $projet->area->name }}</p>
+            <p><span class="font-semibold">Responsable(s) : </span> 
+            @foreach ($projet->teachers as $projet)
             <ul>
-                <li><a aria-labelledby="Zones" href="{{route('area.show', ['area' => $area])}}">{{$area->name}}</a></li>
+                <li><a href="{{route('teacher.show', ['teacher' => $teacher])}}">{{$teacher->name}}</a></li>
             </ul>
-            @endforeach
+            @endforeach</p>
+        </div>
 
-            <h2>Étudiant(e.s) assigné(e.s) :</h2>
-            @foreach ($projet->students as $student)
+        {{-- DESCRIPTION --}}
+        <div>
+            <p class="font-semibold">Description : </p>
+            <p>{{ $projet->description }}</p>
+        </div>
+
+        {{-- IMAGES --}}
+        <div class="flex flex-col gap-2">
+            <p class="font-semibold">Image(s) :</p>
+            {{-- @foreach ($projet->images as $image)
             <ul>
-                <li><a href="{{route('student.show', ['student' => $student])}}" aria-labelledby="Étudiants">{{$student->name}}</a></li>
+                <li><img src="{{$image->url}}" /></li>
             </ul>
-            @endforeach
-
-
-            <p><a href="{{ route('projet.edit', ['projet' => $projet])}}" aria-labelledby="Modifier">Modifier</a></p>
-
-            <form action="{{ route('projet.destroy', ['projet' => $projet]) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button aria-labelledby="Supprimer" type="submit">Supprimer</button>
-            </form>
-
+            @endforeach --}}
+            <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                <li class="relative bg-tertiary cursor-pointer group flex justify-center items-center">
+                    <img class="clickable-image group-hover:opacity-40" src="{{ asset('storage/images/flextory_login.jpg') }}" alt="" />
+                    <div class="text-primary hidden group-hover:block absolute"><i class="fa-solid fa-magnifying-glass-plus w-14 h-14"></i></div>
+                </li>
+                <li class="relative bg-tertiary cursor-pointer group flex justify-center items-center">
+                    <img class="clickable-image group-hover:opacity-40" src="{{ asset('storage/images/flextory_login.jpg') }}" alt="" />
+                    <div class="text-primary hidden group-hover:block absolute"><i class="fa-solid fa-magnifying-glass-plus w-14 h-14"></i></div>
+                </li>
+                <li class="relative bg-tertiary cursor-pointer group flex justify-center items-center">
+                    <img class="clickable-image group-hover:opacity-40" src="{{ asset('storage/images/flextory_login.jpg') }}" alt="" />
+                    <div class="text-primary hidden group-hover:block absolute"><i class="fa-solid fa-magnifying-glass-plus w-14 h-14"></i></div>
+                </li>
+                <li class="relative bg-tertiary cursor-pointer group flex justify-center items-center">
+                    <img class="clickable-image group-hover:opacity-40" src="{{ asset('storage/images/flextory_login.jpg') }}" alt="" />
+                    <div class="text-primary hidden group-hover:block absolute"><i class="fa-solid fa-magnifying-glass-plus w-14 h-14"></i></div>
+                </li>
+            </ul>
+        </div>
+        {{-- DIV POUR PLACER L'IMAGE ZOOMÉ --}}
+        <div class="parent_zoomed_img parent_zoomed_img_show">
         </div>
     </div>
 </x-app-layout>
