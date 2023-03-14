@@ -54,3 +54,13 @@
 .select_recherche {
     @apply mt-0 text-primary-darker border-t-[0px] border-x-[0px] border-b-[4px] border-b-tertiary focus:border-b-tertiary-dark rounded-t-md overflow-hidden bg-orange-200/30 w-full cursor-pointer;
 }
+
+
+/* IMAGES */
+.zoom_image {
+    @apply absolute inset-0 w-1/2;
+}
+
+.parent_zoomed_img_show {
+    @apply bg-black/20 justify-center items-center hidden absolute inset-0 w-full h-screen overflow-hidden;
+}

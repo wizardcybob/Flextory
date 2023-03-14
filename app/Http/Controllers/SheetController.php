@@ -27,6 +27,39 @@ class SheetController extends Controller
         return view('sheet.index', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states]);
     }
 
+    public function archive()
+    {
+        $sheets = Sheet::orderBy('title', 'asc')->onlyTrashed()->get();
+        $categories = Category::all();
+        $states = State::all();
+
+        return view('sheet.archive', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states]);
+    }
+
+    public function searchArchive(Request $request)
+    {
+        $query = $request->input('query');
+        $category = $request->input('category');
+        $state = $request->input('state');
+
+        $sheets = Sheet::when($category, function ($query, $category) {
+                return $query->where('category_id', $category);
+            })
+            ->when($query, function ($query, $searchTerm) {
+                return $query->where('title', 'LIKE', "%{$searchTerm}%");
+            })
+            ->when($state, function ($query, $state) {
+                return $query->where('state_id', $state);
+            })
+            ->get();
+
+        $categories = Category::all();
+        $states = State::all();
+
+
+        return view('sheet.archive', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states]);
+    }
+
     public function search(Request $request)
     {
         $query = $request->input('query');
@@ -187,5 +220,18 @@ class SheetController extends Controller
         $sheet->delete();
 
         return redirect()->route('sheet.index');
+    }
+
+    public function forcedelete($id)
+    {
+        Sheet::where('id', $id)->forceDelete();
+        return redirect()->route('sheet.archive');
+    }
+
+    public function restore($id)
+    {
+        Sheet::withTrashed()->find($id)->restore();
+
+        return redirect()->route('sheet.archive');
     }
 }

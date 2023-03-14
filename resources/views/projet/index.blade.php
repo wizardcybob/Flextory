@@ -5,33 +5,59 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <a href="javascript:history.go(-1)" class="">Retour</a>
-                <form method="GET" action="{{ route('projet.search') }}">
-                    <input type="text" name="query" placeholder="Recherche...">
-                    <button type="submit">Search</button>
-                </form>
-                    <p><a href="{{ route('projet.create') }}">Create new projet</a></p>
+    <div class="w-full mx-auto flex flex-col gap-8">
+        <h1 class="titre_page">Sous-zone</h1>
+        <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
 
+        {{-- VIEW --}}
+        <div class="flex flex-col gap-4">
+            @if ($projets->isNotEmpty())
+            {{-- Barre de recherche --}}
+            <form class="flex flex-col md:flex-row gap-4 md:gap-2" method="GET" action="{{ route('projet.search') }}">
+                <div class="relative w-full">
+                    <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
+                    <input type="text" id="query" name="query"  class="input_textarea_recherche pl-8" placeholder="Faire une recherche..." aria-labelledby="query-label">
+                    <div class="absolute left-2 inset-y-0 flex items-center text-secondary-dark pb-1">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+            </form>
+            {{-- Tableau des fiches --}}
+            <ul class="border-2 border-primary rounded overflow-hidden max-h-[500px] overflow-y-scroll">
+                @php
+                    $bgClass = 'bg-secondary';
+                @endphp
 
-                @if ($projets->isNotEmpty())
-                    <ul>
-                        @foreach ($projets as $projet)
-                                <li><a href="{{ route('projet.show', $projet) }}">{{ $projet->title }}</a></li>
-                                <p><a aria-labelledby="Modifier" href="{{ route('projet.edit', ['projet' => $projet->id])}}">Modifier</a></p>
-                                <form action="{{ route('projet.destroy', ['projet' => $projet->id]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button aria-labelledby="Supprimer" type="submit">Supprimer</button>
-                                </form>
-                        @endforeach
-                    </ul>
-                @else
-                    <p>Aucun résultat</p>
-                @endif
-            </div>
+                @foreach ($projets->sortBy('id') as $index => $projet)
+                <li class="{{ $bgClass }} flex flex-col gap-2 md:gap-3 items-center justify-center md:flex-row md:justify-between md:items-center min-h-12 px-3 py-[10px]">
+                    {{-- textes --}}
+                    <div class="flex flex-col md:flex-row items-center flex-wrap gap-1 md:gap-2">
+                         <p class="font-semibold text-center md:text-left">{{ $projet->title }}</p>
+                    </div>
+                    {{-- btns --}}
+                    <div class="flex gap-2">
+                        <a class="bg-primary hover:bg-primary-dark text-white py-1 px-4 rounded" href="" aria-label="Voir les ressources du projet">Ressources</a>
+                        <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('projet.show', $projet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
+                        <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded" href="{{ route('projet.edit', ['projet' => $projet->id])}}" aria-label="Modifier le projet"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
+                        <form action="{{ route('projet.destroy', ['projet' => $projet->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="bg-delete hover:bg-delete-dark text-white py-1 px-2 rounded"  aria-label="Supprimer la fiche d'amélioration" type="submit"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                    </div>
+                </li>
+                @php
+                    $bgClass = ($bgClass == 'bg-secondary') ? 'bg-secondary-light' : 'bg-secondary';
+                @endphp
+                @endforeach
+            </ul>
+            @else
+                <div class="border-2 border-primary rounded overflow-hidden min-h-[200px] flex justify-center items-center">
+                    <p class="text-xl font-semibold text-tertiary">Aucun résultat :(</p>
+                </div>
+            @endif
+
+            <a href="{{ route('projet.create') }}" class="btn_primary w-full" title="Ajouter un projet"><i class="fa-solid fa-plus" aria-hidden="true"></i>Ajouter un projet</a>
         </div>
     </div>
 </x-app-layout>
