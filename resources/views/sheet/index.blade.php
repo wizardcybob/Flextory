@@ -13,10 +13,13 @@
         <div class="flex flex-col gap-4">
             @if ($sheets->isNotEmpty())
             {{-- Barre de recherche + filtres --}}
-            <form class="flex flex-col md:flex-row gap-2" method="GET" action="{{ route('sheet.search') }}">
+            <form class="flex flex-col md:flex-row gap-4 md:gap-2" method="GET" action="{{ route('sheet.search') }}">
                 <div class="relative w-full">
                     <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
-                    <input type="text" id="query" name="query"  class="input_textarea_recherche" placeholder="Faire une recherche..." aria-labelledby="query-label">
+                    <input type="text" id="query" name="query"  class="input_textarea_recherche pl-8" placeholder="Faire une recherche..." aria-labelledby="query-label">
+                    <div class="absolute left-2 inset-y-0 flex items-center text-secondary-dark pb-1">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
                 </div>
                 <div class="relative w-full">
                     <label for="category" id="category-label" class="absolute label_form">Filtrer par catégorie :</label>
