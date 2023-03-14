@@ -151,6 +151,15 @@ class ProjetController extends Controller
         return redirect()->route('projet.show', ['projet' => $projet]);
     }
 
+    public function replicate($id)
+    {
+        $projet = Projet::find($id);
+        $projetdup = $projet->replicate();
+        $projetdup->save();
+
+        return redirect()->route('projet.index');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

@@ -65,7 +65,7 @@ class SheetPolicy
      */
     public function delete(User $user, Sheet $sheet)
     {
-        return $user->role == '1' || $user->role == '2';
+        return $user->role == '1' || $user->role == '2' || $user->role == '3';
     }
 
     /**

@@ -77,6 +77,7 @@ Route::get('/projet/archive/search', [ProjetController::class, 'searchArchive'])
 Route::get('/projet/archive', [ProjetController::class, 'archive'])->name('projet.archive');
 Route::get('/projet/create', [ProjetController::class, 'create'])->name('projet.create');
 Route::get('/projet', [ProjetController::class, 'index'])->name('projet.index');
+Route::get('/projet/{projet}/replicate', [ProjetController::class, 'replicate'])->name('projet.replicate');
 Route::post('/projet/store', [ProjetController::class, 'store'])->name('projet.store');
 Route::get('/projet/{projet}', [ProjetController::class, 'show'])->name('projet.show');
 Route::get('/projet/{projet}/edit', [ProjetController::class, 'edit'])->name('projet.edit');

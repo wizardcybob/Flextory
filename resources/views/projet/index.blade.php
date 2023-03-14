@@ -22,6 +22,7 @@
                         @foreach ($projets as $projet)
                                 <li><a href="{{ route('projet.show', $projet) }}">{{ $projet->title }}</a></li>
                                 <p><a aria-labelledby="Modifier" href="{{ route('projet.edit', ['projet' => $projet->id])}}">Modifier</a></p>
+                                <p><a aria-labelledby="dupliquer" href="{{ route('projet.replicate', ['projet' => $projet->id])}}">Dupliquer</a></p>
                                 <form action="{{ route('projet.destroy', ['projet' => $projet->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
