@@ -34,14 +34,14 @@
                         <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('dashboard') ? 'max-w-full' : '' }}"></span>
                         </a></p>
 
-                    <p class="cursor-pointer"><a href="#" class="group transition duration-300">
+                    <p class="cursor-pointer"><a href="{{ route('plans.index')}}" class="group transition duration-300">
                         Plan
                         <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('') ? 'max-w-full' : '' }}"></span>
                         </a></p>
-                    <p class="cursor-pointer"><a href="#" class="group transition duration-300">
+                    {{-- <p class="cursor-pointer"><a href="#" class="group transition duration-300">
                         Pistar
                         <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('') ? 'max-w-full' : '' }}"></span>
-                        </a></p>
+                        </a></p> --}}
                     <div tabindex="0" @click.prevent="showProfileMenu = !showProfileMenu" @keyup.enter="showProfileMenu = !showProfileMenu" class="btn_tertiary relative">
                         <p>{{ Auth::user()->name }}</p>
                         <p class="text-xl"><i class="fa-solid fa-circle-user"></i></p>

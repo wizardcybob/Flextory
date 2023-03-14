@@ -39,6 +39,10 @@ Route::middleware([
 Route::get('/image', [ImageController::class,'index'])->name('image.index');
 Route::post('/image', [ImageController::class,'store'])->name('image.store');
 
+Route::get('/plans', function () {
+    return view('plans.index');
+})->name('plans.index');
+
 Route::get('/adearea', [AdeareaController::class, 'index'])->name('adearea.index');
 Route::get('/adearea/{adearea}', [AdeareaController::class, 'show'])->name('adearea.show');
 
