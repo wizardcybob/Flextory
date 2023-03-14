@@ -21,7 +21,20 @@ class ProjetController extends Controller
         return view('projet.index', ['projets' => Projet::orderBy('title', 'asc')->get()]);
     }
 
+    public function archive()
+    {
+        $projets = Projet::orderBy('title', 'asc')->onlyTrashed()->get();
+        return view('projet.archive', ['projets' => $projets]);
+    }
+
     public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $projets = Projet::where('title', 'LIKE', '%'.$query.'%')->get();
+        return view('projet.index', ['projets' => $projets]);
+    }
+
+    public function searchArchive(Request $request)
     {
         $query = $request->input('query');
         $projets = Projet::where('title', 'LIKE', '%'.$query.'%')->get();
@@ -138,6 +151,15 @@ class ProjetController extends Controller
         return redirect()->route('projet.show', ['projet' => $projet]);
     }
 
+    public function replicate($id)
+    {
+        $projet = Projet::find($id);
+        $projetdup = $projet->replicate();
+        $projetdup->save();
+
+        return redirect()->route('projet.index');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -151,5 +173,18 @@ class ProjetController extends Controller
         $projet->delete();
 
         return redirect()->route('projet.index');
+    }
+
+    public function forcedelete($id)
+    {
+        Projet::where('id', $id)->forceDelete();
+        return redirect()->route('projet.archive');
+    }
+
+    public function restore($id)
+    {
+        Projet::withTrashed()->find($id)->restore();
+
+        return redirect()->route('projet.archive');
     }
 }

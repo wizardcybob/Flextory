@@ -11,16 +11,12 @@
 
         {{-- VIEW --}}
         <div class="flex flex-col gap-4">
-            <a aria-labelledby="Archives" href="{{ route('sheet.archive') }}">Archives</a>
             @if ($sheets->isNotEmpty())
             {{-- Barre de recherche + filtres --}}
-            <form class="flex flex-col md:flex-row gap-4 md:gap-2" method="GET" action="{{ route('sheet.search') }}">
+            <form class="flex flex-col md:flex-row gap-2" method="GET" action="{{ route('sheet.searchArchive') }}">
                 <div class="relative w-full">
                     <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
-                    <input type="text" id="query" name="query"  class="input_textarea_recherche pl-8" placeholder="Faire une recherche..." aria-labelledby="query-label">
-                    <div class="absolute left-2 inset-y-0 flex items-center text-secondary-dark pb-1">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
+                    <input type="text" id="query" name="query"  class="input_textarea_recherche" placeholder="Faire une recherche..." aria-labelledby="query-label">
                 </div>
                 <div class="relative w-full">
                     <label for="category" id="category-label" class="absolute label_form">Filtrer par catégorie :</label>
@@ -47,7 +43,6 @@
                 @php
                     $bgClass = 'bg-secondary';
                 @endphp
-
                 @foreach ($sheets->sortBy('id') as $index => $sheet)
                     <li class="{{ $bgClass }} flex flex-col gap-2 md:gap-3 items-center justify-center md:flex-row md:justify-between md:items-center min-h-12 px-3 py-[10px]">
                         {{-- textes --}}
@@ -94,8 +89,8 @@
                             {{-- btns --}}
                             <div class="flex gap-2">
                                 <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('sheet.show', $sheet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
-                                <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded" href="{{ route('sheet.edit', ['sheet' => $sheet->id])}}" aria-label="Modifier la fiche d'amélioration"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
-                                <form action="{{ route('sheet.destroy', ['sheet' => $sheet->id]) }}" method="POST">
+                                <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded" href="{{ route('sheet.restore', ['sheet' => $sheet->id])}}" aria-label="Modifier la fiche d'amélioration"><i class="fa-solid fa-pen" aria-hidden="true"></i></a>
+                                <form action="{{ route('sheet.forcedelete', ['sheet' => $sheet->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="bg-delete hover:bg-delete-dark text-white py-1 px-2 rounded"  aria-label="Supprimer la fiche d'amélioration" type="submit"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>

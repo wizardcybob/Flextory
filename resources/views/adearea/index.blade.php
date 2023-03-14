@@ -13,6 +13,9 @@
                     <ul>
                         @foreach ($adeareas as $adearea)
                                 <li><a href="{{ route('adearea.show', $adearea) }}">{{ $adearea->name }} </a></li>
+                                @foreach ($adearea->areas as $area)
+                                    <li><a href="{{ route('area.show', $area) }}">{{ $area->name }} </a></li>
+                                @endforeach
                         @endforeach
                     </ul>
                 @endif
