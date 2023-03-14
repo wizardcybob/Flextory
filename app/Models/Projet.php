@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Student;
 use App\Models\Area;
 use App\Models\Teacher;
+use App\Models\Image;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Projet extends Model
@@ -16,7 +17,7 @@ class Projet extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['title', 'description', 'ressources', 'pistar', 'image', 'year'];
+    protected $fillable = ['title', 'description', 'ressources', 'pistar', 'year', 'image_id'];
 
     public function students()
     {
@@ -31,5 +32,10 @@ class Projet extends Model
     public function teachers()
     {
         return $this->belongsToMany(Teacher::class);
+    }
+
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjetRequest;
 use App\Models\Area;
+use App\Models\Image;
 use App\Models\Projet;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -49,10 +50,11 @@ class ProjetController extends Controller
     public function create()
     {
         $this->authorize('create', Projet::class);
+        $images = Image::all();
         $students = Student::orderBy('name', 'asc')->orderBy('name', 'asc')->get();
         $teachers = Teacher::orderBy('name', 'asc')->orderBy('name', 'asc')->get();
         $areas = Area::orderBy('name', 'asc')->orderBy('name', 'asc')->get();
-        return view('projet.create', ['students' => $students, 'areas' => $areas, 'teachers' => $teachers]);
+        return view('projet.create', ['students' => $students, 'areas' => $areas, 'teachers' => $teachers, 'images' => $images]);
     }
 
     /**
@@ -72,10 +74,12 @@ class ProjetController extends Controller
             'year' => 'nullable',
             'teacher' => 'nullable',
             'student' => 'nullable',
-            'area' => 'nullable'
+            'area' => 'nullable',
+            'image' => 'nullable'
         ]);
         $projet = new Projet();
         $projet->fill($data);
+        $projet->image()->associate($data['image']);
         $projet->save();
         if (isset($data['student'])) {
         $projet->students()->attach($data['student']);
@@ -108,12 +112,13 @@ class ProjetController extends Controller
      */
     public function edit($id)
     {
+        $images = Image::all();
         $projet = Projet::where('id', $id)->firstOrFail();
         $students = Student::orderBy('name', 'asc')->get();
         $teachers = Teacher::orderBy('name', 'asc')->get();
         $areas = Area::orderBy('name', 'asc')->get();
 
-        return view('projet.edit', compact('projet', 'students', 'areas', 'teachers'));
+        return view('projet.edit', compact('projet', 'students', 'areas', 'teachers', 'images'));
     }
 
     /**
@@ -135,10 +140,14 @@ class ProjetController extends Controller
             'year' => 'nullable',
             'teacher' => 'nullable',
             'student' => 'nullable',
-            'area' => 'nullable'
+            'area' => 'nullable',
+            'image' => 'nullable'
         ]);
         $projet->fill($data);
         $projet->save();
+        if (isset($data['image'])) {
+        $projet->image()->associate($data['image'])->save();
+        };
         if (isset($data['student'])) {
         $projet->students()->sync($data['student']);
         };

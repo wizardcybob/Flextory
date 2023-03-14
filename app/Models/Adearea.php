@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Area;
+use App\Models\Image;
 
 class Adearea extends Model
 {
@@ -16,4 +17,9 @@ class Adearea extends Model
      {
          return $this->hasMany(Area::class);
      }
+
+     public function image()
+    {
+        return $this->belongsTo(Image::class);
+    }
 }

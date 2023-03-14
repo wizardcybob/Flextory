@@ -27,6 +27,15 @@
                     @foreach ($projets as $projet)
                         <p><input type="checkbox" name="area[]" id="area_{{ $area->id }}" value="{{ $area->id }}" @if(in_array($area->id, $area->projets->pluck('id')->toArray())) checked @endif><label for="area_{{ $projet->id }}">{{ $projet->title }}</label></p>
                     @endforeach
+                    <p>
+                        <select name="image">
+                            <option value=""></option>
+                            @foreach ($images as $image)
+                                <option value="{{ $image->id }}" @if ($area->image_id == $image->id) selected @endif>
+                                    {{ $image->image }}</option>
+                            @endforeach
+                        </select>
+                    </p>
                     <p><button aria-labelledby="Valider" type="submit">Valider</button></p>
                 </form>
             </div>

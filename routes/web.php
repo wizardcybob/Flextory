@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdeareaController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\SheetController;
 use App\Http\Controllers\StudentController;
@@ -34,6 +35,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/image', [ImageController::class,'index'])->name('image.index');
+Route::post('/image', [ImageController::class,'store'])->name('image.store');
 
 Route::get('/adearea', [AdeareaController::class, 'index'])->name('adearea.index');
 Route::get('/adearea/{adearea}', [AdeareaController::class, 'show'])->name('adearea.show');

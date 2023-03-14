@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SheetRequest;
 use App\Models\Area;
 use App\Models\Category;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Models\Sheet;
 use App\Models\State;
@@ -92,13 +93,14 @@ class SheetController extends Controller
     public function create()
     {
         $this->authorize('create', Sheet::class);
+        $images = Image::all();
         $areas = Area::orderBy('name', 'asc')->get();
         $states = State::orderBy('name', 'asc')->get();
         $teachers = Teacher::orderBy('name', 'asc')->get();
         $categories = Category::orderBy('name', 'asc')->get();
 
         $creator = Auth::user()->name;
-        return view('sheet.create', ['areas' => $areas, 'teachers' => $teachers, 'categories' => $categories, 'states' => $states, 'creator' => $creator]);
+        return view('sheet.create', ['areas' => $areas, 'teachers' => $teachers, 'categories' => $categories, 'states' => $states, 'creator' => $creator, 'images' => $images]);
     }
 
     /**
@@ -117,6 +119,7 @@ class SheetController extends Controller
         'area' => 'nullable',
         'category' => 'nullable',
         'teacher' => 'nullable',
+        'image' => 'nullable',
         'creator' => 'nullable'
 
     ]);
@@ -124,6 +127,9 @@ class SheetController extends Controller
     $sheet = new Sheet();
     // dd($data['creator']);
     $sheet->fill($data);
+    if (isset($data['student'])) {
+        $sheet->image()->associate($data['image'])->save();
+        };
     if (isset($data['area'])) {
         $sheet->area()->associate($data['area']);
     }
@@ -157,6 +163,7 @@ class SheetController extends Controller
      */
     public function edit($id)
     {
+        $images = Image::all();
         $areas = Area::orderBy('name', 'asc')->get();
         $states = State::orderBy('name', 'asc')->get();
         $teachers = Teacher::orderBy('name', 'asc')->get();
@@ -165,7 +172,7 @@ class SheetController extends Controller
 
         $creator = Auth::user()->name;
 
-        return view('sheet.edit', compact('sheet', 'areas', 'teachers', 'categories', 'states', 'creator'));
+        return view('sheet.edit', compact('sheet', 'areas', 'teachers', 'categories', 'states', 'creator', 'images'));
     }
 
     /**
@@ -186,12 +193,16 @@ class SheetController extends Controller
             'area' => 'nullable',
             'category' => 'nullable',
             'teacher' => 'nullable',
-            'creator' => 'nullable'
+            'creator' => 'nullable',
+            'image' => 'nullable'
         ]);
         $data['creator'] = auth()->user()->name;
         // dd($data);
         $sheet->fill($data);
         $sheet->save();
+        if (isset($data['image'])) {
+            $sheet->image()->associate($data['image'])->save();
+            };
         if (isset($data['teacher'])) {
             $sheet->teachers()->sync($data['teacher']);
             };

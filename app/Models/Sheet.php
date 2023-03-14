@@ -8,6 +8,7 @@ use App\Models\Area;
 use App\Models\Teacher;
 use App\Models\Category;
 use App\Models\State;
+use App\Models\Image;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -38,5 +39,10 @@ class Sheet extends Model
     public function teachers()
     {
         return $this->belongsToMany(Teacher::class);
+    }
+
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
     }
 }

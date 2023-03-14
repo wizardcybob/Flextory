@@ -6,6 +6,7 @@ use App\Http\Requests\AreaRequest;
 use App\Models\Adearea;
 use App\Models\Area;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Projet;
 use App\Models\State;
 use Illuminate\Http\Request;
@@ -30,9 +31,10 @@ class AreaController extends Controller
     public function create()
     {
         $this->authorize('create', Area::class);
+        $images = Image::all();
         $adeareas = Adearea::orderBy('name', 'asc')->get();
         $projets = Projet::orderBy('title', 'asc')->orderBy('title', 'asc')->get();
-        return view('area.create', ['projets' => $projets, 'adeareas' => $adeareas]);
+        return view('area.create', ['projets' => $projets, 'adeareas' => $adeareas, 'images' => $images]);
     }
 
     /**
@@ -48,12 +50,18 @@ class AreaController extends Controller
             'description' => 'nullable',
             'image' => 'nullable',
             'projet' => 'nullable',
+            'image' => 'nullable',
             'adearea' => 'nullable'
         ]);
         // dd($data);
         $area = new Area();
         $area->fill($data);
+        if (isset($data['adearea'])) {
         $area->adearea()->associate($data['adearea']);
+        };
+        if (isset($data['image'])) {
+        $area->image()->associate($data['image']);
+        };
         $area->save();
         if (isset($data['projet'])) {
             $area->projets()->attach($data['projet']);
@@ -88,10 +96,11 @@ class AreaController extends Controller
      */
     public function edit($id)
     {
+        $images = Image::all();
         $adeareas = Adearea::orderBy('name', 'asc')->get();
         $area = Area::where('id', $id)->firstOrFail();
         $projets = Projet::orderBy('title', 'asc')->get();
-        return view('area.edit', compact('area', 'projets', 'adeareas'));
+        return view('area.edit', compact('area', 'projets', 'adeareas', 'images'));
     }
 
     /**
@@ -109,6 +118,7 @@ class AreaController extends Controller
             'description' => 'nullable',
             'image' => 'nullable',
             'projet' => 'nullable',
+            'image' => 'nullable',
             'adearea' => 'nullable'
         ]);
         // dd($request);
@@ -117,6 +127,9 @@ class AreaController extends Controller
         if (isset($data['adearea_id'])) {
         $area->adearea()->associate($data['adearea_id'])->save();
         };
+        if (isset($data['image'])) {
+            $area->image()->associate($data['image'])->save();
+            };
         if (isset($data['projet'])) {
             $area->projets()->sync($data['projet']);
         };
