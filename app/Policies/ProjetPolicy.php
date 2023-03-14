@@ -59,7 +59,19 @@ class ProjetPolicy
      */
     public function delete(User $user, Projet $projet)
     {
-        return $user->role == '1' || $user->role == '2' || $user->role == '3';
+        return $user->role == '1' || $user->role == '2';
+    }
+
+    /**
+     * Determine whether the user can restore the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Projet  $projet
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function archive(User $user, Projet $projet)
+    {
+        return $user->role == '1' || $user->role == '2';
     }
 
     /**
@@ -71,7 +83,7 @@ class ProjetPolicy
      */
     public function restore(User $user, Projet $projet)
     {
-        //
+        return $user->role == '1' || $user->role == '2';
     }
 
     /**
@@ -83,6 +95,6 @@ class ProjetPolicy
      */
     public function forceDelete(User $user, Projet $projet)
     {
-        //
+        return $user->role == '1' || $user->role == '2';
     }
 }

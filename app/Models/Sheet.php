@@ -8,11 +8,15 @@ use App\Models\Area;
 use App\Models\Teacher;
 use App\Models\Category;
 use App\Models\State;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Sheet extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     protected $fillable = ['title', 'description', 'idea', 'creator'];
 

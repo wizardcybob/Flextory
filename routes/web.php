@@ -73,19 +73,27 @@ Route::put('/teacher/{teacher}/edit', [TeacherController::class, 'update'])->nam
 Route::delete('teacher/{teacher}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
 
 Route::get('/projet/search', [ProjetController::class, 'search'])->name('projet.search');
+Route::get('/projet/archive/search', [ProjetController::class, 'searchArchive'])->name('projet.searchArchive');
+Route::get('/projet/archive', [ProjetController::class, 'archive'])->name('projet.archive');
 Route::get('/projet/create', [ProjetController::class, 'create'])->name('projet.create');
 Route::get('/projet', [ProjetController::class, 'index'])->name('projet.index');
 Route::post('/projet/store', [ProjetController::class, 'store'])->name('projet.store');
 Route::get('/projet/{projet}', [ProjetController::class, 'show'])->name('projet.show');
 Route::get('/projet/{projet}/edit', [ProjetController::class, 'edit'])->name('projet.edit');
 Route::put('/projet/{projet}/edit', [ProjetController::class, 'update'])->name('projet.update');
+Route::get('projet/restore/{projet}', [ProjetController::class, 'restore'])->name('projet.restore');
+Route::delete('projet/archive/{projet}', [ProjetController::class, 'forcedelete'])->name('projet.forcedelete');
 Route::delete('projet/{projet}', [ProjetController::class, 'destroy'])->name('projet.destroy');
 
 Route::get('/sheet/search', [SheetController::class, 'search'])->name('sheet.search');
+Route::get('/sheet/archive/search', [SheetController::class, 'searchArchive'])->name('sheet.searchArchive');
+Route::get('/sheet/archive', [SheetController::class, 'archive'])->name('sheet.archive');
 Route::get('/sheet/create', [SheetController::class, 'create'])->name('sheet.create');
 Route::get('/sheet', [SheetController::class, 'index'])->name('sheet.index');
 Route::post('/sheet/store', [SheetController::class, 'store'])->name('sheet.store');
 Route::get('/sheet/{sheet}', [SheetController::class, 'show'])->name('sheet.show');
 Route::get('/sheet/{sheet}/edit', [SheetController::class, 'edit'])->name('sheet.edit');
 Route::put('/sheet/{sheet}/edit', [SheetController::class, 'update'])->name('sheet.update');
+Route::get('sheet/restore/{sheet}', [SheetController::class, 'restore'])->name('sheet.restore');
+Route::delete('sheet/archive/{sheet}', [SheetController::class, 'forcedelete'])->name('sheet.forcedelete');
 Route::delete('sheet/{sheet}', [SheetController::class, 'destroy'])->name('sheet.destroy');

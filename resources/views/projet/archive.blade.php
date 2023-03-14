@@ -9,7 +9,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <a href="javascript:history.go(-1)" class="">Retour</a>
-                <a aria-labelledby="Archives" href="{{ route('projet.archive') }}">Archives</a>
                 <form method="GET" action="{{ route('projet.search') }}">
                     <input type="text" name="query" placeholder="Recherche...">
                     <button type="submit">Search</button>
@@ -21,8 +20,8 @@
                     <ul>
                         @foreach ($projets as $projet)
                                 <li><a href="{{ route('projet.show', $projet) }}">{{ $projet->title }}</a></li>
-                                <p><a aria-labelledby="Modifier" href="{{ route('projet.edit', ['projet' => $projet->id])}}">Modifier</a></p>
-                                <form action="{{ route('projet.destroy', ['projet' => $projet->id]) }}" method="POST">
+                                <p><a aria-labelledby="Modifier" href="{{ route('projet.restore', ['projet' => $projet->id])}}">Restore</a></p>
+                                <form action="{{ route('projet.forcedelete', ['projet' => $projet->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button aria-labelledby="Supprimer" type="submit">Supprimer</button>
