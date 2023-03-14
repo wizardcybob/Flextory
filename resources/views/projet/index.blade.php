@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <a href="javascript:history.go(-1)" class="">Retour</a>
                 <form method="GET" action="{{ route('projet.search') }}">
-                    <input type="text" name="query" placeholder="Search...">
+                    <input type="text" name="query" placeholder="Recherche...">
                     <button type="submit">Search</button>
                 </form>
                     <p><a href="{{ route('projet.create') }}">Create new projet</a></p>
