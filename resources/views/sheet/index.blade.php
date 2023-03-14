@@ -7,7 +7,7 @@
 
     <div class="w-full mx-auto flex flex-col gap-8">
         <h1 class="titre_page">Fiches d'améliorations</h1>
-        <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
+        <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left"></i>Retour</a>
 
         {{-- VIEW --}}
         <div class="flex flex-col gap-4">
@@ -92,12 +92,12 @@
                             </select> --}}
                             {{-- btns --}}
                             <div class="flex gap-2">
-                                <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('sheet.show', $sheet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
-                                <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded" href="{{ route('sheet.edit', ['sheet' => $sheet->id])}}" aria-label="Modifier la fiche d'amélioration"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
+                                <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('sheet.show', $sheet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye"></i></a>
+                                <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded" href="{{ route('sheet.edit', ['sheet' => $sheet->id])}}" aria-label="Modifier la fiche d'amélioration"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <form action="{{ route('sheet.destroy', ['sheet' => $sheet->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="bg-delete hover:bg-delete-dark text-white py-1 px-2 rounded"  aria-label="Supprimer la fiche d'amélioration" type="submit"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                    <button class="bg-delete hover:bg-delete-dark text-white py-1 px-2 rounded"  aria-label="Supprimer la fiche d'amélioration" type="submit"><i class="fa-solid fa-trash"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
 
 
 
-            <a href="{{ route('sheet.create') }}" class="btn_primary w-full" title="Ajouter une fiche d'amélioration"><i class="fa-solid fa-plus" aria-hidden="true"></i>Ajouter une fiche d'amélioration</a>
+            <a href="{{ route('sheet.create') }}" class="btn_primary w-full" title="Ajouter une fiche d'amélioration"><i class="fa-solid fa-plus"></i>Ajouter une fiche d'amélioration</a>
         </div>
     </div>
 </x-app-layout>

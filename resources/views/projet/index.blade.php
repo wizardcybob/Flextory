@@ -7,7 +7,7 @@
 
     <div class="w-full mx-auto flex flex-col gap-8">
         <h1 class="titre_page">Sous-zone</h1>
-        <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
+        <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left"></i>Retour</a>
 
         {{-- VIEW --}}
         <div class="flex flex-col gap-4">
@@ -36,13 +36,13 @@
                     </div>
                     {{-- btns --}}
                     <div class="flex gap-2">
-                        <a class="bg-primary hover:bg-primary-dark text-white py-1 px-4 rounded" href="">Ressources</a>
-                        <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('projet.show', $projet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
-                        <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded" href="{{ route('projet.edit', ['projet' => $projet->id])}}" aria-label="Modifier le projet"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
+                        <a class="bg-primary hover:bg-primary-dark text-white py-1 px-4 rounded" href="" aria-label="Voir les ressources du projet">Ressources</a>
+                        <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('projet.show', $projet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye" ></i></a>
+                        <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded" href="{{ route('projet.edit', ['projet' => $projet->id])}}" aria-label="Modifier le projet"><i class="fa-solid fa-pen-to-square"></i></a>
                         <form action="{{ route('projet.destroy', ['projet' => $projet->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="bg-delete hover:bg-delete-dark text-white py-1 px-2 rounded"  aria-label="Supprimer la fiche d'amélioration" type="submit"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                            <button class="bg-delete hover:bg-delete-dark text-white py-1 px-2 rounded"  aria-label="Supprimer la fiche d'amélioration" type="submit"><i class="fa-solid fa-trash"></i></button>
                         </form>
                     </div>
                 </li>
@@ -57,7 +57,7 @@
                 </div>
             @endif
 
-            <a href="{{ route('projet.create') }}" class="btn_primary w-full" title="Ajouter un projet"><i class="fa-solid fa-plus" aria-hidden="true"></i>Ajouter un projet</a>
+            <a href="{{ route('projet.create') }}" class="btn_primary w-full" title="Ajouter un projet"><i class="fa-solid fa-plus"></i>Ajouter un projet</a>
         </div>
     </div>
 </x-app-layout>
