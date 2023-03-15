@@ -16,62 +16,71 @@
         <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
 
         <div class="flex flex-col gap-4">
-            @if ($sheets->isNotEmpty())
             {{-- Barre de recherche + filtres --}}
-            <form class="flex flex-col md:flex-row gap-4 md:gap-2" method="GET" action="{{ route('sheet.search') }}">
-                <div class="relative w-full">
-                    <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
-                    <input type="text" id="query" name="query"  class="input_textarea_recherche pl-9" placeholder="Faire une recherche..." aria-labelledby="query-label">
-                    <div class="absolute left-3 inset-y-0 flex items-center text-secondary pb-1">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                </div>
-                <div class="relative w-full">
-                    <label for="category" id="category-label" class="absolute label_form">Filtrer par catégorie :</label>
-                        <option value="" selected disabled hidden>Sélectionner une catégorie</option>
-                        @foreach($categories as $category)
-                            <input type="checkbox" id="category{{ $category->id }}" name="categories[]" value="{{ $category->id }}">
-                            <label for="category{{ $category->id }}" class="ml-2">{{ $category->name }}</label>
-                        @endforeach
-                </div>
-                <div class="relative w-full">
-                    <label for="state" id="state-label" class="absolute label_form">Filtrer par état d'avancement :</label>
-                    @foreach($states as $state)
-                        <div class="flex items-center">
-                            <input type="checkbox" id="state{{ $state->id }}" name="states[]" value="{{ $state->id }}">
-                            <label for="state{{ $state->id }}" class="ml-2">{{ $state->name }}</label>
+            <form method="GET" action="{{ route('sheet.search') }}">
+                <div class="flex flex-col gap-6">
+                    {{-- BARRE DE RECHERCHE --}}
+                    <div class="relative w-full">
+                        <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
+                        <input type="text" id="query" name="query"  class="input_textarea_recherche pl-10" placeholder="Faire une recherche..." aria-labelledby="query-label">
+                        <div class="absolute left-3 inset-y-0 flex items-center text-secondary pb-1">
+                            <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                    @endforeach
+                    </div>
+                    {{-- FILTRE CATEGORIE --}}
+                    <div class="relative w-full">
+                        <label for="category" id="category-label" class="label_form">Filtrer par catégorie :</label>
+                        <div class="flex gap-6">
+                            @foreach($categories as $category)
+                                <div class="flex items-center">
+                                    <input type="checkbox" class="checkbox_form" id="category{{ $category->id }}" name="categories[]" value="{{ $category->id }}">
+                                    <label for="category{{ $category->id }}" class="ml-2">{{ $category->name }}</label>
+                                </div>
+                            @endforeach
+                    </div>
+                    {{-- FILTRE STATUT FICHE --}}
+                    <div class="relative w-full mt-4">
+                        <label for="state" id="state-label" class="label_form">Filtrer par état d'avancement :</label>
+                        <div class="flex gap-6">
+                            @foreach($states as $state)
+                                <div class="flex items-center">
+                                    <input type="checkbox" class="checkbox_form" id="state{{ $state->id }}" name="states[]" value="{{ $state->id }}">
+                                    <label for="state{{ $state->id }}" class="ml-2">{{ $state->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <button class="btn_tertiary mt-6" type="submit" aria-label="Faire une recherche">Rechercher</button>
                 </div>
-                <button class="btn_tertiary" type="submit" aria-label="Faire une recherche">Rechercher</button>
             </form>
             @if(str_contains(url()->current(), 'search'))
-            <a class="btn_primary w-fit" href="{{ route('sheet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
-                Supprimer la recherche</a>
-            @endif
-            @if(str_contains(url()->current(), 'sortasc'))
-                <a class=" w-fit hidden" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
-                Filtrer par date</a>
-                <a class="btn_primary w-fit" href="{{ route('sheet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
-                    Filtrer par numéro</a>
-            @elseif (str_contains(url()->current(), 'sortdesc'))
-                <a class=" w-fit hidden" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
-                Filtrer par date</a>
-                <a class="btn_primary w-fit" href="{{ route('sheet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
-                    Filtrer par numéro</a>
-            @else
-                <a class=" w-fit" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
-                Filtrer par date</a>
+            <a class="text-error w-fit flex items-center gap-2 font-semibold" href="{{ route('sheet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                <i class="fa-solid fa-xmark"></i> Supprimer la recherche</a>
             @endif
 
+            @if ($sheets->isNotEmpty())
+                @if(str_contains(url()->current(), 'sortasc'))
+                    <a class=" w-fit hidden" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                    Filtrer par date</a>
+                    <a class="btn_primary w-fit" href="{{ route('sheet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                        Filtrer par numéro</a>
+                @elseif (str_contains(url()->current(), 'sortdesc'))
+                    <a class=" w-fit hidden" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                    Filtrer par date</a>
+                    <a class="btn_primary w-fit" href="{{ route('sheet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                        Filtrer par numéro</a>
+                @else
+                    <a class=" w-fit" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                    Filtrer par date</a>
+                @endif
 
-            @if(str_contains(url()->current(), 'sortasc'))
-                <a class=" w-fit" href="{{ route('sheet.datedesc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
-                Filtrer par date</a>
-            @elseif(str_contains(url()->current(), 'sortdesc'))
-                <a class=" w-fit" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
-                Filtrer par date</a>
-            @endif
+                @if(str_contains(url()->current(), 'sortasc'))
+                    <a class=" w-fit" href="{{ route('sheet.datedesc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                    Filtrer par date</a>
+                @elseif(str_contains(url()->current(), 'sortdesc'))
+                    <a class=" w-fit" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                    Filtrer par date</a>
+                @endif
             {{-- Tableau des fiches --}}
             <ul class="border-2 border-primary rounded overflow-hidden max-h-[500px] overflow-y-scroll">
                 @php
