@@ -49,13 +49,36 @@
             <a class="btn_primary w-fit" href="{{ route('sheet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
                 Supprimer la recherche</a>
             @endif
+            @if(str_contains(url()->current(), 'sortasc'))
+                <a class=" w-fit hidden" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                Filtrer par date</a>
+                <a class="btn_primary w-fit" href="{{ route('sheet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                    Filtrer par numéro</a>
+            @elseif (str_contains(url()->current(), 'sortdesc'))
+                <a class=" w-fit hidden" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                Filtrer par date</a>
+                <a class="btn_primary w-fit" href="{{ route('sheet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                    Filtrer par numéro</a>
+            @else
+                <a class=" w-fit" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                Filtrer par date</a>
+            @endif
+
+
+            @if(str_contains(url()->current(), 'sortasc'))
+                <a class=" w-fit" href="{{ route('sheet.datedesc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                Filtrer par date</a>
+            @elseif(str_contains(url()->current(), 'sortdesc'))
+                <a class=" w-fit" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                Filtrer par date</a>
+            @endif
             {{-- Tableau des fiches --}}
             <ul class="border-2 border-primary rounded overflow-hidden max-h-[500px] overflow-y-scroll">
                 @php
                     $bgClass = 'bg-secondary';
                 @endphp
 
-                @foreach ($sheets->sortBy('id') as $index => $sheet)
+                @foreach ($sheets as $index => $sheet)
                     <li class="{{ $bgClass }} flex flex-col gap-2 md:gap-3 items-center justify-center md:flex-row md:justify-between md:items-center min-h-12 px-3 py-[10px]">
                         {{-- textes --}}
                         <div class="flex flex-col md:flex-row items-center flex-wrap gap-1 md:gap-2">

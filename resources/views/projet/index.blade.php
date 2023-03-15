@@ -38,7 +38,7 @@
                     $bgClass = 'bg-secondary';
                 @endphp
 
-                @foreach ($projets->sortBy('id') as $index => $projet)
+                @foreach ($projets as $index => $projet)
                 <li class="{{ $bgClass }} flex flex-col gap-2 md:gap-3 items-center justify-center md:flex-row md:justify-between md:items-center min-h-12 px-3 py-[10px]">
                     {{-- textes --}}
                     <div class="flex flex-col md:flex-row items-center flex-wrap gap-1 md:gap-2">

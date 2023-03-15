@@ -11,6 +11,7 @@ use App\Models\Sheet;
 use App\Models\State;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class SheetController extends Controller
 {
@@ -21,7 +22,25 @@ class SheetController extends Controller
      */
     public function index()
     {
-        $sheets = Sheet::orderBy('title', 'asc')->get();
+        $sheets = Sheet::orderBy('id', 'asc')->get();
+        $categories = Category::all();
+        $states = State::all();
+
+        return view('sheet.index', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states]);
+    }
+
+    public function dateasc()
+    {
+        $sheets = Sheet::orderBy('created_at', 'asc')->get();
+        $categories = Category::all();
+        $states = State::all();
+
+        return view('sheet.index', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states]);
+    }
+
+    public function datedesc()
+    {
+        $sheets = Sheet::orderBy('created_at', 'desc')->get();
         $categories = Category::all();
         $states = State::all();
 

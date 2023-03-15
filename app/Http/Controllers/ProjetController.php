@@ -19,7 +19,8 @@ class ProjetController extends Controller
      */
     public function index()
     {
-        return view('projet.index', ['projets' => Projet::orderBy('title', 'asc')->get()]);
+        $projets = Projet::orderBy('id', 'asc')->get();
+        return view('projet.index', ['projets' => $projets]);
     }
 
     public function archive()
