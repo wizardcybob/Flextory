@@ -61,7 +61,7 @@ Route::delete('area/{area}', [AreaController::class, 'destroy'])->name('area.des
 // UTILISATEURS
 Route::get('/user/search', [UserController::class, 'search'])->name('user.search');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
-Route::get('/user', [UserController::class, 'index'])->name('user.index');
+Route::get('/user', [UserController::class, 'index'])->name('user.index'); // -> page d'attribution des droits
 Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
 Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
 Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
