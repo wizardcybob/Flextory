@@ -31,9 +31,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/adearea', [AdeareaController::class, 'index'])->name('adearea.index');
 });
 
 Route::get('/image', [ImageController::class,'index'])->name('image.index');
