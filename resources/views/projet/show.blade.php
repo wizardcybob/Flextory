@@ -8,8 +8,8 @@
 
     {{-- VIEW --}}
     <div class="w-full mx-auto flex flex-col gap-7 md:gap-8">
-        <button class="btn_primary w-fit" onclick="window.history.back()" role="button" aria-label="Retour à la page précédente" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-            Retour</button>
+        <a class="btn_primary w-fit" href="{{ route('projet.index') }}"  aria-label="Retour à la page précédente" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            Retour</a>
 
         {{-- HEADER VIEW --}}
         <div class="flex flex-col gap-2 md:gap-0 md:flex-row md:items-center md:justify-between">
@@ -25,7 +25,7 @@
         <div class="flex flex-col gap-2">
             <p><span class="font-semibold">Année : </span>{{ $projet->year }}</p>
             <p><span class="font-semibold">Emplacement : </span>{{ $projet->area->name }}</p>
-            <p><span class="font-semibold">Responsable(s) : </span> 
+            <p><span class="font-semibold">Responsable(s) : </span>
             @foreach ($projet->teachers as $projet)
             <ul>
                 <li><a href="{{route('teacher.show', ['teacher' => $teacher])}}">{{$teacher->name}}</a></li>

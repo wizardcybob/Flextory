@@ -74,7 +74,7 @@ class ProjetController extends Controller
             'year' => 'nullable',
             'teacher' => 'nullable',
             'student' => 'nullable',
-            'area' => 'nullable',
+            'area' => 'required',
             'image' => 'nullable'
         ]);
         $projet = new Projet();

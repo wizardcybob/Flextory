@@ -28,21 +28,20 @@
                 </div>
                 <div class="relative w-full">
                     <label for="category" id="category-label" class="absolute label_form">Filtrer par catégorie :</label>
-                    <select class="select_recherche" id="category" name="category" aria-labelledby="category-label">
                         <option value="" selected disabled hidden>Sélectionner une catégorie</option>
                         @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <input type="checkbox" id="category{{ $category->id }}" name="categories[]" value="{{ $category->id }}">
+                            <label for="category{{ $category->id }}" class="ml-2">{{ $category->name }}</label>
                         @endforeach
-                    </select>
                 </div>
                 <div class="relative w-full">
                     <label for="state" id="state-label" class="absolute label_form">Filtrer par état d'avancement :</label>
-                    <select class="select_recherche" id="state" name="state" aria-labelledby="state-label">
-                        <option value="" selected disabled hidden>Sélectionner un état</option>
-                        @foreach($states as $state)
-                            <option value="{{ $state->id }}">{{ $state->name }}</option>
-                        @endforeach
-                    </select>
+                    @foreach($states as $state)
+                        <div class="flex items-center">
+                            <input type="checkbox" id="state{{ $state->id }}" name="states[]" value="{{ $state->id }}">
+                            <label for="state{{ $state->id }}" class="ml-2">{{ $state->name }}</label>
+                        </div>
+                    @endforeach
                 </div>
                 <button class="btn_tertiary" type="submit" aria-label="Faire une recherche">Rechercher</button>
             </form>
@@ -62,14 +61,12 @@
                         {{-- all btns --}}
                         <div class="flex flex-row items-center gap-2">
                             {{-- état de la fiche --}}
-                            @if ($sheet->state->id == 1)
+                            @if ($sheet->state->name == "À traiter")
                                 <div class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center border-none whitespace-nowrap" aria-label="Fiche à traiter">À traiter</div>
-                            @elseif ($sheet->state->id == 2)
+                            @elseif ($sheet->state->name == "En cours")
                                 <div class="bg-status-in_progress text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center border-none whitespace-nowrap" aria-label="Fiche en cours">En cours</div>
-                            @elseif ($sheet->state->id == 3)
+                            @elseif ($sheet->state->name == "Terminé")
                                 <div class="bg-status-done text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center border-none whitespace-nowrap" aria-label="Fiche terminée">Terminée</div>
-                            @elseif ($sheet->state->id == 4)
-                                <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center border-none whitespace-nowrap" aria-label="Fiche archivée">Archivée</div>
                             @endif
                             {{-- select état de la fiche --}}
                             {{-- @if ($sheet->state->id == 1)
