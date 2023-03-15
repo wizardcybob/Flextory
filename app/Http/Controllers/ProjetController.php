@@ -71,7 +71,6 @@ class ProjetController extends Controller
             'description' => 'required',
             'ressource' => 'nullable',
             'pistar' => 'nullable',
-            'image' => 'nullable',
             'year' => 'nullable',
             'teacher' => 'nullable',
             'student' => 'nullable',
@@ -80,7 +79,9 @@ class ProjetController extends Controller
         ]);
         $projet = new Projet();
         $projet->fill($data);
+        if (isset($data['image'])) {
         $projet->image()->associate($data['image']);
+        };
         $projet->save();
         if (isset($data['student'])) {
         $projet->students()->attach($data['student']);
@@ -137,7 +138,6 @@ class ProjetController extends Controller
             'description' => 'required',
             'ressource' => 'nullable',
             'pistar' => 'nullable',
-            'image' => 'nullable',
             'year' => 'nullable',
             'teacher' => 'nullable',
             'student' => 'nullable',

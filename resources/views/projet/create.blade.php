@@ -18,8 +18,6 @@
                     <p><input type="text" placeholder="Ressource" name="ressource" value="{{ old('ressource') }}"></p>
                     Lien Pistar :
                     <p><input type="text" placeholder="Matériel" name="pistar" value="{{ old('pistar') }}"></p>
-                    Image :
-                    <p><input type="text" placeholder="Image" name="image" value="{{ old('image') }}"></p>
                     Année :
                     <p><input type="text" placeholder="Année" name="year" value="{{ old('year') }}"></p>
                     Enseignants :
