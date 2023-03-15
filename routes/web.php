@@ -113,6 +113,8 @@ Route::get('/sheet/archive/search', [SheetController::class, 'searchArchive'])->
 Route::get('/sheet/archive', [SheetController::class, 'archive'])->name('sheet.archive');
 Route::get('/sheet/create', [SheetController::class, 'create'])->name('sheet.create');
 Route::get('/sheet', [SheetController::class, 'index'])->name('sheet.index');
+Route::get('/sheet/sortasc', [SheetController::class, 'dateasc'])->name('sheet.dateasc');
+Route::get('/sheet/sortdesc', [SheetController::class, 'datedesc'])->name('sheet.datedesc');
 Route::post('/sheet/store', [SheetController::class, 'store'])->name('sheet.store');
 Route::get('/sheet/{sheet}', [SheetController::class, 'show'])->name('sheet.show');
 Route::get('/sheet/{sheet}/edit', [SheetController::class, 'edit'])->name('sheet.edit');

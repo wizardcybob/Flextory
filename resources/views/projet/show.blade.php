@@ -24,7 +24,9 @@
         {{-- INFORMATIONS --}}
         <div class="flex flex-col gap-2">
             <p><span class="font-semibold">Année : </span>{{ $projet->year }}</p>
-            <p><span class="font-semibold">Emplacement : </span>{{ $projet->area->name }}</p>
+            @foreach ($projet->areas as $area)
+            <p><span class="font-semibold">Emplacement : </span>{{ $area->name }}</p>
+            @endforeach
             <p><span class="font-semibold">Responsable(s) : </span>
             @foreach ($projet->teachers as $projet)
             <ul>
