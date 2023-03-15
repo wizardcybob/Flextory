@@ -4,23 +4,40 @@
             {{ __('Enseignant') }}
         </h2>
     </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <p><a aria-labelledby="Retour" href="{{ route('teacher.index') }}">Retour</a></p>
-            <h1>{{ $teacher->name }}</h1>
-            <p>Permanent : {{ $teacher->permanent }}</p>
 
-            <h2>Département : {{ $teacher->department->name }}</h2>
-            <h2>Statut : {{ $teacher->status->name }}</h2>
+    {{-- VIEW --}}
+    <div class="w-full mx-auto flex flex-col gap-7 md:gap-8">
+        <a class="btn_primary w-fit" href="{{ route('teacher.index') }}" aria-label="Retour à la page précédente" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            Retour</a>
 
-            <p><a aria-labelledby="Modifier" href="{{ route('teacher.edit', ['teacher' => $teacher])}}">Modifier</a></p>
-
+        {{-- HEADER VIEW --}}
+        <div class="flex flex-col gap-2 md:gap-0 md:flex-row md:items-center md:justify-between">
+            {{-- TEXTES --}}
+            <div class="flex flex-col gap-1 md:gap-2">
+                <h1 class="titre_page">{{ $teacher->name }}</h1>
+                @if ($teacher->permanent === 1)
+                    <p class="text-sm text-tertiary">Enseignant permanent</p>
+                @else
+                    <p class="text-sm text-tertiary">Enseignant non permanent</p>
+                @endif
+            </div>
+            {{-- btns --}}
+            <div class="flex gap-2">
+                {{-- btn edit --}}
+                <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded w-fit h-fit" href="{{ route('teacher.edit', ['teacher' => $teacher])}}" aria-label="Modifier {{ $teacher->name }}"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
+                {{-- btn delete --}}
                 <form action="{{ route('teacher.destroy', ['teacher' => $teacher]) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button aria-labelledby="Supprimer" type="submit">Supprimer</button>
+                    <button class="bg-delete hover:bg-delete-dark text-white py-1 px-2 rounded w-fit h-fit"  aria-label="Supprimer {{ $teacher->name }}" type="submit"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
                 </form>
+            </div>
         </div>
 
+        {{-- DEPARTEMENTS --}}
+        <p><span class="font-semibold">Département : </span>{{ $teacher->department->name }}</p>
+
+        {{-- STATUT --}}
+        <p><span class="font-semibold">Statut : </span>{{ $teacher->status->name }}</p>
     </div>
 </x-app-layout>
