@@ -4,26 +4,33 @@
             {{ __('Modifier utilisateur') }}
         </h2>
     </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <form action="{{ route('user.update', ['user' => $user]) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <p><input type="text" placeholder="Nom" name="name" value="{{ $user->name }}"></p>
-                    <p>
-                        <select name="role">
-                            <option value=""></option>
-                            @foreach ($roles as $role)
-                                <option value="{{ $role->id }}" @if ($user->role == $role->id) selected @endif>
-                                    {{ $role->name }}</option>
-                            @endforeach
-                        </select>
-                    </p>
 
-                    <p><button aria-labelledby="Modifier" type="submit">Modifier</button></p>
-                </form>
+    {{-- VIEW --}}
+    <div class="w-full mx-auto flex flex-col gap-8">
+        <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
+        <h1 class="titre_page">Modification du rôle</h1>
+
+        <p class="italic">Vous vous apprêtez à modifier le rôle de <span class="font-semibold text-tertiary">{{ $user->name }}</span>&nbsp;!</p>
+
+        <form action="{{ route('user.update', ['user' => $user]) }}" method="POST" class="flex flex-col gap-4">
+            @csrf
+            @method('PUT')
+
+            {{-- RÔLE --}}
+            <div class="relative">
+                <label for="role" id="role-label" class="absolute label_form">Rôle :</label>
+                <select class="select_form" id="role" name="role" aria-labelledby="role-label" required aria-required="true">
+                    <option value="" selected disabled hidden>Sélectionner un rôle</option>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}" @if ($user->role == $role->id) selected @endif>
+                            {{ $role->name }}</option>
+                    @endforeach
+                </select>
             </div>
-        </div>
+
+            <div class="flex justify-end w-full">
+                <button class="btn_primary flex justify-center" type="submit" aria-label="Enregistrer les modifications">Enregistrer</button>
+            </div>
+        </form>
     </div>
 </x-app-layout>
