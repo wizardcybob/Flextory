@@ -1,6 +1,10 @@
 <x-guest-layout>
     <x-jet-authentication-card>
 
+        <x-slot name="title">
+            {{ __('Se connecter') }}
+        </x-slot>
+
         <x-jet-validation-errors class="mb-4" />
 
         @if (session('status'))
@@ -13,19 +17,19 @@
             @csrf
 
             <div>
-                {{-- <x-jet-label for="email" value="{{ __('Adresse mail') }}" /> --}}
-                <x-jet-input aria-labelledby="Email" id="email" class="block w-full" type="email" name="email" placeholder="Adresse mail*" :value="old('email')" required autofocus />
+                <x-jet-label for="email" value="{{ __('Adresse mail*') }}" />
+                <x-jet-input aria-labelledby="Email" id="email" class="block w-full" type="email" name="email" placeholder="Adresse mail*" :value="old('email')" required autofocus autocomplete="email" />
             </div>
 
             <div class="mt-4">
-                {{-- <x-jet-label for="password" value="{{ __('Mot de passe') }}" /> --}}
+                <x-jet-label for="password" value="{{ __('Mot de passe*') }}" />
                 <x-jet-input aria-labelledby="Mot de passe" id="password" class="block w-full" type="password" name="password" placeholder="Mot de passe*" required autocomplete="current-password" />
             </div>
 
             <div class="block mt-2 md:mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-jet-checkbox class="rounded-md" id="remember_me" name="remember" aria-labelledby="Se souvenir de moi" />
-                    <span class="ml-2 text-sm text-secondary-light">{{ __('Remember me') }}</span>
+                    <span class="ml-2 text-sm text-secondary-light">{{ __('Se souvenir de moi') }}</span>
                 </label>
             </div>
 
@@ -38,7 +42,7 @@
 
                     @if (Route::has('password.request'))
                         <a class="underline text-sm text-secondary-light hover:text-primary font-semibold" href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
+                            {{ __('Vous avez oublié votre mot de passe ?') }}
                         </a>
                     @endif
                 </div>

@@ -2,10 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* GENERAL */
 .titre_page {
 	@apply text-primary-darker font-semibold italic text-2xl md:text-3xl;
 }
+
+.sous-titre_page {
+	@apply text-primary font-semibold italic text-2xl md:text-3xl;
+}
+
 
 /* BUTTONS */
 .btn_primary {
@@ -19,6 +25,7 @@
 .btn_archive {
 	@apply transition ease-in-out  hover:bg-status-archive-hover duration-200 flex items-center justify-center cursor-pointer gap-4 bg-status-archive text-white py-2 rounded px-4 font-medium text-center;
 }
+
 
 /* FORMS */
 .label_form {
@@ -37,6 +44,7 @@
 	@apply w-5 h-5 rounded border-secondary text-primary shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50;
 }
 
+
 /* SEARCHBAR */
 .label_recherche {
 	@apply text-primary font-semibold left-4 text-xs -top-2 bg-white rounded px-1;
@@ -49,6 +57,7 @@
 .select_recherche {
 	@apply mt-0 text-primary-darker border-t-[0px] border-x-[0px] border-b-[4px] border-b-tertiary focus:border-b-tertiary-dark rounded-t-md overflow-hidden bg-orange-200/30 w-full cursor-pointer;
 }
+
 
 /* IMAGES */
 .zoom_image {

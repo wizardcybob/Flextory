@@ -6,11 +6,13 @@
     </x-slot>
 
     <div class="w-full mx-auto flex flex-col gap-8">
-        <h1 class="titre_page">Sous-zone</h1>
         <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
-        @if (Auth::user()->role === 1 || Auth::user()->role === 2)
+        <div class="flex justify-between items-center">
+            <h1 class="titre_page">Sous-zone</h1>
+            @if (Auth::user()->role === 1 || Auth::user()->role === 2)
                 <a href="{{ route('projet.archive') }}" class="btn_archive w-fit" title="Archives">Archives<i class="fa-solid fa-box-archive" aria-hidden="true" aria-labelledby="Archives"></i></a>
             @endif
+        </div>
 
         {{-- VIEW --}}
         <div class="flex flex-col gap-4">
@@ -24,6 +26,7 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                 </div>
+                <button class="btn_tertiary" type="submit" aria-label="Faire une recherche">Rechercher</button>
             </form>
             @if(str_contains(url()->current(), 'search'))
             <a class="btn_primary w-fit" href="{{ route('projet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
@@ -43,7 +46,7 @@
                     </div>
                     {{-- btns --}}
                     <div class="flex gap-2">
-                        <a class="bg-primary hover:bg-primary-dark text-white py-1 px-4 rounded" href="" aria-label="Voir les ressources du projet">Ressources</a>
+                        <a class="bg-primary hover:bg-primary-dark text-white py-1 px-2 rounded" href="" aria-label="Voir les ressources du projet">Ressources</a>
                         <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('projet.show', $projet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
                         <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded" href="{{ route('projet.edit', ['projet' => $projet->id])}}" aria-label="Modifier le projet"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
                         <form action="{{ route('projet.destroy', ['projet' => $projet->id]) }}" method="POST">
