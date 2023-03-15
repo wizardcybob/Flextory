@@ -46,10 +46,11 @@
                         </a>
                     @endif
                 </div>
+
             </div>
         </form>
         <div class="mt-4 text-sm">
-            <a href="/register">
+            <a href="./register">
                 <p class="underline text-sm text-center text-gray-600 hover:text-gray-900">Pas de compte ? Inscrivez-vous ici !</p>
             </a>
         </div>
