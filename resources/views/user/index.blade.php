@@ -9,14 +9,14 @@
         <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
         <div class="flex flex-col md:flex-row gap-2 md:gap-0 w-full justify-between items-start md:items-center">
             <h1 class="titre_page">Listes</h1>
-            <div class="flex gap-2">
+            <div class="flex flex-col md:flex-row gap-2">
                 <a href="" class="btn_tertiary w-fit" title="Liste des étudtiants">Liste des étudtiants<i class="fa-solid fa-graduation-cap" aria-hidden="true" aria-labelledby="Etudiants"></i></a>
                 <a href="" class="btn_tertiary w-fit" title="Liste des professeurs">Liste des professeurs<i class="fa-solid fa-chalkboard-user" aria-hidden="true" aria-labelledby="Professeurs"></i></a>
             </div>
         </div>
         {{-- BARRE DE RECHERCHE --}}
         <form method="GET" action="{{ route('user.search') }}">
-            <div class="flex items-center gap-2">
+            <div class="flex flex-col md:flex-row items-center gap-2">
                 <div class="relative w-full">
                     <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
                     <input type="text" id="query" name="query"  class="input_textarea_recherche pl-10" placeholder="Faire une recherche..." aria-labelledby="query-label">
