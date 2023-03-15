@@ -41,7 +41,7 @@ class SheetController extends Controller
     {
         $query = $request->input('query');
         $category = $request->input('category');
-        $state = $request->input('state');
+        $states = $request->input('states');
 
         $sheets = Sheet::when($category, function ($query, $category) {
                 return $query->where('category_id', $category);
@@ -49,8 +49,8 @@ class SheetController extends Controller
             ->when($query, function ($query, $searchTerm) {
                 return $query->where('title', 'LIKE', "%{$searchTerm}%");
             })
-            ->when($state, function ($query, $state) {
-                return $query->where('state_id', $state);
+            ->when($states, function ($query, $selectedStates) {
+                return $query->whereIn('state_id', $selectedStates);
             })
             ->get();
 

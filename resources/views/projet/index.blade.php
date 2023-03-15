@@ -25,6 +25,10 @@
                     </div>
                 </div>
             </form>
+            @if(str_contains(url()->current(), 'search'))
+            <a class="btn_primary w-fit" href="{{ route('projet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                Supprimer la recherche</a>
+            @endif
             {{-- Tableau des fiches --}}
             <ul class="border-2 border-primary rounded overflow-hidden max-h-[500px] overflow-y-scroll">
                 @php
