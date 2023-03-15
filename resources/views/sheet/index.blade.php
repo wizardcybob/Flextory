@@ -7,18 +7,18 @@
 
     {{-- VIEW --}}
     <div class="w-full mx-auto flex flex-col gap-8">
-        <div class="flex flex-col md:flex-row gap-8 md:gap-0 w-full justify-between items-start md:items-center">
+        <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
+        <div class="flex flex-col md:flex-row gap-2 md:gap-0 w-full justify-between items-start md:items-center">
             <h1 class="titre_page">Fiches d'amélioration</h1>
             @if (Auth::user()->role === 1 || Auth::user()->role === 2)
                 <a href="{{ route('sheet.archive') }}" class="btn_archive w-fit" title="Archives">Archives<i class="fa-solid fa-box-archive" aria-hidden="true" aria-labelledby="Archives"></i></a>
             @endif
         </div>
-        <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
 
         <div class="flex flex-col gap-4">
             {{-- Barre de recherche + filtres --}}
             <form method="GET" action="{{ route('sheet.search') }}">
-                <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-4 md:gap-6">
                     {{-- BARRE DE RECHERCHE --}}
                     <div class="relative w-full">
                         <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
@@ -30,18 +30,19 @@
                     {{-- FILTRE CATEGORIE --}}
                     <div class="relative w-full">
                         <label for="category" id="category-label" class="label_form">Filtrer par catégorie :</label>
-                        <div class="flex gap-6">
+                        <div class="flex flex-wrap gap-x-6 gap-y-1">
                             @foreach($categories as $category)
                                 <div class="flex items-center">
                                     <input type="checkbox" class="checkbox_form" id="category{{ $category->id }}" name="categories[]" value="{{ $category->id }}">
                                     <label for="category{{ $category->id }}" class="ml-2">{{ $category->name }}</label>
                                 </div>
                             @endforeach
+                        </div>
                     </div>
                     {{-- FILTRE STATUT FICHE --}}
-                    <div class="relative w-full mt-4">
+                    <div class="relative w-full">
                         <label for="state" id="state-label" class="label_form">Filtrer par état d'avancement :</label>
-                        <div class="flex gap-6">
+                        <div class="flex flex-wrap gap-x-6 gap-y-1">
                             @foreach($states as $state)
                                 <div class="flex items-center">
                                     <input type="checkbox" class="checkbox_form" id="state{{ $state->id }}" name="states[]" value="{{ $state->id }}">
