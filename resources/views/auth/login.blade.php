@@ -16,13 +16,13 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <div>
-                <x-jet-label for="email" value="{{ __('Adresse mail*') }}" />
+            <div class="relative">
+                <x-jet-label class="absolute label_form" for="email" value="{{ __('Adresse mail*') }}" />
                 <x-jet-input aria-labelledby="Email" id="email" class="block w-full" type="email" name="email" placeholder="Adresse mail*" :value="old('email')" required autofocus autocomplete="email" />
             </div>
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Mot de passe*') }}" />
+            <div class="mt-4 relative">
+                <x-jet-label class="absolute label_form" for="password" value="{{ __('Mot de passe*') }}" />
                 <x-jet-input aria-labelledby="Mot de passe" id="password" class="block w-full" type="password" name="password" placeholder="Mot de passe*" required autocomplete="current-password" />
             </div>
 
@@ -38,15 +38,20 @@
                     {{ __('Se connecter') }}
                 </x-jet-button>
                 <div class="flex flex-col gap-2 items-center md:flex-row md:gap-0 md:justify-between w-full">
-                    <p class="text-sm font-semibold">*Champs obligatoires.</p>
+                    <p class="text-sm font-semibold text-primary">*Champs obligatoires.</p>
 
                     @if (Route::has('password.request'))
                         <a class="underline text-sm text-secondary-light hover:text-primary font-semibold" href="{{ route('password.request') }}">
-                            {{ __('Vous avez oublié votre mot de passe ?') }}
+                            {{ __('Mot de passe oublié ?') }}
                         </a>
                     @endif
                 </div>
             </div>
         </form>
+        <div class="mt-4 text-sm">
+            <a href="/register">
+                <p class="underline text-sm text-center text-gray-600 hover:text-gray-900">Pas de compte ? Inscrivez-vous ici !</p>
+            </a>
+        </div>
     </x-jet-authentication-card>
 </x-guest-layout>
