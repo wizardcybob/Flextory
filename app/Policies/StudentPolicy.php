@@ -18,7 +18,8 @@ class StudentPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->role == '1' || $user->role == '2';
+
     }
 
     /**
@@ -30,7 +31,8 @@ class StudentPolicy
      */
     public function view(User $user, Student $student)
     {
-        //
+        return $user->role == '1' || $user->role == '2';
+
     }
 
     /**
@@ -41,7 +43,8 @@ class StudentPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->role == '1' || $user->role == '2';
+
     }
 
     /**
@@ -53,7 +56,8 @@ class StudentPolicy
      */
     public function update(User $user, Student $student)
     {
-        //
+        return $user->role == '1' || $user->role == '2';
+
     }
 
     /**
