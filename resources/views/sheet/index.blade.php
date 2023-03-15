@@ -18,7 +18,7 @@
         <div class="flex flex-col gap-4">
             {{-- Barre de recherche + filtres --}}
             <form method="GET" action="{{ route('sheet.search') }}">
-                <div class="flex flex-col gap-4 md:gap-6">
+                <div class="flex flex-col gap-4">
                     {{-- BARRE DE RECHERCHE --}}
                     <div class="relative w-full">
                         <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
@@ -51,7 +51,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <button class="btn_tertiary mt-6" type="submit" aria-label="Faire une recherche">Rechercher</button>
+                    <button class="btn_tertiary w-fit" type="submit" aria-label="Faire une recherche">Rechercher</button>
                 </div>
             </form>
             @if(str_contains(url()->current(), 'search'))
@@ -60,7 +60,8 @@
             @endif
 
             @if ($sheets->isNotEmpty())
-                @if(str_contains(url()->current(), 'sortasc'))
+                {{-- FILTRES PAR DATE & PAR NUMERO --}}
+                {{-- @if(str_contains(url()->current(), 'sortasc'))
                     <a class=" w-fit hidden" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
                     Filtrer par date</a>
                     <a class="btn_primary w-fit" href="{{ route('sheet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
@@ -81,9 +82,9 @@
                 @elseif(str_contains(url()->current(), 'sortdesc'))
                     <a class=" w-fit" href="{{ route('sheet.dateasc') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
                     Filtrer par date</a>
-                @endif
+                @endif --}}
             {{-- Tableau des fiches --}}
-            <ul class="border-2 border-primary rounded overflow-hidden max-h-[500px] overflow-y-scroll">
+            <ul class="border-2 border-primary rounded overflow-hidden max-h-[500px] overflow-y-scroll mt-2">
                 @php
                     $bgClass = 'bg-secondary';
                 @endphp
