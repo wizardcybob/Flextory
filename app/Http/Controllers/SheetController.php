@@ -41,7 +41,7 @@ class SheetController extends Controller
     {
         $query = $request->input('query');
         $category = $request->input('category');
-        $state = $request->input('state');
+        $states = $request->input('states');
 
         $sheets = Sheet::when($category, function ($query, $category) {
                 return $query->where('category_id', $category);
@@ -49,8 +49,8 @@ class SheetController extends Controller
             ->when($query, function ($query, $searchTerm) {
                 return $query->where('title', 'LIKE', "%{$searchTerm}%");
             })
-            ->when($state, function ($query, $state) {
-                return $query->where('state_id', $state);
+            ->when($states, function ($query, $selectedStates) {
+                return $query->whereIn('state_id', $selectedStates);
             })
             ->get();
 
@@ -65,7 +65,7 @@ class SheetController extends Controller
     {
         $query = $request->input('query');
         $category = $request->input('category');
-        $state = $request->input('state');
+        $states = $request->input('states');
 
         $sheets = Sheet::when($category, function ($query, $category) {
                 return $query->where('category_id', $category);
@@ -73,14 +73,13 @@ class SheetController extends Controller
             ->when($query, function ($query, $searchTerm) {
                 return $query->where('title', 'LIKE', "%{$searchTerm}%");
             })
-            ->when($state, function ($query, $state) {
-                return $query->where('state_id', $state);
+            ->when($states, function ($query, $selectedStates) {
+                return $query->whereIn('state_id', $selectedStates);
             })
             ->get();
 
         $categories = Category::all();
         $states = State::all();
-
 
         return view('sheet.index', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states]);
     }
@@ -112,7 +111,7 @@ class SheetController extends Controller
     public function store(SheetRequest $request)
 {
     $data = $request->validate([
-        'title' => 'required|string|max:255',
+        'title' => 'required|string|max:191',
         'description' => 'nullable',
         'idea' => 'nullable',
         'state' => 'required',

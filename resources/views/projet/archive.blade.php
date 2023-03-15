@@ -9,11 +9,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <a href="javascript:history.go(-1)" class="">Retour</a>
-                <form method="GET" action="{{ route('projet.search') }}">
+                <form method="GET" action="{{ route('projet.searchArchive') }}">
                     <input type="text" name="query" placeholder="Recherche...">
                     <button type="submit">Search</button>
                 </form>
-                    <p><a href="{{ route('projet.create') }}">Create new projet</a></p>
+                @if(str_contains(url()->current(), 'search'))
+                    <a class="btn_primary w-fit" href="{{ route('projet.archive') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                    Supprimer la recherche</a>
+                @endif
 
 
                 @if ($projets->isNotEmpty())

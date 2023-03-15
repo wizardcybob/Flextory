@@ -13,31 +13,37 @@
         <div class="flex flex-col gap-4">
             @if ($sheets->isNotEmpty())
             {{-- Barre de recherche + filtres --}}
-            <form class="flex flex-col md:flex-row gap-2" method="GET" action="{{ route('sheet.searchArchive') }}">
+            <form class="flex flex-col md:flex-row gap-4 md:gap-2" method="GET" action="{{ route('sheet.searchArchive') }}">
                 <div class="relative w-full">
                     <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
-                    <input type="text" id="query" name="query"  class="input_textarea_recherche" placeholder="Faire une recherche..." aria-labelledby="query-label">
+                    <input type="text" id="query" name="query"  class="input_textarea_recherche pl-9" placeholder="Faire une recherche..." aria-labelledby="query-label">
+                    <div class="absolute left-3 inset-y-0 flex items-center text-secondary pb-1">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
                 </div>
                 <div class="relative w-full">
                     <label for="category" id="category-label" class="absolute label_form">Filtrer par catégorie :</label>
-                    <select class="select_recherche" id="category" name="category" aria-labelledby="category-label">
                         <option value="" selected disabled hidden>Sélectionner une catégorie</option>
                         @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <input type="checkbox" id="category{{ $category->id }}" name="categories[]" value="{{ $category->id }}">
+                            <label for="category{{ $category->id }}" class="ml-2">{{ $category->name }}</label>
                         @endforeach
-                    </select>
                 </div>
                 <div class="relative w-full">
                     <label for="state" id="state-label" class="absolute label_form">Filtrer par état d'avancement :</label>
-                    <select class="select_recherche" id="state" name="state" aria-labelledby="state-label">
-                        <option value="" selected disabled hidden>Sélectionner un état</option>
-                        @foreach($states as $state)
-                            <option value="{{ $state->id }}">{{ $state->name }}</option>
-                        @endforeach
-                    </select>
+                    @foreach($states as $state)
+                        <div class="flex items-center">
+                            <input type="checkbox" id="state{{ $state->id }}" name="states[]" value="{{ $state->id }}">
+                            <label for="state{{ $state->id }}" class="ml-2">{{ $state->name }}</label>
+                        </div>
+                    @endforeach
                 </div>
                 <button class="btn_tertiary" type="submit" aria-label="Faire une recherche">Rechercher</button>
             </form>
+            @if(str_contains(url()->current(), 'search'))
+            <a class="btn_primary w-fit" href="{{ route('sheet.archive') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                Supprimer la recherche</a>
+            @endif
             {{-- Tableau des fiches --}}
             <ul class="border-2 border-primary rounded overflow-hidden max-h-[500px] overflow-y-scroll">
                 @php
