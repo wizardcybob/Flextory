@@ -48,12 +48,12 @@ module.exports = {
 					// grey
 					light: '#E7EEF3', // input / row of a table
 					DEFAULT: '#C1C4CF', // row of a table
-					dark: '#80818D', // texte
+					dark: '#80818D', // hover
 				},
 				tertiary: {
 					// orange
 					DEFAULT: '#F1892B', // row of a table
-					dark: '#D16A0E', // texte
+					dark: '#BF600B', // hover
 				},
 				valid: '#51BB1E', // valid
 				error: '#C63434', // error
