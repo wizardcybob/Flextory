@@ -46,7 +46,7 @@
                         <p>{{ Auth::user()->name }}</p>
                         <p class="text-xl"><i class="fa-solid fa-circle-user"></i></p>
                         <div x-show="showProfileMenu" class="mt-2 absolute w-64 rounded-sm top-12 right-0 divide-y-2 divide-tertiary shadow-inner overflow-hidden border-tertiary border-2">
-                            <div tabindex="0" @click.prevent="window.location.href='/user/profile'" @keyup.enter="window.location.href='/user/profile'" class="bg-secondary-light text-tertiary hover:bg-tertiary hover:text-white px-4 py-2 flex justify-between items-center gap-3">
+                            <div tabindex="0" @click.prevent="window.location.href='./user/profile'" @keyup.enter="window.location.href='./user/profile'" class="bg-secondary-light text-tertiary hover:bg-tertiary hover:text-white px-4 py-2 flex justify-between items-center gap-3">
                                 <p>Modifier le profil</p>
                                 <p class="text-xl"><i class="fa-solid fa-pen-to-square"></i></p>
                             </div>

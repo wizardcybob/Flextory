@@ -16,7 +16,6 @@
                     </p>
                     <p><input type="text" placeholder="Ressources" name="ressource" value="{{ $projet->ressource }}"></p>
                     <p><input type="text" placeholder="Matériels" name="pistar" value="{{ $projet->pistar }}"></p>
-                    <p><input type="text" placeholder="image" name="image" value="{{ $projet->image }}"></p>
                     <p><input type="text" placeholder="Année" name="year" value="{{ $projet->year }}"></p>
                     @foreach ($teachers as $teacher)
                         <p>
