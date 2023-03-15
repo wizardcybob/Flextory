@@ -4,50 +4,106 @@
             {{ __('Modifier le projet') }}
         </h2>
     </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <form action="{{ route('projet.update', ['projet' => $projet]) }}" method="POST">
+
+    <div class="w-full mx-auto flex flex-col gap-8">
+        <h1 class="titre_page">Modification d'un projet</h1>
+        <button class="btn_primary w-fit" onclick="window.history.back()" role="button" aria-label="Retour à la page précédente" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            Retour</button>
+
+        {{-- FORMULAIRE --}}
+                <form action="{{ route('projet.update', ['projet' => $projet]) }}" method="POST" class="flex flex-col gap-4">
                     @csrf
                     @method('PUT')
-                    <p><input type="text" aria-labelledby="Titre" placeholder="Titre" name="title" value="{{ $projet->title }}"></p>
-                    <p>
-                        <textarea rows="5" aria-labelledby="Description" placeholder="Description" name="description">{{ $projet->description }}</textarea>
-                    </p>
-                    <p><input type="text" placeholder="Ressources" name="ressource" value="{{ $projet->ressource }}"></p>
-                    <p><input type="text" placeholder="Matériels" name="pistar" value="{{ $projet->pistar }}"></p>
-                    <p><input type="text" placeholder="Année" name="year" value="{{ $projet->year }}"></p>
-                    @foreach ($teachers as $teacher)
-                        <p>
-                            <input type="checkbox" name="teacher[]" id="teacher_{{ $teacher->id }}" value="{{ $teacher->id }}"
-                                {{ in_array($teacher->id, $projet->teachers->pluck('id')->toArray()) ? 'checked' : '' }}>
-                            <label for="teacher_{{ $teacher->id }}">{{ $teacher->name }}</label>
-                        </p>
-                    @endforeach
-                    @foreach ($students as $student)
-                        <p>
-                            <input aria-labelledby="Etudiant" type="checkbox" name="student[]" id="student_{{ $student->id }}" value="{{ $student->id }}"
-                                {{ in_array($student->id, $projet->students->pluck('id')->toArray()) ? 'checked' : '' }}>
-                            <label for="student_{{ $student->id }}">{{ $student->name }}</label>
-                        </p>
-                    @endforeach
-                    @foreach ($areas as $area)
-                        <p>
-                            <input aria-labelledby="Zone" type="checkbox" name="area[]" id="area_{{ $area->id }}" value="{{ $area->id }}"
-                                {{ in_array($area->id, $projet->areas->pluck('id')->toArray()) ? 'checked' : '' }}>
-                            <label for="area_{{ $area->id }}">{{ $area->name }}</label>
-                        </p>
-                    @endforeach
-                    <p>
-                        <select name="image">
-                            <option value=""></option>
+
+                    {{-- Titre projet --}}
+                    <div class="relative">
+                        <label for="title" id="title-label" class="absolute label_form">Intitulé<span class="text-tertiary">*</span> :</label>
+                        <input type="text" id="title" name="title" class="input_textarea_form" placeholder="Titre du projet" value="{{ $projet->title }}" aria-labelledby="title-label" required aria-required="true">
+                    </div>
+
+                    {{-- Description --}}
+                    <div class="relative">
+                        <label for="description" class="absolute label_form" id="description-label">Description :</label>
+                        <textarea class="input_textarea_form" rows="5" id="description" name="description" placeholder="Votre description" aria-labelledby="description-label">{{ $projet->description }}</textarea>
+                    </div>
+
+                    {{-- Ressources --}}
+                    <div class="relative">
+                        <label for="ressource" id="ressource-label" class="absolute label_form">Ressources :</label>
+                        <input type="text" id="ressource" name="ressource" class="input_textarea_form" placeholder="Insérer le lien Seafile" value="{{ $projet->ressource }}" aria-labelledby="ressource-label">
+                    </div>
+
+                    {{-- Lien Pistar --}}
+                    <div class="relative">
+                        <label for="pistar" id="pistar-label" class="absolute label_form">Pistar :</label>
+                        <input type="text" id="pistar" name="pistar" class="input_textarea_form" placeholder="Insérer le lien Pistar" value="{{ $projet->pistar }}" aria-labelledby="pistar-label">
+                    </div>
+
+                    {{-- Année --}}
+                    <div class="relative">
+                        <label for="year" id="year-label" class="absolute label_form">Année scolaire :</label>
+                        <input type="text" id="year" name="year" class="input_textarea_form" placeholder="Choisir l'année scolaire" value="{{ $projet->year }}" aria-labelledby="year-label">
+                    </div>
+
+                    {{-- Enseignant(s) référent(s) --}}
+                    <div class="relative flex flex-col gap-1">
+                        <p class="label_form">Enseignant(s) référent(s) :</p>
+                        <div class="flex flex-wrap gap-x-6 gap-y-1">
+                            @foreach ($teachers as $teacher)
+                            <div class="flex gap-2 items-center">
+                                <input class="checkbox_form" type="checkbox" name="teacher[]" id="teacher{{ $teacher->id }}"
+                                    value="{{ $teacher->id }}" {{ in_array($teacher->id, $projet->teachers->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                    <label class="capitalize" for="teacher{{ $teacher->id }}">{{ $teacher->name }}</label>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    {{-- Étudiants --}}
+                    <div class="relative flex flex-col gap-1">
+                        <p class="label_form">Étudiants :</p>
+                        <div class="flex flex-wrap gap-x-6 gap-y-1">
+                            @foreach ($students as $student)
+                            <div class="flex gap-2 items-center">
+                                <input class="checkbox_form" type="checkbox" name="student[]" id="student{{ $student->id }}"
+                                    value="{{ $student->id }}" {{ in_array($student->id, $projet->students->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                    <label class="capitalize" for="student{{ $student->id }}">{{ $student->name }}</label>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    {{-- Sous-zones --}}
+                    <div class="relative flex flex-col gap-1">
+                        <p class="label_form">Sous-zones :</p>
+                        <div class="flex flex-wrap gap-x-6 gap-y-1">
+                            @foreach ($areas as $area)
+                            <div class="flex gap-2 items-center">
+                                <input class="checkbox_form" type="checkbox" name="area[]" id="area{{ $area->id }}"
+                                    value="{{ $area->id }}" {{ in_array($area->id, $projet->areas->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                    <label class="capitalize" for="area{{ $area->id }}">{{ $area->name }}</label>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    {{-- Image --}}
+                    <div class="relative w-full">
+                        <label for="image" id="image-label" class="absolute label_form">Image :</label>
+                        <select class="select_form" id="image" name="image" aria-labelledby="image-label">
+                            <option value="" selected disabled hidden>Sélectionner une image</option>
                             @foreach ($images as $image)
                                 <option value="{{ $image->id }}" @if ($projet->image_id == $image->id) selected @endif>
-                                    {{ $image->image }}</option>
+                                {{ $image->image }}</option>
                             @endforeach
                         </select>
-                    </p>
-                    <p><button aria-labelledby="Valider" type="submit">Valider</button></p>
+                    </div>
+
+                    <p class="text-tertiary text-xs">*Champs obligatoires.</p>
+
+                    <div class="flex justify-end w-full">
+                        <button class="btn_primary flex justify-center" type="submit" aria-label="Enregistrer les modifications">Enregistrer</button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -51,12 +51,11 @@
                     @foreach ($teachers as $teacher)
                     <div class="flex gap-2 items-center">
                         <input class="checkbox_form" type="checkbox" name="teacher[]" id="teacher{{ $teacher->id }}"
-                            value="{{ $teacher->id }}"><label class="capitalize" for="projet{{ $teacher->id }}">{{ $teacher->name }}</label>
+                            value="{{ $teacher->id }}"><label class="capitalize" for="teacher{{ $teacher->id }}">{{ $teacher->name }}</label>
                     </div>
                     @endforeach
                 </div>
             </div>
-
 
             {{-- Étudiants --}}
             <div class="relative flex flex-col gap-1">
@@ -65,13 +64,11 @@
                     @foreach ($students as $student)
                     <div class="flex gap-2 items-center">
                         <input class="checkbox_form" type="checkbox" name="student[]" id="student{{ $student->id }}"
-                            value="{{ $student->id }}"><label class="capitalize" for="projet{{ $student->id }}">{{ $student->name }}</label>
+                            value="{{ $student->id }}"><label class="capitalize" for="student{{ $student->id }}">{{ $student->name }}</label>
                     </div>
                     @endforeach
                 </div>
             </div>
-
-
 
             {{-- Sous-zones --}}
             <div class="relative flex flex-col gap-1">
@@ -80,7 +77,7 @@
                     @foreach ($areas as $area)
                     <div class="flex gap-2 items-center">
                         <input class="checkbox_form" type="checkbox" name="area[]" id="area{{ $area->id }}"
-                            value="{{ $area->id }}"><label class="capitalize" for="projet{{ $area->id }}">{{ $area->name }}</label>
+                            value="{{ $area->id }}"><label class="capitalize" for="area{{ $area->id }}">{{ $area->name }}</label>
                     </div>
                     @endforeach
                 </div>
@@ -98,8 +95,6 @@
                     @endforeach
                 </select>
             </div>
-
-
 
             <p class="text-tertiary text-xs">*Champs obligatoires.</p>
 
