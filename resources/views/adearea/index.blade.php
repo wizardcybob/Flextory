@@ -8,16 +8,13 @@
     {{-- VIEW --}}
     <div class="w-fit mx-auto flex flex-col gap-8">
         @if ($adeareas->isNotEmpty())
-        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3 md:gap-4">
             @foreach ($adeareas as $adearea)
             <li>
-                <div class="bg-tertiary h-[350px] w-[350px] relative">
-                    <div class="w-full h-full overflow-hidden">
-                        <img class="h-full" src="{{ asset('storage/images/flextory_login.jpg') }}" alt="Image illustrant la zone" />
-                    </div>
-                    <div class="absolute inset-0 m-6 backdrop-blur-md flex flex-col items-center justify-center">
-                        <p class="titre_page">{{ $adearea->name }}</p>
-                        <ul class="grid grid-cols-2 gap-2 p-4 w-4/5 bg-primary">
+                <div class="bg-secondary-dark h-full p-5 sm:p-3 md:p-5" style="background-image: url({{ asset('storage/images/flextory_login.jpg') }}); background-size:cover;"> <!--350px-->
+                    <div class="p-5 sm:p-3 md:p-5 backdrop-blur-md bg-white/30 flex flex-col items-center justify-center gap-5 h-full">
+                        <p class="sous-titre_page uppercase">{{ $adearea->name }}</p>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
                             @foreach ($adearea->areas as $area)
                             <li class="btn_tertiary w-full"><a href="{{ route('area.show', $area) }}">{{ $area->name }} </a></li>
                             @endforeach
