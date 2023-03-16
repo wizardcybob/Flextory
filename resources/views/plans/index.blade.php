@@ -7,7 +7,7 @@
 
     {{-- VIEW --}}
     <div>
-        <object data="{{ asset('storage/pdf/plan_flyer.pdf') }}" type="application/pdf" width="100%" height="600px">
+        <object data="{{ asset('storage/pdf/plan_flyer.pdf') }}" type="application/pdf" width="100%" height="500px">
             <embed src="{{ asset('storage/pdf/plan_flyer.pdf') }}" type="application/pdf" zoom="50%" />
         </object>
     </div>

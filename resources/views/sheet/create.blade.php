@@ -31,7 +31,7 @@
 
             {{-- Idées de résolution --}}
             <div class="relative">
-                <label for="idea" id="idea-label" class="absolute label_form z-10">Idées de résolution :</label>
+                <label for="idea" id="idea-label" class="absolute label_form z-10">Idée(s) de résolution :</label>
                 <textarea type="text" id="idea" name="idea" class="input_textarea_form mytextarea" placeholder="Indiquez vos idées de résolution" aria-labelledby="idea-label">{{ old('idea') }}</textarea>
             </div>
 
@@ -71,7 +71,7 @@
                     @foreach ($teachers as $teacher)
                     <div class="flex gap-2 items-center">
                         <input class="checkbox_form" type="checkbox" name="teacher[]" id="teacher{{ $teacher->id }}"
-                            value="{{ $teacher->id }}"><label class="capitalize" for="sheet{{ $teacher->id }}">{{ $teacher->name }}</label>
+                            value="{{ $teacher->id }}"><label class="capitalize" for="teacher{{ $teacher->id }}">{{ $teacher->name }}</label>
                     </div>
                     @endforeach
                 </div>
