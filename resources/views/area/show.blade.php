@@ -62,7 +62,7 @@
                         <div class="flex gap-2">
                             {{-- btn ressource --}}
                             @if ($projet->ressource)
-                                <a class="bg-primary hover:bg-primary-dark text-white py-1 px-2 rounded" href="{{ $projet->ressource }}" aria-label="Voir les ressources du projet">Ressources</a>
+                                <a class="bg-primary hover:bg-primary-dark text-white py-1 px-2 rounded" target="_blank"  href="{{ $projet->ressource }}" aria-label="Voir les ressources du projet">Ressources</a>
                             @endif
                             {{-- btn view --}}
                             <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('projet.show', $projet) }}" aria-label="Voir le projet"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
