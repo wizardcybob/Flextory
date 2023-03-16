@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="flex items-center gap-2">
-                @if (Auth::user()->role === 1)
+                @if (Auth::user()->role === 1 || Auth::user()->role === 2)
                     {{-- btn edit --}}
                     <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded w-fit h-fit" href="{{ route('area.edit', ['area' => $area])}}" aria-label="Modifier la zone"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
                     {{-- btn delete --}}
@@ -66,12 +66,12 @@
                             @endif
                             {{-- btn view --}}
                             <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('projet.show', $projet) }}" aria-label="Voir le projet"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
+                            @if (Auth::user()->role === 1 || Auth::user()->role === 2 || Auth::user()->role === 3)
                             {{-- btn dupplicate --}}
-                            <a class="bg-dupplicate hover:bg-dupplicate-dark text-white py-1 px-2 rounded" href="" aria-label="Duppliquer le projet"><i class="fa-solid fa-copy" aria-hidden="true"></i></a>
+                            <a class="bg-dupplicate hover:bg-dupplicate-dark text-white py-1 px-2 rounded" href="{{ route('projet.replicate', ['projet' => $projet->id])}}" aria-label="Duppliquer le projet"><i class="fa-solid fa-copy" aria-hidden="true"></i></a>
                             {{-- btn edit --}}
                             <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded" href="{{ route('projet.edit', ['projet' => $projet->id])}}" aria-label="Modifier le projet"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
                             {{-- btn delete --}}
-                            @if (Auth::user()->role === 1 || Auth::user()->role === 2)
                                 <form action="{{ route('projet.destroy', ['projet' => $projet->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -90,9 +90,9 @@
                     <p class="text-xl font-semibold text-tertiary">Aucun résultat :(</p>
                 </div>
             @endif
-
+            @if (Auth::user()->role === 1 || Auth::user()->role === 2 || Auth::user()->role === 3)
             <a href="{{ route('projet.create') }}" class="btn_primary w-full" title="Ajouter un projet"><i class="fa-solid fa-plus" aria-hidden="true"></i>Ajouter un projet</a>
-
+            @endif
         </div>
     </div>
 </x-app-layout>
