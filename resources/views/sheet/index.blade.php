@@ -7,7 +7,7 @@
 
     {{-- VIEW --}}
     <div class="w-full mx-auto flex flex-col gap-8">
-        <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
+        <a href="{{ route('area.show', $area) }}" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
         <div class="flex flex-col md:flex-row gap-2 md:gap-0 w-full justify-between items-start md:items-center">
             <h1 class="titre_page">Fiches d'amélioration</h1>
             @if (Auth::user()->role === 1 || Auth::user()->role === 2)

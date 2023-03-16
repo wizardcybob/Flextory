@@ -83,7 +83,6 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
         $data = $request->validate([
-            'name' => 'required|string|max:255',
             'role' => 'required|exists:groupes,id'
         ]);
         $user->fill($data);

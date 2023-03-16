@@ -103,7 +103,8 @@ class ProjetController extends Controller
      */
     public function show(Projet $projet)
     {
-        return view('projet.show', ['projet' => $projet]);
+        $area = $projet->areas()->firstOrFail();
+        return view('projet.show', ['projet' => $projet, 'area' => $area]);
     }
 
     /**
