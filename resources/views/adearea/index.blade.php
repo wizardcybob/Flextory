@@ -7,7 +7,7 @@
 
     {{-- VIEW --}}
     <div class="w-fit mx-auto flex flex-col gap-8">
-        <div class="flex justify-center">
+        <div class="flex justify-center gap-2">
             <a href="{{ route('sheet.create') }}" class="btn_primary w-fit" title="Ajouter une fiche d'amélioration"><i class="fa-solid fa-plus" aria-hidden="true"></i>Ajouter une fiche d'amélioration</a>
             <a href="{{ route('area.create') }}" class="btn_primary w-fit" title="Ajouter une sous-zone"><i class="fa-solid fa-plus" aria-hidden="true"></i>Ajouter une sous-zone</a>
         </div>
