@@ -44,13 +44,13 @@
                     @if (Auth::user()->role === 1 || Auth::user()->role === 2)
                     <p class="cursor-pointer"><a href="{{ route('user.index')}}" class="group transition duration-300">
                         Utilisateurs
-                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('adearea') ? 'max-w-full' : '' }}"></span>
+                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('user') ? 'max-w-full' : '' }}"></span>
                         </a></p>
                     @endif
                     
                     <p class="cursor-pointer"><a href="{{ route('projet.index')}}" class="group transition duration-300">
                         Projets
-                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('adearea') ? 'max-w-full' : '' }}"></span>
+                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('projet') ? 'max-w-full' : '' }}"></span>
                         </a></p>
                     
                     <p class="cursor-pointer"><a href="{{ route('plans.index')}}" class="group transition duration-300">
