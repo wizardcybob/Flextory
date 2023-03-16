@@ -7,7 +7,7 @@
 
     <div class="w-full mx-auto flex flex-col gap-8">
         <h1 class="titre_page">Etudiants</h1>
-        <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
+        <a href="{{ route('user.index') }})" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
 
         <div class="flex flex-col gap-4">
             @if ($students->isNotEmpty())

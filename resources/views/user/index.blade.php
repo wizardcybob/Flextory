@@ -10,8 +10,8 @@
         <div class="flex flex-col md:flex-row gap-2 md:gap-0 w-full justify-between items-start md:items-center">
             <h1 class="titre_page">Listes</h1>
             <div class="flex flex-col md:flex-row gap-2">
-                <a href="" class="btn_tertiary w-fit" title="Liste des étudtiants">Liste des étudtiants<i class="fa-solid fa-graduation-cap" aria-hidden="true" aria-labelledby="Etudiants"></i></a>
-                <a href="" class="btn_tertiary w-fit" title="Liste des professeurs">Liste des professeurs<i class="fa-solid fa-chalkboard-user" aria-hidden="true" aria-labelledby="Professeurs"></i></a>
+                <a href="{{ route('student.index') }}" class="btn_tertiary w-fit" title="Liste des étudtiants">Liste des étudtiants<i class="fa-solid fa-graduation-cap" aria-hidden="true" aria-labelledby="Etudiants"></i></a>
+                <a href="{{ route('teacher.index') }}" class="btn_tertiary w-fit" title="Liste des professeurs">Liste des professeurs<i class="fa-solid fa-chalkboard-user" aria-hidden="true" aria-labelledby="Professeurs"></i></a>
             </div>
         </div>
         {{-- BARRE DE RECHERCHE --}}
