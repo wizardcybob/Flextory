@@ -6,9 +6,9 @@
     </x-slot>
 
     <div class="w-full mx-auto flex flex-col gap-8">
-        <h1 class="titre_page">Modification de la fiche d'amélioration</h1>
         <button class="btn_primary w-fit" onclick="window.history.back()" role="button" aria-label="Retour à la page précédente" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
             Retour</button>
+        <h1 class="titre_page">Modification de la fiche d'amélioration</h1>
 
         {{-- FORMULAIRE --}}
         <form action="{{ route('sheet.update', ['sheet' => $sheet]) }}" method="POST" class="flex flex-col gap-4">
@@ -25,14 +25,14 @@
 
             {{-- Description --}}
             <div class="relative">
-                <label for="description" class="absolute label_form" id="description-label">Description :</label>
-                <textarea class="input_textarea_form" rows="5" id="description" name="description" placeholder="Votre description" aria-labelledby="description-label">{{ $sheet->description }}</textarea>
+                <label for="description" class="absolute label_form z-10" id="description-label">Description :</label>
+                <textarea class="input_textarea_form mytextarea " rows="5" id="description" name="description" placeholder="Votre description" aria-labelledby="description-label">{{ $sheet->description }}</textarea>
             </div>
 
             {{-- Idées de résolution --}}
             <div class="relative">
-                <label for="idea" id="idea-label" class="absolute label_form">Idées de résolution :</label>
-                <textarea rows="5" id="idea" name="idea" class="input_textarea_form" placeholder="Indiquez vos idées de résolution" aria-labelledby="idea-label">{{ $sheet->idea }}</textarea>
+                <label for="idea" id="idea-label" class="absolute label_form z-10">Idées de résolution :</label>
+                <textarea rows="5" id="idea" name="idea" class="mytextarea input_textarea_form" placeholder="Indiquez vos idées de résolution" aria-labelledby="idea-label">{{ $sheet->idea }}</textarea>
             </div>
 
             <div class="flex flex-col md:flex-row gap-4">

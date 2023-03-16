@@ -22,8 +22,8 @@
 
             {{-- Description --}}
             <div class="relative">
-                <label for="description" class="absolute label_form" id="description-label">Description :</label>
-                <textarea class="input_textarea_form" rows="5" id="description" name="description" placeholder="Votre description" aria-labelledby="description-label">{{ old('description') }}</textarea>
+                <label for="description" class="absolute label_form z-10" id="description-label">Description :</label>
+                <textarea class="input_textarea_form mytextarea" rows="5" id="description" name="description" placeholder="Votre description" aria-labelledby="description-label">{{ old('description') }}</textarea>
             </div>
 
             {{-- Ressources Seafile --}}
@@ -89,7 +89,7 @@
 
             {{-- Sous-zones --}}
             <div class="relative flex flex-col gap-1">
-                <p class="label_form">Sous-zones :</p>
+                <p class="label_form">Sous-zones<span class="text-tertiary">*</span> :</p>
                 <div class="flex flex-wrap gap-x-6 gap-y-1">
                     @foreach ($areas as $area)
                     <div class="flex gap-2 items-center">

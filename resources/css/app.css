@@ -16,6 +16,10 @@
 	@apply text-primary font-semibold italic text-2xl md:text-3xl;
 }
 
+.tox-notification.tox-notification--in.tox-notification--warning {
+    @apply hidden;
+}
+
 
 /* BUTTONS */
 .btn_primary {
@@ -70,4 +74,16 @@
 
 .parent_zoomed_img_show {
 	@apply bg-black/20 justify-center items-center hidden absolute inset-0 w-full h-screen overflow-hidden;
+}
+
+
+/* TABLEAUX */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table td, table th {
+    border: 1px solid black;
+    padding: 6px;
 }

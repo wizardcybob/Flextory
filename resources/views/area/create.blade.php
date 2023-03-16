@@ -41,8 +41,8 @@
 
             {{-- Zone --}}
             <div class="relative w-full">
-                <label for="adearea" id="adearea-label" class="absolute label_form">Zone :</label>
-                <select class="select_form" id="adearea" name="adearea" aria-labelledby="adearea-label">
+                <label for="adearea" id="adearea-label" class="absolute label_form">Zone<span class="text-tertiary">*</span> :</label>
+                <select class="select_form" id="adearea" name="adearea" aria-labelledby="adearea-label" required aria-required="true">
                     <option value="" selected disabled hidden>Sélectionner une zone</option>
                     @foreach ($adeareas as $adearea)
                         <option value="{{ $adearea->id }}" @if (old('adearea')==$adearea->id) selected @endif>
