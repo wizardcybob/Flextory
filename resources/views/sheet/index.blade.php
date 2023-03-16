@@ -137,7 +137,7 @@
                                 {{-- btn view --}}
                                 <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded w-fit h-fit" href="{{ route('sheet.show', $sheet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
                                 {{-- btn dupplicate --}}
-                                <a class="bg-dupplicate hover:bg-dupplicate-dark text-white py-1 px-2 rounded" href="" aria-label="Duppliquer la fiche d'amélioration"><i class="fa-solid fa-copy" aria-hidden="true"></i></a>
+                                {{-- <a class="bg-dupplicate hover:bg-dupplicate-dark text-white py-1 px-2 rounded" href="" aria-label="Duppliquer la fiche d'amélioration"><i class="fa-solid fa-copy" aria-hidden="true"></i></a> --}}
                                 {{-- btn edit --}}
                                 <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded w-fit h-fit" href="{{ route('sheet.edit', ['sheet' => $sheet->id])}}" aria-label="Modifier la fiche d'amélioration"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
                                 {{-- btn delete --}}
