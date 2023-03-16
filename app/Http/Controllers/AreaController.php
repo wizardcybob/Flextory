@@ -122,8 +122,8 @@ class AreaController extends Controller
         // dd($request);
         $area->fill($data);
         $area->save();
-        if (isset($data['adearea_id'])) {
-        $area->adearea()->associate($data['adearea_id'])->save();
+        if (isset($data['adearea'])) {
+        $area->adearea()->associate($data['adearea'])->save();
         };
         if (isset($data['image'])) {
             $area->image()->associate($data['image'])->save();
