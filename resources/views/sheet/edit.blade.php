@@ -13,6 +13,7 @@
         {{-- FORMULAIRE --}}
         <form action="{{ route('sheet.update', ['sheet' => $sheet]) }}" method="POST" class="flex flex-col gap-4">
             @csrf
+            @method('PUT')
             {{-- Créateur de la fiche (à cacher) --}}
             <input type="text" placeholder="creator" name="creator" class="hidden" value="{{ $creator }}">
 
