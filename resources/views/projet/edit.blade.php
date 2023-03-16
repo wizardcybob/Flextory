@@ -40,9 +40,24 @@
                     </div> --}}
 
                     {{-- Année --}}
+                    @php
+                    $years = [];
+                    foreach (range(date('Y'), 1990) as $year) {
+                        $year = $year . '-' . ($year + 1);
+                        array_push($years, $year);
+                    }
+                    @endphp
+
                     <div class="relative">
                         <label for="year" id="year-label" class="absolute label_form">Année scolaire :</label>
-                        <input type="text" id="year" name="year" class="input_textarea_form" placeholder="Choisir l'année scolaire" value="{{ $projet->year }}" aria-labelledby="year-label">
+                        <select class="select_form" id="year" name="year" aria-labelledby="year-label">
+                            <option value="" selected disabled hidden>Sélectionner une image</option>
+                            @foreach ($years as $year)
+                                <option value="{{ $year }}" @if ($projet->year === $year) selected @endif>
+                                    {{ $year }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
 
                     {{-- Enseignant(s) référent(s) --}}
