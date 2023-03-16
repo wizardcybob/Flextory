@@ -23,8 +23,8 @@
         <div class="bg-primary">
             <header class="container mx-auto py-2 md:py-5 flex justify-between items-center text-lg text-white ">
                 <div>
-                    <a href="./adearea">
-                        <img class="max-w-[100px] md:max-w-[150px] w-full" src="{{ asset('../../../storage/images/logo_flextory_blanc.png') }}" alt="Logo flextory" aria-labelledby="Logo de la Flextory et son slogan 'L'homme au coeur de l'usine-école du futur'">
+                    <a href="{{ route('adearea.index')}}">
+                        <img class="max-w-[100px] md:max-w-[150px] w-full" src="{{ asset('storage/images/logo_flextory_blanc.png') }}" alt="Logo flextory" aria-labelledby="Logo de la Flextory et son slogan 'L'homme au coeur de l'usine-école du futur'">
                     </a>
                 </div>
                 <p tabindex="0" @click.prevent="showMenu = !showMenu" @keyup.enter="showMenu = !showMenu" class="cursor-pointer p-2 text-[1.7rem] visible md:invisible"><i class="fa-solid fa-bars"></i></p>

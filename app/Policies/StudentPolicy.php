@@ -69,7 +69,7 @@ class StudentPolicy
      */
     public function delete(User $user, Student $student)
     {
-        //
+        return $user->role == '1' || $user->role == '2';
     }
 
     /**
