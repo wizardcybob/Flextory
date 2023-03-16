@@ -22,12 +22,10 @@
                 @if ($projet->ressource)
                     <a class="btn_tertiary w-fit" href="{{ $projet->ressource }}" aria-label="Voir les ressources du projet">Ressources<i class="fa-solid fa-file"></i></a>
                 @endif
-                {{-- btn dupplicate --}}
-                <a class="bg-dupplicate hover:bg-dupplicate-dark text-white py-1 px-2 rounded" href="" aria-label="Duppliquer le projet"><i class="fa-solid fa-copy" aria-hidden="true"></i></a>
+                @if (Auth::user()->role === 1 || Auth::user()->role === 2 || Auth::user()->role === 3)
                 {{-- btn edit --}}
                 <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded w-fit h-fit" href="{{ route('projet.edit', ['projet' => $projet])}}" aria-label="Modifier le projet"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
                 {{-- btn archive --}}
-                @if (Auth::user()->role === 1 || Auth::user()->role === 2)
                     <form action="{{ route('projet.destroy', ['projet' => $projet->id]) }}" method="POST">
                         @csrf
                         @method('DELETE')

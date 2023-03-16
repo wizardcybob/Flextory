@@ -26,11 +26,11 @@
                         <div class="flex flex-row items-center gap-2">
                             <div class="flex gap-2">
                                 {{-- btn view --}}
+                                @if (Auth::user()->role === 1 || Auth::user()->role === 2)
                                 <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded w-fit h-fit" href="{{ route('student.show', $student) }}" aria-label="Voir les informations de {{ $student->name }}"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
                                 {{-- btn edit --}}
                                 <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded w-fit h-fit" href="{{ route('student.edit', ['student' => $student->id])}}" aria-label="Modifier {{ $student->name }}"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
                                 {{-- btn delete --}}
-                                @if (Auth::user()->role === 1 || Auth::user()->role === 2)
                                     <form action="{{ route('student.destroy', ['student' => $student->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -53,8 +53,9 @@
             @endif
 
 
-
+            @if (Auth::user()->role === 1 || Auth::user()->role === 2)
             <a href="{{ route('student.create') }}" class="btn_primary w-full" title="Ajouter un enseignant"><i class="fa-solid fa-plus" aria-hidden="true"></i>Ajouter un étudiant</a>
+            @endif
         </div>
     </div>
 </x-app-layout>
