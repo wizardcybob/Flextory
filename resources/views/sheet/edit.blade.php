@@ -76,6 +76,19 @@
                 </ul>
             </div>
 
+            
+            {{-- Sélectionner une image --}}
+            <div class="relative">
+                <label for="image" id="image-label" class="absolute label_form">Sélectionner une image :</label>
+                <select class="select_form" name="image" id="image" name="image" aria-labelledby="image-label">
+                    <option value="" selected disabled hidden>Sélectionner une image</option>></option>
+                    @foreach ($images as $image)
+                        <option value="{{ $image->id }}" @if ($sheet->image_id == $image->id) selected @endif>
+                            {{ $image->image }}</option>
+                    @endforeach
+                </select>
+            </div>
+
 
             {{-- Etat de résolution d'une fiche --}}
             <div class="relative">
@@ -85,19 +98,6 @@
                     @foreach ($states as $state)
                     <option value="{{ $state->id }}" @if ($sheet->state_id == $state->id) selected @endif>
                         {{ $state->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-
-            {{-- Sélectionner une image --}}
-            <div class="relative">
-                <label for="image" id="image-label" class="absolute label_form">Sélectionner une image :</label>
-                <select class="select_form" name="image" id="image" name="image" aria-labelledby="image-label">
-                    <option value="" selected disabled hidden>Sélectionner une image</option>></option>
-                    @foreach ($images as $image)
-                        <option value="{{ $image->id }}" @if ($sheet->image_id == $image->id) selected @endif>
-                            {{ $image->image }}</option>
                     @endforeach
                 </select>
             </div>

@@ -61,15 +61,6 @@
                         @endforeach
                     </select>
                 </div>
-                <p>
-                    <select name="image">
-                        <option value=""></option>
-                        @foreach ($images as $image)
-                            <option value="{{ $image->id }}" @if (old('image') == $image->id) selected @endif>
-                                {{ $image->image }}</option>
-                        @endforeach
-                    </select>
-                </p>
             </div>
 
 
@@ -84,6 +75,20 @@
                     </div>
                     @endforeach
                 </div>
+            </div>
+
+
+            {{-- Image --}}
+            <div class="relative w-full">
+                <label for="image" id="image-label" class="absolute label_form">Image :</label>
+                <select class="select_form" id="image" name="image" aria-labelledby="image-label">
+                    <option value="" selected disabled hidden>Sélectionner une image</option>
+                    @foreach ($images as $image)
+                        <option value="{{ $image->id }}" @if (old('image')==$image->id) selected @endif>
+                            {{ $image->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
 
