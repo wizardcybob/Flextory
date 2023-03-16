@@ -18,7 +18,7 @@
                 <p>Fiche créée par {{ $sheet->creator }}</p>
             </div>
             {{-- btns --}}
-            <div class="flex gap-2">
+            <div class="flex items-center gap-2">
                 {{-- état de la fiche --}}
                 @if ($sheet->state->id == 1)
                     <div class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche à traiter">{{ $sheet->state->name }}</div>

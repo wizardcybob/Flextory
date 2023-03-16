@@ -9,6 +9,10 @@
 }
 
 .sous-titre_page {
+    @apply text-tertiary font-semibold italic text-base md:text-xl;
+}
+
+.titre_card {
 	@apply text-primary font-semibold italic text-2xl md:text-3xl;
 }
 
