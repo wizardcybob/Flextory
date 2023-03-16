@@ -1,10 +1,10 @@
 <x-jet-form-section submit="updatePassword">
     <x-slot name="title">
-        {{ __('Update Password') }}
+        {{ __('Modifier le mot de passe') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Ensure your account is using a long, random password to stay secure.') }}
+        {{ __('Assurez-vous d'utiliser un mot de passe long et complexe.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -29,11 +29,11 @@
 
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
+            {{ __('Enregistré') }}
         </x-jet-action-message>
 
         <x-jet-button>
-            {{ __('Save') }}
+            {{ __('Enregistrer') }}
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>
