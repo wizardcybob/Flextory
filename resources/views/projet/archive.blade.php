@@ -14,7 +14,7 @@
         <div class="flex flex-col gap-4">
             @if ($projets->isNotEmpty())
             {{-- Barre de recherche --}}
-            <form class="flex flex-col md:flex-row gap-4 md:gap-2" method="GET" action="{{ route('projet.search') }}">
+            <form class="flex flex-col md:flex-row gap-4 md:gap-2" method="GET" action="{{ route('projet.searchArchive') }}">
                 <div class="relative w-full">
                     <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
                     <input type="text" id="query" name="query" class="input_textarea_recherche pl-10"
@@ -26,7 +26,7 @@
                 <button class="btn_tertiary" type="submit" aria-label="Faire une recherche">Rechercher</button>
             </form>
             @if(str_contains(url()->current(), 'search'))
-            <a class="btn_primary w-fit" href="{{ route('projet.index') }}" aria-label="Supprimer la recherche"
+            <a class="btn_primary w-fit" href="{{ route('projet.archive') }}" aria-label="Supprimer la recherche"
                 title="Supprimer la recherche">
                 Supprimer la recherche</a>
             @endif

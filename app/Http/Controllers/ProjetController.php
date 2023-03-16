@@ -39,8 +39,8 @@ class ProjetController extends Controller
     public function searchArchive(Request $request)
     {
         $query = $request->input('query');
-        $projets = Projet::where('title', 'LIKE', '%'.$query.'%')->get();
-        return view('projet.index', ['projets' => $projets]);
+        $projets = Projet::where('title', 'LIKE', '%'.$query.'%')->onlyTrashed()->get();
+        return view('projet.archive', ['projets' => $projets]);
     }
 
     /**
