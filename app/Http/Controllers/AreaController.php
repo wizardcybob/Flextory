@@ -50,7 +50,7 @@ class AreaController extends Controller
             'description' => 'nullable',
             'image' => 'nullable',
             'projet' => 'nullable',
-            'adearea' => 'nullable'
+            'adearea' => 'required'
         ]);
         // dd($data);
         $area = new Area();
@@ -117,7 +117,7 @@ class AreaController extends Controller
             'description' => 'nullable',
             'image' => 'nullable',
             'projet' => 'nullable',
-            'adearea' => 'nullable'
+            'adearea' => 'required'
         ]);
         // dd($request);
         $area->fill($data);
