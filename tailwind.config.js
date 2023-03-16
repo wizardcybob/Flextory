@@ -62,6 +62,11 @@ module.exports = {
 					DEFAULT: '#68649A',
 					dark: '#494577', // hover
 				},
+				dupplicate: {
+					// btn dupplicate
+					DEFAULT: '#B476B6',
+					dark: '#7A3F7B', // hover
+				},
 				edit: {
 					// btn edit
 					DEFAULT: '#F1892B',
@@ -71,6 +76,11 @@ module.exports = {
 					// btn delete
 					DEFAULT: '#C63434',
 					dark: '#930303', // hover
+				},
+				restore: {
+					// btn restore
+					DEFAULT: '#5DA6EB',
+					dark: '#3B78B1', // hover
 				},
 				status: {
 					// status

@@ -21,8 +21,8 @@
             <form class="flex flex-col md:flex-row gap-4 md:gap-2" method="GET" action="{{ route('projet.search') }}">
                 <div class="relative w-full">
                     <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
-                    <input type="text" id="query" name="query"  class="input_textarea_recherche pl-8" placeholder="Faire une recherche..." aria-labelledby="query-label">
-                    <div class="absolute left-2 inset-y-0 flex items-center text-secondary-dark pb-1">
+                    <input type="text" id="query" name="query"  class="input_textarea_recherche pl-10" placeholder="Faire une recherche..." aria-labelledby="query-label">
+                    <div class="absolute left-3 inset-y-0 flex items-center text-secondary pb-1">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                 </div>
@@ -46,14 +46,24 @@
                     </div>
                     {{-- btns --}}
                     <div class="flex gap-2">
-                        <a class="bg-primary hover:bg-primary-dark text-white py-1 px-2 rounded" href="" aria-label="Voir les ressources du projet">Ressources</a>
+                        {{-- btn ressource --}}
+                        @if ($projet->ressource)
+                            <a class="bg-primary hover:bg-primary-dark text-white py-1 px-2 rounded" href="{{ $projet->ressource }}" aria-label="Voir les ressources du projet">Ressources</a>
+                        @endif
+                        {{-- btn view --}}
                         <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('projet.show', $projet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
+                        {{-- btn dupplicate --}}
+                        <a class="bg-dupplicate hover:bg-dupplicate-dark text-white py-1 px-2 rounded" href="" aria-label="Duppliquer la fiche d'amélioration"><i class="fa-solid fa-copy" aria-hidden="true"></i></a>
+                        {{-- btn edit --}}
                         <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded" href="{{ route('projet.edit', ['projet' => $projet->id])}}" aria-label="Modifier le projet"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
-                        <form action="{{ route('projet.destroy', ['projet' => $projet->id]) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="bg-delete hover:bg-delete-dark text-white py-1 px-2 rounded"  aria-label="Supprimer la fiche d'amélioration" type="submit"><i class="fa-solid fa-trash"></i></button>
-                        </form>
+                        {{-- btn delete --}}
+                        @if (Auth::user()->role === 1 || Auth::user()->role === 2)
+                            <form action="{{ route('projet.destroy', ['projet' => $projet->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="bg-status-archive hover:bg-status-archive-hover text-white py-1 px-2 rounded w-fit h-fit"  aria-label="Supprimer la fiche d'amélioration" type="submit"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></button>
+                            </form>
+                        @endif
                     </div>
                 </li>
                 @php

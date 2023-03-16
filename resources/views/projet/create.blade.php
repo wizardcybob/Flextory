@@ -33,10 +33,10 @@
             </div>
 
             {{-- Lien Pistar --}}
-            <div class="relative">
+            {{-- <div class="relative">
                 <label for="pistar" id="pistar-label" class="absolute label_form">Pistar :</label>
                 <input type="text" id="pistar" name="pistar" class="input_textarea_form" placeholder="Insérer le lien Pistar" value="{{ old('pistar') }}" aria-labelledby="pistar-label">
-            </div>
+            </div> --}}
 
             {{-- Année --}}
             <div class="relative">

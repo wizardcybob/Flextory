@@ -99,12 +99,14 @@
                         {{-- all btns --}}
                         <div class="flex flex-row items-center gap-2">
                             {{-- état de la fiche --}}
-                            @if ($sheet->state->name == "À traiter")
+                            @if ($sheet->state->name == "à faire")
                                 <div class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center border-none whitespace-nowrap" aria-label="Fiche à traiter">À traiter</div>
-                            @elseif ($sheet->state->name == "En cours")
+                            @elseif ($sheet->state->name == "en cours")
                                 <div class="bg-status-in_progress text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center border-none whitespace-nowrap" aria-label="Fiche en cours">En cours</div>
-                            @elseif ($sheet->state->name == "Terminé")
+                            @elseif ($sheet->state->name == "terminée")
                                 <div class="bg-status-done text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center border-none whitespace-nowrap" aria-label="Fiche terminée">Terminée</div>
+                            @elseif ($sheet->state->name == "archivée")
+                                <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center border-none whitespace-nowrap" aria-label="Fiche terminée">Archivée</div>
                             @endif
                             {{-- select état de la fiche --}}
                             {{-- @if ($sheet->state->id == 1)
@@ -134,6 +136,8 @@
                             <div class="flex gap-2">
                                 {{-- btn view --}}
                                 <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded w-fit h-fit" href="{{ route('sheet.show', $sheet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
+                                {{-- btn dupplicate --}}
+                                <a class="bg-dupplicate hover:bg-dupplicate-dark text-white py-1 px-2 rounded" href="" aria-label="Duppliquer la fiche d'amélioration"><i class="fa-solid fa-copy" aria-hidden="true"></i></a>
                                 {{-- btn edit --}}
                                 <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded w-fit h-fit" href="{{ route('sheet.edit', ['sheet' => $sheet->id])}}" aria-label="Modifier la fiche d'amélioration"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
                                 {{-- btn delete --}}

@@ -11,7 +11,7 @@
             Retour</a>
 
         {{-- HEADER VIEW --}}
-        <div class="flex flex-col gap-2 md:gap-0 md:flex-row md:items-center md:justify-between">
+        <div class="flex flex-col gap-1 md:gap-4 md:flex-row md:items-center md:justify-between">
             {{-- TEXTES --}}
             <div class="flex flex-col gap-1 md:gap-2">
                 <h1 class="titre_page">{{ $sheet->title }}</h1>
@@ -29,81 +29,73 @@
                 @elseif ($sheet->state->id == 4)
                     <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche archivée">{{ $sheet->state->name }}</div>
                 @endif
+                {{-- btn dupplicate --}}
+                <a class="bg-dupplicate hover:bg-dupplicate-dark text-white py-1 px-2 rounded" href="" aria-label="Duppliquer la fiche d'amélioration"><i class="fa-solid fa-copy" aria-hidden="true"></i></a>
                 {{-- btn edit --}}
                 <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded w-fit h-fit" href="{{ route('sheet.edit', ['sheet' => $sheet])}}" aria-label="Modifier la fiche d'amélioration"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
-                {{-- btn delete --}}
-                <form action="{{ route('sheet.destroy', ['sheet' => $sheet]) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="bg-delete hover:bg-delete-dark text-white py-1 px-2 rounded w-fit h-fit"  aria-label="Supprimer la fiche d'amélioration" type="submit"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
-                </form>
+                {{-- btn archive --}}
+                @if (Auth::user()->role === 1 || Auth::user()->role === 2)
+                    <form action="{{ route('sheet.destroy', ['sheet' => $sheet->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="bg-status-archive hover:bg-status-archive-hover text-white py-1 px-2 rounded w-fit h-fit"  aria-label="Supprimer la fiche d'amélioration" type="submit"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></button>
+                    </form>
+                @endif
             </div>
         </div>
 
         {{-- INFORMATIONS --}}
-        <div class="flex flex-col gap-2">
-            <p><span class="font-semibold">Emplacement : </span>{{ $sheet->area->name }}</p>
-            <div>
-                <p><span class="font-semibold">Catégorie(s) : </span>???????????</p>
-                {{-- @foreach ($sheet->categories as $category)
-                <ul>
-                    <li>{{$category->name}}</a></li>
-                </ul>
-                @endforeach --}}
-            </div>
+        <div class="flex flex-col gap-1">
+            {{-- EMPLACEMENT --}}
+            @if ($sheet->area)
+                <p><span class="font-semibold">Emplacement : </span>{{ $sheet->area->name }}</p>
+            @endif
+            {{-- CATEGORIE --}}
+            @if ($sheet->category)
+                <p><span class="font-semibold">Catégorie : </span>{{ $sheet->category->name }}</p>
+            @endif
         </div>
 
         {{-- DESCRIPTION --}}
-        <div>
-            <p class="font-semibold">Description : </p>
-            <p>{{ $sheet->description }}</p>
-        </div>
+        @if ($sheet->description)
+            <div class="flex flex-col gap-1">
+                <p class="font-semibold">Description : </p>
+                <p>{{ $sheet->description }}</p>
+            </div>
+        @endif
 
         {{-- IDÉE(S) DE RÉSOLUTION --}}
-        <div>
-            <p class="font-semibold">Idée(s) de résolution : </p>
-            <p>{{ $sheet->idea }}</p>
-        </div>
+        @if ($sheet->idea)
+            <div class="flex flex-col gap-1">
+                <p class="font-semibold">Idée(s) de résolution : </p>
+                <p>{{ $sheet->idea }}</p>
+            </div>
+        @endif
 
         {{-- ENSIGNANT(S) ASSIGNÉ(S) --}}
-        <div>
+        @if (count($sheet->teachers) > 0)
             <p class="font-semibold">Enseignant(s) assigné(s) :</p>
-            @foreach ($sheet->teachers as $teacher)
-            <ul>
-                <li><a href="{{route('teacher.show', ['teacher' => $teacher])}}">{{$teacher->name}}</a></li>
+            <ul class="flex flex-col gap-1">
+                @foreach ($sheet->teachers as $teacher)
+                    <li><a href="{{route('teacher.show', ['teacher' => $teacher])}}">{{$teacher->name}}</a></li>
+                @endforeach
             </ul>
-            @endforeach
-        </div>
+        @endif
 
         {{-- IMAGES --}}
-        <div class="flex flex-col gap-2">
-            <p class="font-semibold">Image(s) :</p>
-            {{-- @foreach ($sheet->images as $image)
-            <ul>
-                <li><img src="{{$image->url}}" /></li>
-            </ul>
-            @endforeach --}}
-            <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-                <li class="relative bg-tertiary cursor-pointer group flex justify-center items-center">
-                    <img class="clickable-image group-hover:opacity-40" src="{{ asset('storage/images/flextory_login.jpg') }}" alt="" />
-                    <div class="text-primary hidden group-hover:block absolute"><i class="fa-solid fa-magnifying-glass-plus w-14 h-14"></i></div>
-                </li>
-                <li class="relative bg-tertiary cursor-pointer group flex justify-center items-center">
-                    <img class="clickable-image group-hover:opacity-40" src="{{ asset('storage/images/flextory_login.jpg') }}" alt="" />
-                    <div class="text-primary hidden group-hover:block absolute"><i class="fa-solid fa-magnifying-glass-plus w-14 h-14"></i></div>
-                </li>
-                <li class="relative bg-tertiary cursor-pointer group flex justify-center items-center">
-                    <img class="clickable-image group-hover:opacity-40" src="{{ asset('storage/images/flextory_login.jpg') }}" alt="" />
-                    <div class="text-primary hidden group-hover:block absolute"><i class="fa-solid fa-magnifying-glass-plus w-14 h-14"></i></div>
-                </li>
-                <li class="relative bg-tertiary cursor-pointer group flex justify-center items-center">
-                    <img class="clickable-image group-hover:opacity-40" src="{{ asset('storage/images/flextory_login.jpg') }}" alt="" />
-                    <div class="text-primary hidden group-hover:block absolute"><i class="fa-solid fa-magnifying-glass-plus w-14 h-14"></i></div>
-                </li>
-            </ul>
-        </div>
-        {{-- DIV POUR PLACER L'IMAGE ZOOMÉ --}}
-        <div class="parent_zoomed_img parent_zoomed_img_show">
-        </div>
+        @if ($sheet->url)
+            <div class="flex flex-col gap-1">
+                <p class="font-semibold">Image(s) :</p>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                    <li class="relative bg-tertiary cursor-pointer group flex justify-center items-center">
+                        <img class="clickable-image group-hover:opacity-40" src="{{$image->url}}" alt="Image de la fiche d'amélioration" />
+                        <div class="text-primary hidden group-hover:block absolute"><i class="fa-solid fa-magnifying-glass-plus w-14 h-14"></i></div>
+                    </li>
+                </ul>
+            </div>
+            {{-- DIV POUR PLACER L'IMAGE ZOOMÉ --}}
+            <div class="parent_zoomed_img parent_zoomed_img_show">
+            </div>
+        @endif
     </div>
 </x-app-layout>
