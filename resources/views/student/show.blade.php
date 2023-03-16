@@ -16,9 +16,9 @@
             <div class="flex flex-col gap-1 md:gap-2">
                 <h1 class="titre_page">{{ $student->name }}</h1>
                 @if ($student->actif === 1)
-                    <p class="text-sm text-tertiary">Etudiant actif</p>
+                    <p>Étudiant<span class="text-tertiary font-semibold"> actif</span></p>
                 @else
-                    <p class="text-sm text-tertiary">Etudiant inactif</p>
+                    <p>Étudiant<span class="text-tertiary font-semibold"> inactif</span></p>
                 @endif
             </div>
             {{-- btns --}}
@@ -35,15 +35,17 @@
         </div>
 
         {{-- PROJET ASSIGNE --}}
-        <h2 class="font-semibold">Projet(s) assigné :</h2>
-        @if ($student->projets->isEmpty())
-            <p class="text-sm text-tertiary">Aucun projet assigné</p>
-        @else
+        <div class="flex flex-col gap-2">
+            <h2 class="font-semibold">Projet(s) assigné :</h2>
+            @if ($student->projets->isEmpty())
+                <p class="text-sm text-tertiary">Aucun projet assigné</p>
+            @else
                 <div class="flex flex-wrap gap-4">
                     @foreach ($student->projets as $projet)
                     <a class="btn_primary w-fit" aria-label="{{ $projet->title }}" title="{{ $projet->title }}" href="{{ route('projet.show', ['projet' => $projet]) }}">{{ $projet->title }}</a>
                     @endforeach
                 </div>
-        @endif
+            @endif
+        </div>
     </div>
 </x-app-layout>

@@ -25,13 +25,13 @@
             <div class="relative text-primary-darker">
                 <label for="permanent" class="font-semibold mb-2" id="permanent-label">Enseignant :</label>
                 <div class="flex items-center gap-8">
-                    <div>
+                    <div class="flex items-center gap-2">
+                        <input value="1" type="radio" id="permanent-true" name="permanent" class="checkbox_form" aria-labelledby="permanent-true-label" @if (old('permanent') === 1) checked @endif>
                         <label for="permanent-true" id="permanent-true-label">Permanent</label>
-                        <input value="1" type="radio" id="permanent-true" name="permanent" class="checkbox_form ml-2" aria-labelledby="permanent-true-label" @if (old('permanent') === 1) checked @endif>
                     </div>
-                    <div>
+                    <div class="flex items-center gap-2">
+                        <input value="2" type="radio" id="permanent-false" name="permanent" class="checkbox_form" aria-labelledby="permanent-false-label" @if (old('permanent') === 2) checked @endif>
                         <label for="permanent-false" id="permanent-false-label">Non permanent</label>
-                        <input value="2" type="radio" id="permanent-false" name="permanent" class="checkbox_form ml-2" aria-labelledby="permanent-false-label" @if (old('permanent') === 2) checked @endif>
                     </div>
                 </div>
             </div>

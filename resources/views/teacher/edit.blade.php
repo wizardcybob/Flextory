@@ -12,7 +12,7 @@
             Retour</button>
 
         {{-- FORMULAIRE --}}
-        <form action="{{ route('teacher.update', ['teacher' => $teacher]) }}" method="POST">
+        <form action="{{ route('teacher.update', ['teacher' => $teacher]) }}" method="POST" class="flex flex-col gap-7 md:gap-8">
             @csrf
             @method('PUT')
 
@@ -26,13 +26,13 @@
             <div class="relative text-primary-darker">
                 <label for="permanent" class="font-semibold mb-2" id="permanent-label">Enseignant :</label>
                 <div class="flex items-center gap-8">
-                    <div>
+                    <div class="flex items-center gap-2">
+                        <input value="1" type="radio" id="permanent-true" name="permanent" class="checkbox_form" aria-labelledby="permanent-true-label" @if ($teacher->permanent === 1) checked @endif>
                         <label for="permanent-true" id="permanent-true-label">Permanent</label>
-                        <input value="1" type="radio" id="permanent-true" name="permanent" class="checkbox_form ml-2" aria-labelledby="permanent-true-label" @if ($teacher->permanent === 1) checked @endif>
                     </div>
-                    <div>
+                    <div class="flex items-center gap-2">
+                        <input value="2" type="radio" id="permanent-false" name="permanent" class="checkbox_form" aria-labelledby="permanent-false-label" @if ($teacher->permanent === 2) checked @endif>
                         <label for="permanent-false" id="permanent-false-label">Non permanent</label>
-                        <input value="2" type="radio" id="permanent-false" name="permanent" class="checkbox_form ml-2" aria-labelledby="permanent-false-label" @if ($teacher->permanent === 2) checked @endif>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@
             {{-- TEXTES --}}
             <div class="flex flex-col gap-1 md:gap-2">
                 <h1 class="titre_page">{{ $sheet->title }}</h1>
-                <p>Fiche créée par {{ $sheet->creator }}</p>
+                <p>Fiche créée par <span class="text-tertiary font-semibold">{{ $sheet->creator }}</span></p>
             </div>
             {{-- btns --}}
             <div class="flex items-center gap-2">
