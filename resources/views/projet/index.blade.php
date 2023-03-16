@@ -53,7 +53,7 @@
                                 {{-- btn view --}}
                                 <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('projet.show', $projet) }}" aria-label="Voir le projet"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
                                 {{-- btn dupplicate --}}
-                                <a class="bg-dupplicate hover:bg-dupplicate-dark text-white py-1 px-2 rounded" href="" aria-label="Duppliquer le projet"><i class="fa-solid fa-copy" aria-hidden="true"></i></a>
+                                <a class="bg-dupplicate hover:bg-dupplicate-dark text-white py-1 px-2 rounded" href="{{ route('projet.replicate', ['projet' => $projet->id])}}" aria-label="Duppliquer le projet"><i class="fa-solid fa-copy" aria-hidden="true"></i></a>
                                 {{-- btn edit --}}
                                 <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded" href="{{ route('projet.edit', ['projet' => $projet->id])}}" aria-label="Modifier le projet"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
                                 {{-- btn delete --}}

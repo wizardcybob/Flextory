@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('role');
+            $table->unsignedBigInteger('role')->nullable();
             $table->foreign('role')->references('id')->on('groupes')->onDelete('cascade')->default('null');
 
         });
