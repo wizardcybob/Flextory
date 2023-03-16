@@ -85,7 +85,7 @@ class AreaController extends Controller
         $sheets = $area->sheets()->orderBy('title', 'asc')->get();
         $categories = Category::all();
         $states = State::all();
-        return view('sheet.index', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states]);
+        return view('sheet.index', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states, 'area' => $area]);
     }
 
     /**

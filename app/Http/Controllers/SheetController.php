@@ -170,7 +170,8 @@ class SheetController extends Controller
      */
     public function show(Sheet $sheet)
     {
-        return view('sheet.show', ['sheet' => $sheet]);
+        $area = $sheet->area()->first();
+        return view('sheet.show', ['sheet' => $sheet, 'area' => $area]);
     }
 
     /**

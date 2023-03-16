@@ -8,7 +8,7 @@
 
     {{-- VIEW --}}
     <div class="w-full mx-auto flex flex-col gap-7 md:gap-8">
-        <a class="btn_primary w-fit" href="javascript:history.go(-1)"  aria-label="Retour à la page précédente" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+        <a class="btn_primary w-fit" href="{{ route('area.show', $area->id) }}"  aria-label="Retour à la page précédente" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
             Retour</a>
 
         {{-- HEADER VIEW --}}
