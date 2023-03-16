@@ -18,7 +18,7 @@
                 <h1 class="titre_page">{{ $projet->title }}</h1>
             </div>
             {{-- btns --}}
-            <div class="flex gap-2">
+            <div class="flex gap-2 items-center">
                 @if ($projet->ressource)
                     <a class="btn_tertiary w-fit" target="_blank" href="{{ $projet->ressource }}" aria-label="Voir les ressources du projet">Ressources<i class="fa-solid fa-file"></i></a>
                 @endif
@@ -68,9 +68,9 @@
 
         {{-- DESCRIPTION --}}
         @if ($projet->description)
-            <div class="flex flex-col gap-1">
+            <div class="flex flex-col gap-1 bg-secondary/20 p-2 rounded">
                 <p class="font-semibold">Description : </p>
-                <p>{{ $projet->description }}</p>
+                <p>{!! $projet->description !!}</p>
             </div>
         @endif
 

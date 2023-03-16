@@ -7,9 +7,9 @@
 
     {{-- VIEW --}}
     <div class="w-full mx-auto flex flex-col gap-8">
-        <h1 class="titre_page">Modification de {{ $teacher->name }}</h1>
         <button class="btn_primary w-fit" onclick="window.history.back()" role="button" aria-label="Retour à la page précédente" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
             Retour</button>
+        <h1 class="titre_page">Modification de {{ $teacher->name }}</h1>
 
         {{-- FORMULAIRE --}}
         <form action="{{ route('teacher.update', ['teacher' => $teacher]) }}" method="POST" class="flex flex-col gap-7 md:gap-8">
