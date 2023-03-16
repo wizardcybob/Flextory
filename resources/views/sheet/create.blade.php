@@ -67,7 +67,7 @@
             {{-- Enseignant(s) assigné(s) --}}
             <div class="relative flex flex-col gap-1">
                 <p class="label_form">Enseignant(s) assigné(s)<span class="text-tertiary">*</span> :</p>
-                <div class="flex gap-6 items-center">
+                <div class="flex flex-wrap gap-x-6 gap-y-1 items-center">
                     @foreach ($teachers as $teacher)
                     <div class="flex gap-2 items-center">
                         <input class="checkbox_form" type="checkbox" name="teacher[]" id="teacher{{ $teacher->id }}"
