@@ -34,6 +34,15 @@
                         <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('adearea') ? 'max-w-full' : '' }}"></span>
                         </a></p>
 
+                    <p class="cursor-pointer"><a href="{{ route('image.index')}}"  class="group transition duration-300">
+                        Image
+                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('adearea') ? 'max-w-full' : '' }}"></span>
+                        </a></p>
+                    <p class="cursor-pointer"><a href="{{ route('user.index')}}" class="group transition duration-300">
+                        Utilisateurs
+                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('adearea') ? 'max-w-full' : '' }}"></span>
+                        </a></p>
+
                     <p class="cursor-pointer"><a href="{{ route('plans.index')}}" class="group transition duration-300">
                         Plan
                         <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('plans') ? 'max-w-full' : '' }}"></span>
