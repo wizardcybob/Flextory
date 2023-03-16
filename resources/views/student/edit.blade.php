@@ -12,7 +12,7 @@
             Retour</button>
 
         {{-- FORMULAIRE --}}
-        <form action="{{ route('student.update', ['student' => $student]) }}" method="POST">
+        <form action="{{ route('student.update', ['student' => $student]) }}" method="POST" class="flex flex-col gap-7 md:gap-8">
             @csrf
             @method('PUT')
 
@@ -23,34 +23,34 @@
             </div>
 
             {{-- Actif --}}
-            <div class="relative text-primary-darker mt-4">
-                <label for="actif" class="font-semibold mb-2" id="actif-label">Etudiant<span class="text-tertiary">*</span></label>
+            <div class="relative text-primary-darker">
+                <label for="actif" class="font-semibold mb-2" id="actif-label">Étudiant :<span class="text-tertiary">*</span></label>
                 <div class="flex items-center gap-8">
-                    <div>
+                    <div class="flex items-center gap-2">
+                        <input value="1" type="radio" id="actif-true" name="actif" class="checkbox_form" aria-labelledby="actif-true-label" @if ( $student->actif === 1) checked @endif>
                         <label for="actif-true" id="actif-true-label">Actif</label>
-                        <input value="1" type="radio" id="actif-true" name="actif" class="checkbox_form ml-2" aria-labelledby="actif-true-label" @if ( $student->actif === 1) checked @endif>
                     </div>
-                    <div>
+                    <div class="flex items-center gap-2">
+                        <input value="0" type="radio" id="actif-false" name="actif" class="checkbox_form" aria-labelledby="actif-false-label" @if ($student->actif === 0) checked @endif>
                         <label for="actif-false" id="actif-false-label">Inactif</label>
-                        <input value="0" type="radio" id="actif-false" name="actif" class="checkbox_form ml-2" aria-labelledby="actif-false-label" @if ($student->actif === 0) checked @endif>
                     </div>
                 </div>
             </div>
 
             {{-- Projets --}}
-            <div class="relative text-primary-darker mt-4">
-                <label for="projet" class="font-semibold mb-2" id="actif-label">Projets<span class="text-tertiary">*</span></label>
-                <div class="flex items-center gap-8">
+            <div class="relative text-primary-darker flex flex-col gap-2">
+                <label for="projet" class="font-semibold mb-2" id="actif-label">Projets :</label>
+                <ul class="flex flex-wrap gap-x-6 gap-y-1">
                     @foreach ($projets as $projet)
-                        <div>
-                            <label for="student{{ $projet->id }}" id="projet{{ $projet->id }}-label">{{ $projet->title }}</label>
-                            <input type="checkbox" name="projet[]" class="checkbox_form ml-2" id="projet{{ $projet->id }}" value="{{ $projet->id }}" aria-labelledby="projet{{ $projet->id }}-label" @if(in_array($projet->id, $student->projets->pluck('id')->toArray())) checked @endif>
-                        </div>
+                        <li class="flex items-center gap-2">
+                            <input type="checkbox" name="projet[]" class="checkbox_form" id="projet{{ $projet->id }}" value="{{ $projet->id }}" aria-labelledby="projet{{ $projet->id }}-label" @if(in_array($projet->id, $student->projets->pluck('id')->toArray())) checked @endif>
+                            <label for="projet{{ $projet->id }}" id="projet{{ $projet->id }}-label">{{ $projet->title }}</label>
+                        </li>
                     @endforeach
-                </div>
+                </ul>
             </div>
 
-            <p class="text-tertiary text-xs mt-4">*Champs obligatoires.</p>
+            <p class="text-tertiary text-xs">*Champs obligatoires.</p>
 
             <div class="flex justify-end w-full">
                 <button class="btn_primary flex justify-center" type="submit" aria-label="Enregistrer les modifications">Enregistrer</button>

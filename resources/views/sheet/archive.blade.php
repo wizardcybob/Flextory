@@ -6,44 +6,55 @@
     </x-slot>
 
     <div class="w-full mx-auto flex flex-col gap-8">
-        <h1 class="titre_page">Fiches d'améliorations</h1>
         <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
+        <h1 class="titre_page">Fiches d'améliorations <span class="font-light">- archivées</span></h1>
 
         {{-- VIEW --}}
         <div class="flex flex-col gap-4">
-            @if ($sheets->isNotEmpty())
             {{-- Barre de recherche + filtres --}}
-            <form class="flex flex-col md:flex-row gap-4 md:gap-2" method="GET" action="{{ route('sheet.searchArchive') }}">
-                <div class="relative w-full">
-                    <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
-                    <input type="text" id="query" name="query"  class="input_textarea_recherche pl-9" placeholder="Faire une recherche..." aria-labelledby="query-label">
-                    <div class="absolute left-3 inset-y-0 flex items-center text-secondary pb-1">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                </div>
-                <div class="relative w-full">
-                    <label for="category" id="category-label" class="absolute label_form">Filtrer par catégorie :</label>
-                        <option value="" selected disabled hidden>Sélectionner une catégorie</option>
-                        @foreach($categories as $category)
-                            <input type="checkbox" id="category{{ $category->id }}" name="categories[]" value="{{ $category->id }}">
-                            <label for="category{{ $category->id }}" class="ml-2">{{ $category->name }}</label>
-                        @endforeach
-                </div>
-                <div class="relative w-full">
-                    <label for="state" id="state-label" class="absolute label_form">Filtrer par état d'avancement :</label>
-                    @foreach($states as $state)
-                        <div class="flex items-center">
-                            <input type="checkbox" id="state{{ $state->id }}" name="states[]" value="{{ $state->id }}">
-                            <label for="state{{ $state->id }}" class="ml-2">{{ $state->name }}</label>
+            <form method="GET" action="{{ route('sheet.search') }}">
+                <div class="flex flex-col gap-4">
+                    {{-- BARRE DE RECHERCHE --}}
+                    <div class="relative w-full">
+                        <label for="query" id="query-label" class="absolute label_recherche">Recherche :</label>
+                        <input type="text" id="query" name="query"  class="input_textarea_recherche pl-10" placeholder="Faire une recherche..." aria-labelledby="query-label">
+                        <div class="absolute left-3 inset-y-0 flex items-center text-secondary pb-1">
+                            <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                    @endforeach
+                    </div>
+                    {{-- FILTRE CATEGORIE --}}
+                    <div class="relative w-full">
+                        <label for="category" id="category-label" class="label_form">Filtrer par catégorie :</label>
+                        <div class="flex flex-wrap gap-x-6 gap-y-1">
+                            @foreach($categories as $category)
+                                <div class="flex items-center">
+                                    <input type="checkbox" class="checkbox_form" id="category{{ $category->id }}" name="categories[]" value="{{ $category->id }}">
+                                    <label for="category{{ $category->id }}" class="ml-2">{{ $category->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    {{-- FILTRE STATUT FICHE --}}
+                    <div class="relative w-full">
+                        <label for="state" id="state-label" class="label_form">Filtrer par état d'avancement :</label>
+                        <div class="flex flex-wrap gap-x-6 gap-y-1">
+                            @foreach($states as $state)
+                                <div class="flex items-center">
+                                    <input type="checkbox" class="checkbox_form" id="state{{ $state->id }}" name="states[]" value="{{ $state->id }}">
+                                    <label for="state{{ $state->id }}" class="ml-2">{{ $state->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <button class="btn_tertiary w-fit" type="submit" aria-label="Faire une recherche">Rechercher</button>
                 </div>
-                <button class="btn_tertiary" type="submit" aria-label="Faire une recherche">Rechercher</button>
             </form>
             @if(str_contains(url()->current(), 'search'))
-            <a class="btn_primary w-fit" href="{{ route('sheet.archive') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
-                Supprimer la recherche</a>
+            <a class="text-error w-fit flex items-center gap-2 font-semibold" href="{{ route('sheet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+                <i class="fa-solid fa-xmark"></i> Supprimer la recherche</a>
             @endif
+
+            @if ($sheets->isNotEmpty())
             {{-- Tableau des fiches --}}
             <ul class="border-2 border-primary rounded overflow-hidden max-h-[500px] overflow-y-scroll">
                 @php
@@ -68,34 +79,10 @@
                             @elseif ($sheet->state->id == 4)
                                 <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche archivée">archivée</div>
                             @endif
-                            {{-- select état de la fiche --}}
-                            {{-- @if ($sheet->state->id == 1)
-                                <select class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 cursor-pointer justify-center capitalize border-none" name="state" id="state-select" onchange="location = this.value;">
-                            @elseif ($sheet->state->id == 2)
-                                <select class="bg-status-in_progress text-white px-2 py-1 rounded flex items-center text-center gap-3 cursor-pointer justify-center capitalize border-none" name="state" id="state-select" onchange="location = this.value;">
-                            @elseif ($sheet->state->id == 3)
-                                <select class="bg-status-done text-white px-2 py-1 rounded flex items-center text-center gap-3 cursor-pointer justify-center capitalize border-none" name="state" id="state-select" onchange="location = this.value;">
-                            @elseif ($sheet->state->id == 4)
-                                <select class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 cursor-pointer justify-center capitalize border-none" name="state" id="state-select" onchange="location = this.value;">
-                            @endif
-                                <option value="{{ route('sheet.index') }}" @if ($sheet->state->id == null) selected @endif disabled>---------------</option>
-                                <option value="{{ route('sheet.index', ['state' => 1]) }}" @if ($sheet->state->id == 1) selected @endif class="capitalize bg-white text-primary-dark">
-                                    à traiter
-                                </option>
-                                <option value="{{ route('sheet.index', ['state' => 2]) }}" @if ($sheet->state->id == 2) selected @endif class="capitalize bg-white text-primary-dark">
-                                    en cours
-                                </option>
-                                <option value="{{ route('sheet.index', ['state' => 3]) }}" @if ($sheet->state->id == 3) selected @endif class="capitalize bg-white text-primary-dark">
-                                    terminée
-                                </option>
-                                <option value="{{ route('sheet.index', ['state' => 4]) }}" @if ($sheet->state->id == 4) selected @endif class="capitalize bg-white text-primary-dark">
-                                    archivée
-                                </option>
-                            </select> --}}
                             {{-- btns --}}
                             <div class="flex gap-2">
                                 <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('sheet.show', $sheet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
-                                <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded" href="{{ route('sheet.restore', ['sheet' => $sheet->id])}}" aria-label="Modifier la fiche d'amélioration"><i class="fa-solid fa-pen" aria-hidden="true"></i></a>
+                                <a class="bg-restore hover:bg-restore-dark text-white py-1 px-2 rounded" href="{{ route('sheet.restore', ['sheet' => $sheet->id])}}" aria-label="Restaurer la fiche d'amélioration"><i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i></a>
                                 <form action="{{ route('sheet.forcedelete', ['sheet' => $sheet->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -114,10 +101,6 @@
                     <p class="text-xl font-semibold text-tertiary">Aucun résultat :(</p>
                 </div>
             @endif
-
-
-
-            <a href="{{ route('sheet.create') }}" class="btn_primary w-full" title="Ajouter une fiche d'amélioration"><i class="fa-solid fa-plus" aria-hidden="true"></i>Ajouter une fiche d'amélioration</a>
         </div>
     </div>
 </x-app-layout>

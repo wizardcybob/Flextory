@@ -16,7 +16,7 @@
             <li>
                 <div class="bg-secondary-dark h-full p-4 sm:p-3 md:p-5" style="background-image: url({{ asset('storage/images/flextory_login.jpg') }}); background-size:cover;"> <!--350px-->
                     <div class="p-4 sm:p-3 md:p-5 backdrop-blur-md bg-white/40 flex flex-col items-center justify-center gap-5 h-full">
-                        <p class="sous-titre_page uppercase">{{ $adearea->name }}</p>
+                        <p class="titre_card uppercase">{{ $adearea->name }}</p>
                         <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
                             @foreach ($adearea->areas as $area)
                             <li class="btn_tertiary w-full"><a href="{{ route('area.show', $area) }}">{{ $area->name }} </a></li>
