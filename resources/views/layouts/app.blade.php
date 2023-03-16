@@ -21,13 +21,11 @@
         <script>
             tinymce.init({
                 selector: '.mytextarea',
-                plugins: 'textcolor colorpicker emoticons media image link code table advlist powerpast lists fontsize magiczoom increasefont',
-                toolbar: 'undo redo | bold italic underline | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | emoticons image | link code | table advlist lists powerpast | fontsize increasefont magiczoom',
-                powerpaste_allow_local_images: true,
+                plugins: 'textcolor colorpicker emoticons media image link code table advlist lists',
+                toolbar: 'undo redo | bold italic underline | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | emoticons image | link code | table advlist lists',
                 height: 325
             });
         </script>
-
     </head>
     <body x-data="{showMenu: false, showProfileMenu: false}" class="font-work antialiased flex flex-col min-h-screen">
         <a href="#content" class="sr-only focus:not-sr-only">
