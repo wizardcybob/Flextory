@@ -20,7 +20,7 @@
             {{-- btns --}}
             <div class="flex gap-2">
                 @if ($projet->ressource)
-                    <a class="btn_tertiary w-fit" href="{{ $projet->ressource }}" aria-label="Voir les ressources du projet">Ressources<i class="fa-solid fa-file"></i></a>
+                    <a class="btn_tertiary w-fit" target="_blank" href="{{ $projet->ressource }}" aria-label="Voir les ressources du projet">Ressources<i class="fa-solid fa-file"></i></a>
                 @endif
                 @if (Auth::user()->role === 1 || Auth::user()->role === 2 || Auth::user()->role === 3)
                 {{-- btn edit --}}
