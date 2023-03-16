@@ -7,8 +7,8 @@
 
     {{-- VIEW --}}
     <div class="w-full mx-auto flex flex-col gap-8">
-        <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
         <h1 class="titre_page">Modification du rôle</h1>
+        <a href="javascript:history.go(-1)" class="btn_primary w-fit" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Retour</a>
 
         <p class="italic">Vous vous apprêtez à modifier le rôle de <span class="font-semibold text-tertiary">{{ $user->name }}</span>&nbsp;!</p>
 

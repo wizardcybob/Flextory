@@ -53,7 +53,7 @@
                 </div>
             @endif
 
-            <div class="mt-8">
+            <div class="mt-8 flex flex-col justify-center">
 
                 <x-jet-button class="mb-4" aria-labelledby="S'inscrire">
                     {{ __('S\'inscrire') }}

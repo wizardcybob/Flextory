@@ -68,9 +68,9 @@
 
         {{-- DESCRIPTION --}}
         @if ($projet->description)
-            <div class="flex flex-col gap-1">
+            <div class="flex flex-col gap-1 bg-secondary/20 p-2 rounded">
                 <p class="font-semibold">Description : </p>
-                <p>{{ $projet->description }}</p>
+                <p>{!! $projet->description !!}</p>
             </div>
         @endif
 

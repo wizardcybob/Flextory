@@ -22,7 +22,7 @@
                 @endif
             </div>
             {{-- btns --}}
-            <div class="flex gap-2">
+            <div class="flex gap-2 items-center">
                 {{-- btn edit --}}
                 <a class="bg-edit hover:bg-edit-dark text-white py-1 px-2 rounded w-fit h-fit" href="{{ route('student.edit', ['student' => $student])}}" aria-label="Modifier {{ $student->name }}"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
                 {{-- btn delete --}}

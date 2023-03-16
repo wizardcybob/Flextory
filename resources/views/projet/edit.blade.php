@@ -6,9 +6,9 @@
     </x-slot>
 
     <div class="w-full mx-auto flex flex-col gap-8">
-        <h1 class="titre_page">Modification d'un projet</h1>
         <button class="btn_primary w-fit" onclick="window.history.back()" role="button" aria-label="Retour à la page précédente" title="Retour à la page précédente"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
             Retour</button>
+        <h1 class="titre_page">Modification d'un projet</h1>
 
         {{-- FORMULAIRE --}}
                 <form action="{{ route('projet.update', ['projet' => $projet]) }}" method="POST" class="flex flex-col gap-4">
@@ -23,8 +23,8 @@
 
                     {{-- Description --}}
                     <div class="relative">
-                        <label for="description" class="absolute label_form" id="description-label">Description :</label>
-                        <textarea class="input_textarea_form" rows="5" id="description" name="description" placeholder="Votre description" aria-labelledby="description-label">{{ $projet->description }}</textarea>
+                        <label for="description" class="absolute label_form z-10" id="description-label">Description :</label>
+                        <textarea class="input_textarea_form mytextarea" rows="5" id="description" name="description" placeholder="Votre description" aria-labelledby="description-label">{{ $projet->description }}</textarea>
                     </div>
 
                     {{-- Ressources --}}
@@ -90,7 +90,7 @@
 
                     {{-- Sous-zones --}}
                     <div class="relative flex flex-col gap-1">
-                        <p class="label_form">Sous-zones :</p>
+                        <p class="label_form">Sous-zones<span class="text-tertiary">*</span> :</p>
                         <div class="flex flex-wrap gap-x-6 gap-y-1">
                             @foreach ($areas as $area)
                             <div class="flex gap-2 items-center">
