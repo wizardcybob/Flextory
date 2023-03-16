@@ -108,30 +108,16 @@
                             @elseif ($sheet->state->name == "archivée")
                                 <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center border-none whitespace-nowrap" aria-label="Fiche terminée">Archivée</div>
                             @endif
-                            {{-- select état de la fiche --}}
-                            {{-- @if ($sheet->state->id == 1)
-                                <select class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 cursor-pointer justify-center capitalize border-none" name="state" id="state-select" onchange="location = this.value;">
+                            {{-- état de la fiche --}}
+                            @if ($sheet->state->id == 1)
+                                <div class="bg-status-to_do text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche à traiter">à traiter</div>
                             @elseif ($sheet->state->id == 2)
-                                <select class="bg-status-in_progress text-white px-2 py-1 rounded flex items-center text-center gap-3 cursor-pointer justify-center capitalize border-none" name="state" id="state-select" onchange="location = this.value;">
+                                <div class="bg-status-in_progress text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche en cours">en cours</div>
                             @elseif ($sheet->state->id == 3)
-                                <select class="bg-status-done text-white px-2 py-1 rounded flex items-center text-center gap-3 cursor-pointer justify-center capitalize border-none" name="state" id="state-select" onchange="location = this.value;">
+                                <div class="bg-status-done text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche terminée">terminée</div>
                             @elseif ($sheet->state->id == 4)
-                                <select class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 cursor-pointer justify-center capitalize border-none" name="state" id="state-select" onchange="location = this.value;">
+                                <div class="bg-status-archive text-white px-2 py-1 rounded flex items-center text-center gap-3 justify-center capitalize border-none whitespace-nowrap" aria-label="Fiche archivée">archivée</div>
                             @endif
-                                <option value="{{ route('sheet.index') }}" @if ($sheet->state->id == null) selected @endif disabled>---------------</option>
-                                <option value="{{ route('sheet.index', ['state' => 1]) }}" @if ($sheet->state->id == 1) selected @endif class="capitalize bg-white text-primary-dark">
-                                    à traiter
-                                </option>
-                                <option value="{{ route('sheet.index', ['state' => 2]) }}" @if ($sheet->state->id == 2) selected @endif class="capitalize bg-white text-primary-dark">
-                                    en cours
-                                </option>
-                                <option value="{{ route('sheet.index', ['state' => 3]) }}" @if ($sheet->state->id == 3) selected @endif class="capitalize bg-white text-primary-dark">
-                                    terminée
-                                </option>
-                                <option value="{{ route('sheet.index', ['state' => 4]) }}" @if ($sheet->state->id == 4) selected @endif class="capitalize bg-white text-primary-dark">
-                                    archivée
-                                </option>
-                            </select> --}}
                             {{-- btns --}}
                             <div class="flex gap-2">
                                 {{-- btn view --}}

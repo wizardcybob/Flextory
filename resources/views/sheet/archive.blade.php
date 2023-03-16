@@ -81,7 +81,7 @@
                             @endif
                             {{-- btns --}}
                             <div class="flex gap-2">
-                                <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('sheet.show', $sheet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
+                                {{-- <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('sheet.show', $sheet) }}" aria-label="Voir la fiche d'amélioration"><i class="fa-solid fa-eye" aria-hidden="true"></i></a> --}}
                                 <a class="bg-restore hover:bg-restore-dark text-white py-1 px-2 rounded" href="{{ route('sheet.restore', ['sheet' => $sheet->id])}}" aria-label="Restaurer la fiche d'amélioration"><i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i></a>
                                 <form action="{{ route('sheet.forcedelete', ['sheet' => $sheet->id]) }}" method="POST">
                                     @csrf

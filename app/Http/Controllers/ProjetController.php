@@ -182,7 +182,7 @@ class ProjetController extends Controller
 
         $projet->delete();
 
-        return redirect()->route('projet.index');
+        return redirect()->route('projet.archive');
     }
 
     public function forcedelete($id)

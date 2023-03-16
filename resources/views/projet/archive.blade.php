@@ -48,7 +48,7 @@
                     @endif
                     {{-- btns --}}
                     <div class="flex gap-2">
-                        <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('projet.show', $projet) }}" aria-label="Voir le projet"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
+                        {{-- <a class="bg-view hover:bg-view-dark text-white py-1 px-4 rounded" href="{{ route('projet.show', $projet) }}" aria-label="Voir le projet"><i class="fa-solid fa-eye" aria-hidden="true"></i></a> --}}
                         <a class="bg-restore hover:bg-restore-dark text-white py-1 px-2 rounded" href="{{ route('projet.restore', ['projet' => $projet->id])}}" aria-label="Restaurer le projet"><i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i></a>
                         <form action="{{ route('projet.forcedelete', ['projet' => $projet->id]) }}" method="POST">
                             @csrf

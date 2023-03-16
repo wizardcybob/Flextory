@@ -11,7 +11,7 @@
             Retour</button>
 
         {{-- FORMULAIRE --}}
-        <form action="{{ route('sheet.store') }}" method="POST" class="flex flex-col gap-4">
+        <form action="{{ route('sheet.update') }}" method="POST" class="flex flex-col gap-4">
             @csrf
             {{-- Créateur de la fiche (à cacher) --}}
             <input type="text" placeholder="creator" name="creator" class="hidden" value="{{ $creator }}">
@@ -76,7 +76,7 @@
                 </ul>
             </div>
 
-            
+
             {{-- Sélectionner une image --}}
             <div class="relative">
                 <label for="image" id="image-label" class="absolute label_form">Sélectionner une image :</label>

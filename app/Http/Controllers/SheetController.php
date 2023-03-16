@@ -248,7 +248,7 @@ class SheetController extends Controller
 
         $sheet->delete();
 
-        return redirect()->route('sheet.index');
+        return redirect()->route('sheet.archive');
     }
 
     public function forcedelete($id)
