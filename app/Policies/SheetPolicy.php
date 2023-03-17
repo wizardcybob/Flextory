@@ -18,7 +18,7 @@ class SheetPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class SheetPolicy
      */
     public function view(User $user, Sheet $sheet)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class SheetPolicy
      */
     public function create(User $user)
     {
-
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class SheetPolicy
      */
     public function update(User $user, Sheet $sheet)
     {
-
+        return true;
     }
 
     /**
