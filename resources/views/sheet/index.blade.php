@@ -55,7 +55,7 @@
                 </div>
             </form>
             @if(str_contains(url()->current(), 'search'))
-            <a class="text-error w-fit flex items-center gap-2 font-semibold" href="{{ route('sheet.index') }}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
+            <a class="text-error w-fit flex items-center gap-2 font-semibold" href="{{ route('area.sheets', ['area' => $area])}}" aria-label="Supprimer la recherche" title="Supprimer la recherche">
                 <i class="fa-solid fa-xmark"></i> Supprimer la recherche</a>
             @endif
 

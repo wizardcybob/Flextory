@@ -116,7 +116,7 @@
                 </a>
             </div> --}}
             <nav class="flex flex-col text-center gap-4">
-                <p class="cursor-pointer"><a href="/adearea" class="group transition duration-300">
+                <p class="cursor-pointer"><a href="{{ route('adearea.index')}}" class="group transition duration-300">
                     Accueil
                     <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-[2.3px] bg-secondary-light {{ Request::is('adearea') ? 'max-w-full' : '' }}"></span>
                     </a></p>

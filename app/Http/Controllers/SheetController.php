@@ -82,6 +82,9 @@ class SheetController extends Controller
 
     public function search(Request $request)
     {
+        $previousUrl = $request->headers->get('referer');
+        $previousUrlParts = explode('/', $previousUrl);
+        $area = $previousUrlParts[count($previousUrlParts) - 2];
         $query = $request->input('query');
         $category = $request->input('category');
         $states = $request->input('states');
@@ -100,7 +103,7 @@ class SheetController extends Controller
         $categories = Category::all();
         $states = State::all();
 
-        return view('sheet.index', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states]);
+        return view('sheet.index', ['sheets' => $sheets, 'categories' => $categories, 'states' => $states, 'area' => $area]);
     }
 
     /**
