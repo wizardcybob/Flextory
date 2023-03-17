@@ -41,7 +41,7 @@ class SheetPolicy
      */
     public function create(User $user)
     {
-        return $user->role == '1' || $user->role == '2' || $user->role == '3' || $user->role == '4';
+
     }
 
     /**
@@ -53,7 +53,7 @@ class SheetPolicy
      */
     public function update(User $user, Sheet $sheet)
     {
-        return $user->role == '1' || $user->role == '2' || $user->role == '3' || $user->role == '4';
+
     }
 
     /**
