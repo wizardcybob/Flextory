@@ -4,7 +4,9 @@
 
 ### Base de donnée
 
-Modifier le fichier d'environnement :
+Il faut lier le projet avec une base de données vide, le nom de cette base de données sera à renseigner dans la partie "DB_DATABASE".
+
+Modifier le fichier d'environnement (.env) :
 - APP_URL
 - DB_HOST
 - DB_PORT
