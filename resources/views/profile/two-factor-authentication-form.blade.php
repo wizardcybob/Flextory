@@ -4,25 +4,25 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Sécurisez votre compte avec la méthode d'authentification à deux facteurs.') }}
+        {{ __('Sécurisez votre compte avec la méthode d&rsquo;authentification à deux facteurs.') }}
     </x-slot>
 
     <x-slot name="content">
         <h3 class="text-lg font-medium text-gray-900">
             @if ($this->enabled)
                 @if ($showingConfirmation)
-                    {{ __('L'authentification à deux facteurs a été activée.') }}
+                    {{ __('L&rsquo;authentification à deux facteurs a été activée.') }}
                 @else
-                    {{ __('L'authentification à deux facteurs a été activée.') }}
+                    {{ __('L&rsquo;authentification à deux facteurs a été activée.') }}
                 @endif
             @else
-                {{ __('Vous n'avez pas activé l'authentification à deux facteurs.') }}
+                {{ __('Vous n&rsquo;avez pas activé l&rsquo;authentification à deux facteurs.') }}
             @endif
         </h3>
 
         <div class="mt-3 max-w-xl text-sm text-gray-600">
             <p>
-                {{ __('Lorsque l'authentification à deux facteurs est activée, vous recevrez une notification sur votre téléphone via l'application Google Authenticator.') }}
+                {{ __('Lorsque l&rsquo;authentification à deux facteurs est activée, vous recevrez une notification sur votre téléphone via l&rsquo;application Google Authenticator.') }}
             </p>
         </div>
 
@@ -31,9 +31,9 @@
                 <div class="mt-4 max-w-xl text-sm text-gray-600">
                     <p class="font-semibold">
                         @if ($showingConfirmation)
-                            {{ __('Pour finir d'activer l'authentification à deux facteurs, veuillez scanner ce code QR avec votre téléphone.') }}
+                            {{ __('Pour finir d&rsquo;activer l&rsquo;authentification à deux facteurs, veuillez scanner ce code QR avec votre téléphone.') }}
                         @else
-                            {{ __('L'authenitification à deux facteurs est maintenant activée. Scannez le code QR avec l'application Google Authenticator ou entrez la clé setup suivante.') }}
+                            {{ __('L&rsquo;authenitification à deux facteurs est maintenant activée. Scannez le code QR avec l&rsquo;application Google Authenticator ou entrez la clé setup suivante.') }}
                         @endif
                     </p>
                 </div>

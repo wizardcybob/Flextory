@@ -4,12 +4,12 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Gérer et se déconnecter de vos sessions sur d'autres navigateurs et appareils.') }}
+        {{ __('Gérer et se déconnecter de vos sessions sur d&rsquo;autres navigateurs et appareils.') }}
     </x-slot>
 
     <x-slot name="content">
         <div class="max-w-xl text-sm text-gray-600">
-            {{ __('Si nécessaire, vous pouvez vous déconnecter de toutes vos sessions en cours sur d'autres appareils et navigateurs. Certaines de vos sessions sont listées ici, mais la liste n'est peut-être pas complète. Si vous pensez que la sécurité de votre compte a été compromise, vous devriez changer de mot de passe.') }}
+            {{ __('Si nécessaire, vous pouvez vous déconnecter de toutes vos sessions en cours sur d&rsquo;autres appareils et navigateurs. Certaines de vos sessions sont listées ici, mais la liste n&rsquo;est peut-être pas complète. Si vous pensez que la sécurité de votre compte a été compromise, vous devriez changer de mot de passe.') }}
         </div>
 
         @if (count($this->sessions) > 0)
@@ -53,7 +53,7 @@
 
         <div class="flex items-center mt-5">
             <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
-                {{ __('Se déconnecter d'autres sessions.') }}
+                {{ __('Se déconnecter d&rsquo;autres sessions.') }}
             </x-jet-button>
 
             <x-jet-action-message class="ml-3" on="loggedOut">
@@ -64,7 +64,7 @@
         <!-- Log Out Other Devices Confirmation Modal -->
         <x-jet-dialog-modal wire:model="confirmingLogout">
             <x-slot name="title">
-                {{ __('Se déconnecter d'autres sessions.') }}
+                {{ __('Se déconnecter d&rsquo;autres sessions.') }}
             </x-slot>
 
             <x-slot name="content">

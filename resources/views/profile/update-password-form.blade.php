@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Assurez-vous d'utiliser un mot de passe long et complexe.') }}
+        {{ __('Assurez-vous d&rsquo;utiliser un mot de passe long et complexe.') }}
     </x-slot>
 
     <x-slot name="form">
