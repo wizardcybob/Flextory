@@ -22,6 +22,8 @@ Modifier le fichier d'environnement (.env) :
 
 - `php artisan migrate`
 
+- `php artisan storage:link` -> pour faire le file storage et placer les images de storage/app/public dans public/storage
+
 ## Utilisation
 
 Pour lancer le serveur Laravel : `php artisan serve`
